@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://qwj8b5x4g7c1"]
+[gd_scene load_steps=8 format=3 uid="uid://qwj8b5x4g7c1"]
 
 [ext_resource type="Script" uid="uid://od4p2jer5wh6" path="res://scripts/player.gd" id="1_ykyjo"]
 [ext_resource type="Texture2D" uid="uid://vhkk0mpqefa4" path="res://sprites/dude.png" id="2_uxov2"]
@@ -9,7 +9,12 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_player"]
 radius = 8.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_f46kd"]
+radius = 15.0
+
 [node name="player" type="CharacterBody2D" groups=["player"]]
+collision_layer = 2
+collision_mask = 7
 motion_mode = 1
 script = ExtResource("1_ykyjo")
 
@@ -29,7 +34,8 @@ script = ExtResource("3_uxov2")
 player = NodePath("..")
 hook = NodePath("hook")
 
-[node name="hook" type="Node2D" parent="lasso" node_paths=PackedStringArray("player", "lasso")]
+[node name="hook" type="Area2D" parent="lasso" node_paths=PackedStringArray("player", "lasso") groups=["hook"]]
+collision_mask = 5
 script = ExtResource("4_f46kd")
 player = NodePath("../..")
 lasso = NodePath("..")
@@ -37,3 +43,8 @@ max_distance_from_player = 400.0
 
 [node name="sprite" type="Sprite2D" parent="lasso/hook"]
 texture = ExtResource("4_nmc1l")
+
+[node name="shape" type="CollisionShape2D" parent="lasso/hook"]
+shape = SubResource("CircleShape2D_f46kd")
+
+[connection signal="body_entered" from="lasso/hook" to="lasso/hook" method="_on_body_entered"]

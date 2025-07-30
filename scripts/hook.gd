@@ -43,10 +43,25 @@ func _process(delta):
 
       if global_position.distance_to(player.global_position) < 10:
         state = State.WITH_PLAYER
-        reparent(lasso, false)
+        reparent(lasso)
         position = Vector2.ZERO
 
 func _draw():
   if state != State.WITH_PLAYER:
     # draw chain to the player
     draw_line(Vector2.ZERO, player.global_position - global_position, Color.WHITE, 2.0)
+
+
+func _on_body_entered(body: Node2D):
+  # we hit something...
+
+  if state != State.FLYING: return
+
+  print('Hook hit: ', body)
+
+  if body is Enemy:
+    state = State.HOOKED
+    reparent(body)
+    position = Vector2.ZERO
+  else:
+    state = State.RETURNING
