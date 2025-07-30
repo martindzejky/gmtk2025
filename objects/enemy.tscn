@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://r4tfd7m8uo5"]
+
+[ext_resource type="Texture2D" uid="uid://vhkk0mpqefa4" path="res://sprites/dude.png" id="1_882u1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_882u1"]
+radius = 8.0
+
+[node name="enemy" type="CharacterBody2D" groups=["enemy"]]
+
+[node name="sprite" type="Sprite2D" parent="."]
+modulate = Color(0.959393, 0.373996, 0.395027, 1)
+position = Vector2(0, -16)
+texture = ExtResource("1_882u1")
+
+[node name="shape" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_882u1")

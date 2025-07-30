@@ -1,3 +1,25 @@
-[gd_scene format=3 uid="uid://bifqkl6lsp6wc"]
+[gd_scene load_steps=4 format=3 uid="uid://bifqkl6lsp6wc"]
 
-[node name="main" type="Node"]
+[ext_resource type="PackedScene" uid="uid://qwj8b5x4g7c1" path="res://objects/player.tscn" id="1_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://r4tfd7m8uo5" path="res://objects/enemy.tscn" id="2_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://b3eomk5mxspe6" path="res://objects/pillar.tscn" id="3_h2yge"]
+
+[node name="main" type="Node2D"]
+y_sort_enabled = true
+
+[node name="player" parent="." instance=ExtResource("1_0xm2m")]
+
+[node name="enemy" parent="." instance=ExtResource("2_0xm2m")]
+position = Vector2(81, 58)
+
+[node name="pillar" parent="." instance=ExtResource("3_h2yge")]
+position = Vector2(45, 23)
+
+[node name="pillar2" parent="." instance=ExtResource("3_h2yge")]
+position = Vector2(31, 48)
+
+[node name="pillar3" parent="." instance=ExtResource("3_h2yge")]
+position = Vector2(-32, 78)
+
+[node name="pillar4" parent="." instance=ExtResource("3_h2yge")]
+position = Vector2(-70, 79)

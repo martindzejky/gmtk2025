@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=3 uid="uid://qwj8b5x4g7c1"]
+
+[ext_resource type="Script" uid="uid://od4p2jer5wh6" path="res://scripts/player.gd" id="1_ykyjo"]
+[ext_resource type="Texture2D" uid="uid://vhkk0mpqefa4" path="res://sprites/dude.png" id="2_uxov2"]
+[ext_resource type="Script" uid="uid://c4o833g47jo7o" path="res://scripts/lasso.gd" id="3_uxov2"]
+[ext_resource type="Script" uid="uid://cjlt64v1qx7v0" path="res://scripts/hook.gd" id="4_f46kd"]
+[ext_resource type="Texture2D" uid="uid://bjaqa3nhbfyeh" path="res://sprites/hook.png" id="4_nmc1l"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_player"]
+radius = 8.0
+
+[node name="player" type="CharacterBody2D" groups=["player"]]
+motion_mode = 1
+script = ExtResource("1_ykyjo")
+
+[node name="sprite" type="Sprite2D" parent="."]
+modulate = Color(0.276634, 0.650535, 0.772262, 1)
+position = Vector2(0, -16)
+texture = ExtResource("2_uxov2")
+
+[node name="shape" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_player")
+
+[node name="cam" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
+
+[node name="lasso" type="Node2D" parent="." node_paths=PackedStringArray("player", "hook")]
+script = ExtResource("3_uxov2")
+player = NodePath("..")
+hook = NodePath("hook")
+
+[node name="hook" type="Node2D" parent="lasso" node_paths=PackedStringArray("player", "lasso")]
+script = ExtResource("4_f46kd")
+player = NodePath("../..")
+lasso = NodePath("..")
+max_distance_from_player = 400.0
+
+[node name="sprite" type="Sprite2D" parent="lasso/hook"]
+texture = ExtResource("4_nmc1l")
