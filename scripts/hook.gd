@@ -27,6 +27,14 @@ func shoot_in_direction(new_target_direction: Vector2):
 
   print('Shooting in direction: ', target_direction)
 
+func unhook():
+  if state != State.HOOKED:
+    print('Hook is not hooked so it cannot unhook')
+    return
+
+  state = State.RETURNING
+  reparent(player.get_parent())
+
 func _process(delta):
   queue_redraw()
 
@@ -56,8 +64,6 @@ func _on_body_entered(body: Node2D):
   # we hit something...
 
   if state != State.FLYING: return
-
-  print('Hook hit: ', body)
 
   if body is Enemy:
     state = State.HOOKED
