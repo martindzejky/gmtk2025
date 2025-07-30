@@ -67,7 +67,9 @@ func _on_body_entered(body: Node2D):
 
   if body is Enemy:
     state = State.HOOKED
-    reparent(body)
-    position = Vector2.ZERO
+
+    print('Hooking to enemy: ', body)
+    call_deferred('reparent', body)
+    call_deferred('set_position', Vector2.ZERO)
   else:
     state = State.RETURNING
