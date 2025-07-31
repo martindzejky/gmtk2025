@@ -23,6 +23,9 @@ var starting_angle := 0.0
 var last_angle := 0.0
 var segments: Array[Segment] = [] # segments go from hook to player
 
+func _ready():
+  Game.hook = self
+
 func shoot_in_direction(new_target_direction: Vector2):
   if state != State.WITH_PLAYER:
     print('Hook is not with player so it cannot shoot')

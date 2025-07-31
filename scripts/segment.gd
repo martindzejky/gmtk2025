@@ -24,6 +24,9 @@ func _draw():
 func is_last_segment():
   return index == hook.segments.size() - 1
 
+func get_previous_segment():
+  return hook.segments[index - 1]
+
 func get_next_segment():
   return hook.segments[index + 1]
 
