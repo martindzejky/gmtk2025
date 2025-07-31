@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dqgwqwqwgu8ic"]
+
+[ext_resource type="PackedScene" uid="uid://r4tfd7m8uo5" path="res://objects/enemy.tscn" id="1_swki7"]
+[ext_resource type="Texture2D" uid="uid://chl26xrca3a67" path="res://sprites/dummy.png" id="2_gumd0"]
+
+[node name="dummy" instance=ExtResource("1_swki7")]
+can_move = false
+can_attack_melee = false
+can_attack_ranged = false
+
+[node name="sprite" parent="." index="0"]
+modulate = Color(0.566756, 0.259879, 0.265324, 1)
+texture = ExtResource("2_gumd0")

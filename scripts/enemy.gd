@@ -1,23 +1,63 @@
 extends CharacterBody2D
 class_name Enemy
 
-@export var speed := 50.0
+@export var can_move := true
+@export var move_speed := 50.0
 @export var hook_pull_speed := 20.0
+
+@export var can_attack_melee := true
+@export var melee_strike_distance := 20.0
+@export var melee_strike_object: PackedScene
+@export var can_attack_ranged := true
+@export var min_ranged_attack_distance := 20.0
+@export var max_ranged_attack_distance := 100.0
+@export var projectile_object: PackedScene
+
+@export var melee_cooldown_timer: Timer
+@export var shoot_cooldown_timer: Timer
 
 func _physics_process(_delta):
   velocity = Vector2.ZERO
 
-  # move towards player
-  if global_position.distance_to(Game.player.global_position) > 20:
-    var direction := global_position.direction_to(Game.player.global_position)
-    velocity += direction * get_movement_speed()
+  var distance_to_player := global_position.distance_to(Game.player.global_position)
 
-  # lasso segment pull
+  if melee_cooldown_timer.time_left <= 0 and shoot_cooldown_timer.time_left <= 0:
+    if can_attack_ranged:
+      if distance_to_player > max_ranged_attack_distance:
+        move_towards_player()
+      elif distance_to_player < min_ranged_attack_distance:
+        if can_attack_melee:
+          if distance_to_player > melee_strike_distance:
+            move_towards_player()
+        else:
+          move_away_from_player()
+    elif can_attack_melee:
+      if distance_to_player > melee_strike_distance:
+        move_towards_player()
+
+  if can_attack_melee and melee_cooldown_timer.time_left <= 0 and distance_to_player <= melee_strike_distance:
+    attack_melee()
+
+  if can_attack_ranged and shoot_cooldown_timer.time_left <= 0 and distance_to_player >= min_ranged_attack_distance and distance_to_player <= max_ranged_attack_distance:
+    shoot_ranged()
+
   if is_hooked_by_segment():
-    var direction := global_position.direction_to(Game.hook.global_position)
-    velocity += direction * hook_pull_speed
+    lasso_segment_pull()
 
-  move_and_slide()
+  if can_move:
+    move_and_slide()
+
+func move_towards_player():
+  var direction := global_position.direction_to(Game.player.global_position)
+  velocity += direction * get_movement_speed()
+
+func move_away_from_player():
+  var direction := Game.player.global_position.direction_to(global_position)
+  velocity += direction * get_movement_speed()
+
+func lasso_segment_pull():
+  var direction := global_position.direction_to(Game.hook.global_position)
+  velocity += direction * hook_pull_speed
 
 func is_hooked():
   var groups := ['hook', 'segment']
@@ -42,6 +82,24 @@ func is_hooked_by_segment():
 
 func get_movement_speed():
   if not is_hooked():
-    return speed
+    return move_speed
 
-  return lerpf(speed/2, speed/10, Game.hook.get_catch_percentage())
+  return lerpf(move_speed/2, move_speed/10, Game.hook.get_catch_percentage())
+
+func attack_melee():
+  melee_cooldown_timer.start()
+
+  var melee_strike = melee_strike_object.instantiate()
+  get_parent().add_child(melee_strike)
+
+  melee_strike.global_position = global_position
+  melee_strike.global_rotation = global_position.angle_to_point(Game.player.global_position)
+
+func shoot_ranged():
+  shoot_cooldown_timer.start()
+
+  var projectile = projectile_object.instantiate()
+  get_parent().add_child(projectile)
+
+  projectile.global_position = global_position
+  projectile.global_rotation = global_position.angle_to_point(Game.player.global_position)

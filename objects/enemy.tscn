@@ -1,15 +1,22 @@
-[gd_scene load_steps=4 format=3 uid="uid://r4tfd7m8uo5"]
+[gd_scene load_steps=6 format=3 uid="uid://r4tfd7m8uo5"]
 
 [ext_resource type="Script" uid="uid://fieie7mlojfh" path="res://scripts/enemy.gd" id="1_7jlpp"]
 [ext_resource type="Texture2D" uid="uid://vhkk0mpqefa4" path="res://sprites/dude.png" id="1_882u1"]
+[ext_resource type="PackedScene" uid="uid://ccv1x3ptc2xx" path="res://objects/melee_strike.tscn" id="2_41oev"]
+[ext_resource type="PackedScene" uid="uid://dr57aya15ff0d" path="res://objects/projectile.tscn" id="3_we7g8"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_882u1"]
 radius = 8.0
 
-[node name="enemy" type="CharacterBody2D" groups=["enemy"]]
+[node name="enemy" type="CharacterBody2D" node_paths=PackedStringArray("melee_cooldown_timer", "shoot_cooldown_timer") groups=["enemy"]]
 collision_layer = 4
 collision_mask = 7
+motion_mode = 1
 script = ExtResource("1_7jlpp")
+melee_strike_object = ExtResource("2_41oev")
+projectile_object = ExtResource("3_we7g8")
+melee_cooldown_timer = NodePath("melee_cooldown")
+shoot_cooldown_timer = NodePath("shoot_cooldown")
 
 [node name="sprite" type="Sprite2D" parent="."]
 modulate = Color(0.959393, 0.373996, 0.395027, 1)
@@ -18,3 +25,11 @@ texture = ExtResource("1_882u1")
 
 [node name="shape" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_882u1")
+
+[node name="melee_cooldown" type="Timer" parent="."]
+wait_time = 0.6
+one_shot = true
+
+[node name="shoot_cooldown" type="Timer" parent="."]
+wait_time = 1.4
+one_shot = true

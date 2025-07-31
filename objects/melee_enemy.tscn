@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://6x8fg57qy4w7"]
+
+[ext_resource type="PackedScene" uid="uid://r4tfd7m8uo5" path="res://objects/enemy.tscn" id="1_ah8rq"]
+
+[node name="melee_enemy" instance=ExtResource("1_ah8rq")]
+can_attack_ranged = false

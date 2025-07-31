@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://br2pnnu3i2hvh"]
+
+[ext_resource type="PackedScene" uid="uid://r4tfd7m8uo5" path="res://objects/enemy.tscn" id="1_1x6l7"]
+
+[node name="ranged_enemy" instance=ExtResource("1_1x6l7")]
+move_speed = 40.0
+can_attack_melee = false
+min_ranged_attack_distance = 80.0
+max_ranged_attack_distance = 160.0

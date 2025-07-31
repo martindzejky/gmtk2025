@@ -1,28 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://bifqkl6lsp6wc"]
+[gd_scene load_steps=6 format=3 uid="uid://bifqkl6lsp6wc"]
 
 [ext_resource type="PackedScene" uid="uid://qwj8b5x4g7c1" path="res://objects/player.tscn" id="1_0xm2m"]
-[ext_resource type="PackedScene" uid="uid://r4tfd7m8uo5" path="res://objects/enemy.tscn" id="2_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://b3eomk5mxspe6" path="res://objects/pillar.tscn" id="3_h2yge"]
+[ext_resource type="PackedScene" uid="uid://dqgwqwqwgu8ic" path="res://objects/dummy.tscn" id="4_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://6x8fg57qy4w7" path="res://objects/melee_enemy.tscn" id="4_lquwl"]
+[ext_resource type="PackedScene" uid="uid://br2pnnu3i2hvh" path="res://objects/ranged_enemy.tscn" id="5_7mycd"]
 
 [node name="main" type="Node2D"]
 y_sort_enabled = true
 
 [node name="player" parent="." instance=ExtResource("1_0xm2m")]
-
-[node name="enemy" parent="." instance=ExtResource("2_0xm2m")]
-position = Vector2(81, 58)
-
-[node name="enemy2" parent="." instance=ExtResource("2_0xm2m")]
-position = Vector2(156, -114)
-
-[node name="enemy3" parent="." instance=ExtResource("2_0xm2m")]
-position = Vector2(268, -114)
-
-[node name="enemy4" parent="." instance=ExtResource("2_0xm2m")]
-position = Vector2(306, 69)
-
-[node name="enemy5" parent="." instance=ExtResource("2_0xm2m")]
-position = Vector2(440, -2)
 
 [node name="pillar" parent="." instance=ExtResource("3_h2yge")]
 position = Vector2(45, 23)
@@ -35,3 +22,36 @@ position = Vector2(-32, 78)
 
 [node name="pillar4" parent="." instance=ExtResource("3_h2yge")]
 position = Vector2(-138, 52)
+
+[node name="dummy" parent="." instance=ExtResource("4_1bvp3")]
+position = Vector2(-240, -127)
+
+[node name="dummy2" parent="." instance=ExtResource("4_1bvp3")]
+position = Vector2(-347, -103)
+
+[node name="dummy3" parent="." instance=ExtResource("4_1bvp3")]
+position = Vector2(-379, -167)
+
+[node name="melee_enemy" parent="." instance=ExtResource("4_lquwl")]
+position = Vector2(280, 345)
+
+[node name="melee_enemy2" parent="." instance=ExtResource("4_lquwl")]
+position = Vector2(394, 307)
+
+[node name="melee_enemy3" parent="." instance=ExtResource("4_lquwl")]
+position = Vector2(-136, 466)
+
+[node name="melee_enemy4" parent="." instance=ExtResource("4_lquwl")]
+position = Vector2(-60, 509)
+
+[node name="ranged_enemy" parent="." instance=ExtResource("5_7mycd")]
+position = Vector2(674, 423)
+
+[node name="ranged_enemy2" parent="." instance=ExtResource("5_7mycd")]
+position = Vector2(741, 489)
+
+[node name="ranged_enemy3" parent="." instance=ExtResource("5_7mycd")]
+position = Vector2(-471, 773)
+
+[node name="ranged_enemy4" parent="." instance=ExtResource("5_7mycd")]
+position = Vector2(-553, 856)
