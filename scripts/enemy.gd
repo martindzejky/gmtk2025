@@ -149,3 +149,7 @@ func free_from_capture():
   collision_layer = collision_layer >> 1
 
   Game.enemies_updated.emit()
+
+func collect_captured():
+  # TODO: animation and add some points or something
+  queue_free()

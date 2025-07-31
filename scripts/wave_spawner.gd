@@ -18,8 +18,12 @@ func _on_enemies_updated():
   var free_enemies = get_tree().get_nodes_in_group('enemy').filter(func(enemy: Enemy): return not enemy.is_captured())
 
   if free_enemies.size() == 0:
+    collect_captured_enemies()
     var new_wave = waves.pop_front()
     spawn_wave(new_wave)
+
+func collect_captured_enemies():
+  get_tree().call_group('enemy', 'collect_captured')
 
 func spawn_wave(wave: SpawnWave):
   current_wave += 1
