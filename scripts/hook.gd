@@ -19,7 +19,6 @@ enum State {
 var state: State = State.WITH_PLAYER
 var target_direction: Vector2 = Vector2.ZERO
 var total_angle_change := 0.0
-var starting_angle := 0.0
 var last_angle := 0.0
 var segments: Array[Segment] = [] # segments go from hook to player
 
@@ -48,8 +47,7 @@ func hook_to_enemy(enemy: Enemy):
   reparent(enemy)
   position = Vector2.ZERO
   total_angle_change = 0.0
-  starting_angle = global_position.angle_to_point(player.global_position)
-  last_angle = starting_angle
+  last_angle = global_position.angle_to_point(player.global_position)
   update_raycast_exceptions()
 
 func catch_all_enemies():
@@ -185,6 +183,12 @@ func _physics_process(_delta):
         add_segment_to_enemy(raycast.get_collider(), raycast.get_collision_point(), 0)
 
 func add_segment_to_enemy(enemy: Enemy, point_of_collision: Vector2, insert_segment_at_index: int):
+  # test: recalculate the starting angle but only if this is a newly hooked enemy
+  # result: it feels nice!
+  if enemy != get_parent() and segments.all(func(segment: Segment): return segment.get_parent() != enemy):
+    total_angle_change = 0.0
+    last_angle = global_position.angle_to_point(player.global_position)
+
   var new_segment := segment_object.instantiate()
 
   enemy.add_child(new_segment)
@@ -194,3 +198,4 @@ func add_segment_to_enemy(enemy: Enemy, point_of_collision: Vector2, insert_segm
   segments.insert(insert_segment_at_index, new_segment)
   update_segment_indices()
   update_raycast_exceptions()
+
