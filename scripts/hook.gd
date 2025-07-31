@@ -168,13 +168,9 @@ func update_raycast_exceptions():
   if state == State.HOOKED:
     raycast.add_exception(get_parent())
 
-  if segments.size() > 0:
-    raycast.add_exception(segments[0].get_parent())
-
   for segment in segments:
+    raycast.add_exception(segment.get_parent())
     segment.update_raycast_exceptions()
-
-  # alternative to consider: add as exception all segments' parents
 
 func _physics_process(_delta):
   match state:

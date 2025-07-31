@@ -32,12 +32,9 @@ func get_next_segment():
 
 func update_raycast_exceptions():
   raycast.clear_exceptions()
-  raycast.add_exception(get_parent())
 
-  if not is_last_segment():
-    raycast.add_exception(get_next_segment().get_parent())
-
-  # alternative to consider: add as exception all other segments' parents
+  for segment in hook.segments:
+    raycast.add_exception(segment.get_parent())
 
 func _physics_process(_delta):
   if raycast.is_colliding():
