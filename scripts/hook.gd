@@ -4,8 +4,10 @@ class_name Hook
 @export var player: Player
 @export var lasso: Lasso
 @export var progress_bar: ProgressBar
+@export var raycast: RayCast2D
 @export var max_distance_from_player := 100.0
 @export var speed := 300.0
+@export var segment_object: PackedScene
 
 enum State {
   WITH_PLAYER,
@@ -19,6 +21,7 @@ var target_direction: Vector2 = Vector2.ZERO
 var total_angle_change := 0.0
 var starting_angle := 0.0
 var last_angle := 0.0
+var segments: Array[Segment] = [] # segments go from hook to player
 
 func shoot_in_direction(new_target_direction: Vector2):
   if state != State.WITH_PLAYER:
@@ -53,6 +56,9 @@ func unhook():
   if state != State.HOOKED:
     print('Hook is not hooked so it cannot unhook') # so many hooks...
     return
+
+  delete_segments()
+  update_raycast_exceptions()
 
   state = State.RETURNING
   reparent(player.get_parent())
@@ -94,14 +100,26 @@ func _process(delta):
       # have we wrapped around yet?
       if abs(total_angle_change) >= 2 * PI:
         catch_enemy(get_parent())
+
+        for segment in segments:
+          catch_enemy(segment.get_parent())
+
         unhook()
 
       progress_bar.value = get_catch_percentage()
 
+      if segments.size() > 0:
+        raycast.target_position = segments[0].global_position - global_position
+      else:
+        raycast.target_position = player.global_position - global_position
+
 func _draw():
   if state != State.WITH_PLAYER:
-    # draw chain to the player
-    draw_line(Vector2.ZERO, player.global_position - global_position, Color.WHITE, 2.0)
+    # draw chain to the player or first segment
+    if segments.size() > 0:
+      draw_line(Vector2.ZERO, segments[0].global_position - global_position, Color.WHITE, 2.0)
+    else:
+      draw_line(Vector2.ZERO, player.global_position - global_position, Color.WHITE, 2.0)
 
   if state == State.HOOKED:
     # draw the starting direction
@@ -123,3 +141,44 @@ func get_catch_percentage():
     return 0.0
 
   return abs(total_angle_change) / (2 * PI)
+
+func delete_segments():
+  for segment in segments:
+    segment.free() # TODO: had to use free() instead of queue_free()... will there be any problems?
+  segments.clear()
+
+func update_segment_indices():
+  for i in range(segments.size()):
+    segments[i].index = i
+
+func update_raycast_exceptions():
+  raycast.clear_exceptions()
+
+  if state == State.HOOKED:
+    raycast.add_exception(get_parent())
+
+  if segments.size() > 0:
+    raycast.add_exception(segments[0].get_parent())
+
+  for segment in segments:
+    segment.update_raycast_exceptions()
+
+  # alternative to consider: add as exception all segments' parents
+
+func _physics_process(_delta):
+  match state:
+    State.HOOKED:
+      if raycast.is_colliding():
+        print('New enemy hit by hook raycast, adding a segment at index 0')
+        add_segment_to_enemy(raycast.get_collider(), raycast.get_collision_point(), 0)
+
+func add_segment_to_enemy(enemy: Enemy, point_of_collision: Vector2, insert_segment_at_index: int):
+  var new_segment := segment_object.instantiate()
+
+  enemy.add_child(new_segment)
+  new_segment.hook = self
+  new_segment.global_position = point_of_collision
+
+  segments.insert(insert_segment_at_index, new_segment)
+  update_segment_indices()
+  update_raycast_exceptions()

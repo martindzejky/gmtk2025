@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dnygwyrtcqc3w"]
+
+[ext_resource type="Script" uid="uid://bc5h0kew7vof7" path="res://scripts/segment.gd" id="1_rsr6o"]
+[ext_resource type="Texture2D" uid="uid://bjaqa3nhbfyeh" path="res://sprites/hook.png" id="2_x60gg"]
+
+[node name="segment" type="Node2D" node_paths=PackedStringArray("raycast") groups=["segment"]]
+script = ExtResource("1_rsr6o")
+raycast = NodePath("raycast")
+
+[node name="sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_x60gg")
+
+[node name="raycast" type="RayCast2D" parent="."]
+collision_mask = 4

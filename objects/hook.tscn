@@ -1,16 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://ca585k0y784dp"]
+[gd_scene load_steps=5 format=3 uid="uid://ca585k0y784dp"]
 
 [ext_resource type="Script" uid="uid://cjlt64v1qx7v0" path="res://scripts/hook.gd" id="1_vff3s"]
+[ext_resource type="PackedScene" uid="uid://dnygwyrtcqc3w" path="res://objects/segment.tscn" id="2_tx2e1"]
 [ext_resource type="Texture2D" uid="uid://bjaqa3nhbfyeh" path="res://sprites/hook.png" id="2_u8qfn"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_f46kd"]
 radius = 15.0
 
-[node name="hook" type="Area2D" node_paths=PackedStringArray("progress_bar") groups=["hook"]]
+[node name="hook" type="Area2D" node_paths=PackedStringArray("progress_bar", "raycast") groups=["hook"]]
 collision_mask = 5
 script = ExtResource("1_vff3s")
 progress_bar = NodePath("progress")
+raycast = NodePath("raycast")
 max_distance_from_player = 400.0
+segment_object = ExtResource("2_tx2e1")
 
 [node name="sprite" type="Sprite2D" parent="."]
 texture = ExtResource("2_u8qfn")
@@ -34,5 +37,8 @@ size_flags_vertical = 8
 max_value = 1.0
 step = 0.001
 show_percentage = false
+
+[node name="raycast" type="RayCast2D" parent="."]
+collision_mask = 4
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
