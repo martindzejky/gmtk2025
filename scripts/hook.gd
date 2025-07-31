@@ -96,7 +96,7 @@ func _process(delta):
         catch_enemy(get_parent())
         unhook()
 
-      progress_bar.value = abs(total_angle_change) / (2 * PI)
+      progress_bar.value = get_catch_percentage()
 
 func _draw():
   if state != State.WITH_PLAYER:
@@ -117,3 +117,9 @@ func _on_body_entered(body: Node2D):
     call_deferred('hook_to_enemy', body)
   else:
     state = State.RETURNING
+
+func get_catch_percentage():
+  if state != State.HOOKED:
+    return 0.0
+
+  return abs(total_angle_change) / (2 * PI)
