@@ -8,7 +8,7 @@ script = ExtResource("1_iumy6")
 
 [node name="sprite" type="Sprite2D" parent="."]
 z_index = 1
-position = Vector2(5, 0)
+position = Vector2(27, 0)
 texture = ExtResource("1_1x5pd")
 
 [node name="delete_timer" type="Timer" parent="."]

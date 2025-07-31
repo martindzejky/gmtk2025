@@ -50,6 +50,7 @@ func hook_to_enemy(enemy: Enemy):
   total_angle_change = 0.0
   starting_angle = global_position.angle_to_point(player.global_position)
   last_angle = starting_angle
+  update_raycast_exceptions()
 
 func catch_all_enemies():
   if state != State.HOOKED:

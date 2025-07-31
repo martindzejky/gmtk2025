@@ -21,6 +21,9 @@ texture = ExtResource("2_u8qfn")
 [node name="shape" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_f46kd")
 
+[node name="raycast" type="RayCast2D" parent="."]
+collision_mask = 4
+
 [node name="progress" type="ProgressBar" parent="."]
 anchors_preset = 7
 anchor_left = 0.5
@@ -35,10 +38,6 @@ grow_horizontal = 2
 grow_vertical = 0
 size_flags_vertical = 8
 max_value = 1.0
-step = 0.001
 show_percentage = false
-
-[node name="raycast" type="RayCast2D" parent="."]
-collision_mask = 4
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

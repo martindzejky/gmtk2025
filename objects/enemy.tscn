@@ -13,6 +13,7 @@ collision_layer = 4
 collision_mask = 7
 motion_mode = 1
 script = ExtResource("1_7jlpp")
+melee_strike_distance = 40.0
 melee_strike_object = ExtResource("2_41oev")
 min_ranged_attack_distance = 140.0
 max_ranged_attack_distance = 180.0
