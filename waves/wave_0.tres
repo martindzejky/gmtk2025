@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="SpawnWave" load_steps=5 format=3 uid="uid://b15ivea504ili"]
+
+[ext_resource type="Script" uid="uid://cpie7uioixb8s" path="res://scripts/wave_chance_pair.gd" id="1_u8wih"]
+[ext_resource type="PackedScene" uid="uid://6x8fg57qy4w7" path="res://objects/melee_enemy.tscn" id="2_0iep2"]
+[ext_resource type="Script" uid="uid://dmo2rhel62y5f" path="res://scripts/spawn_wave.gd" id="2_4n2qp"]
+
+[sub_resource type="Resource" id="Resource_yqxcu"]
+script = ExtResource("1_u8wih")
+chance = 0
+enemy = ExtResource("2_0iep2")
+metadata/_custom_type_script = "uid://cpie7uioixb8s"
+
+[resource]
+script = ExtResource("2_4n2qp")
+enemies = Array[ExtResource("1_u8wih")]([SubResource("Resource_yqxcu")])
+spawn_number = 2
+spawn_min_distance = 300.0
+spawn_max_distance = 500.0
+metadata/_custom_type_script = "uid://dmo2rhel62y5f"

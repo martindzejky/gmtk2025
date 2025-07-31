@@ -1,57 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://bifqkl6lsp6wc"]
+[gd_scene load_steps=7 format=3 uid="uid://bifqkl6lsp6wc"]
 
 [ext_resource type="PackedScene" uid="uid://qwj8b5x4g7c1" path="res://objects/player.tscn" id="1_0xm2m"]
-[ext_resource type="PackedScene" uid="uid://b3eomk5mxspe6" path="res://objects/pillar.tscn" id="3_h2yge"]
-[ext_resource type="PackedScene" uid="uid://dqgwqwqwgu8ic" path="res://objects/dummy.tscn" id="4_1bvp3"]
-[ext_resource type="PackedScene" uid="uid://6x8fg57qy4w7" path="res://objects/melee_enemy.tscn" id="4_lquwl"]
-[ext_resource type="PackedScene" uid="uid://br2pnnu3i2hvh" path="res://objects/ranged_enemy.tscn" id="5_7mycd"]
+[ext_resource type="Script" uid="uid://bcpmyhlyslkwq" path="res://scripts/wave_spawner.gd" id="2_0xm2m"]
+[ext_resource type="Script" uid="uid://dmo2rhel62y5f" path="res://scripts/spawn_wave.gd" id="3_lquwl"]
+[ext_resource type="Resource" uid="uid://b15ivea504ili" path="res://waves/wave_0.tres" id="4_1bvp3"]
+[ext_resource type="Resource" uid="uid://bkjxd3s8qho82" path="res://waves/wave_1.tres" id="5_lquwl"]
+[ext_resource type="Resource" uid="uid://cspiwl2qqobau" path="res://waves/wave_2.tres" id="6_7mycd"]
 
 [node name="main" type="Node2D"]
 y_sort_enabled = true
 
 [node name="player" parent="." instance=ExtResource("1_0xm2m")]
 
-[node name="pillar" parent="." instance=ExtResource("3_h2yge")]
-position = Vector2(45, 23)
-
-[node name="pillar2" parent="." instance=ExtResource("3_h2yge")]
-position = Vector2(53, 135)
-
-[node name="pillar3" parent="." instance=ExtResource("3_h2yge")]
-position = Vector2(-32, 78)
-
-[node name="pillar4" parent="." instance=ExtResource("3_h2yge")]
-position = Vector2(-138, 52)
-
-[node name="dummy" parent="." instance=ExtResource("4_1bvp3")]
-position = Vector2(-240, -127)
-
-[node name="dummy2" parent="." instance=ExtResource("4_1bvp3")]
-position = Vector2(-347, -103)
-
-[node name="dummy3" parent="." instance=ExtResource("4_1bvp3")]
-position = Vector2(-379, -167)
-
-[node name="melee_enemy" parent="." instance=ExtResource("4_lquwl")]
-position = Vector2(280, 345)
-
-[node name="melee_enemy2" parent="." instance=ExtResource("4_lquwl")]
-position = Vector2(394, 307)
-
-[node name="melee_enemy3" parent="." instance=ExtResource("4_lquwl")]
-position = Vector2(-136, 466)
-
-[node name="melee_enemy4" parent="." instance=ExtResource("4_lquwl")]
-position = Vector2(-60, 509)
-
-[node name="ranged_enemy" parent="." instance=ExtResource("5_7mycd")]
-position = Vector2(674, 423)
-
-[node name="ranged_enemy2" parent="." instance=ExtResource("5_7mycd")]
-position = Vector2(741, 489)
-
-[node name="ranged_enemy3" parent="." instance=ExtResource("5_7mycd")]
-position = Vector2(-471, 773)
-
-[node name="ranged_enemy4" parent="." instance=ExtResource("5_7mycd")]
-position = Vector2(-553, 856)
+[node name="wave_spawner" type="Node" parent="."]
+script = ExtResource("2_0xm2m")
+waves = Array[ExtResource("3_lquwl")]([ExtResource("4_1bvp3"), ExtResource("5_lquwl"), ExtResource("6_7mycd")])
