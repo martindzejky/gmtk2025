@@ -79,6 +79,7 @@ func unhook():
 func _process(delta):
   queue_redraw()
 
+  visible = state != State.WITH_PLAYER
   progress_bar.visible = state == State.HOOKED
 
   match state:

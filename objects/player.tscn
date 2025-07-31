@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://qwj8b5x4g7c1"]
+[gd_scene load_steps=8 format=3 uid="uid://qwj8b5x4g7c1"]
 
 [ext_resource type="Script" uid="uid://od4p2jer5wh6" path="res://scripts/player.gd" id="1_ykyjo"]
 [ext_resource type="Texture2D" uid="uid://vhkk0mpqefa4" path="res://sprites/dude.png" id="2_uxov2"]
+[ext_resource type="Texture2D" uid="uid://dpnid40fk8abh" path="res://sprites/hat.png" id="3_f46kd"]
 [ext_resource type="Script" uid="uid://c4o833g47jo7o" path="res://scripts/lasso.gd" id="3_uxov2"]
 [ext_resource type="PackedScene" uid="uid://ca585k0y784dp" path="res://objects/hook.tscn" id="4_nmc1l"]
 
@@ -24,9 +25,13 @@ dash_cooldown_timer = NodePath("dash_cooldown")
 dash_cooldown_progress = NodePath("dash_cooldown_progress")
 
 [node name="sprite" type="Sprite2D" parent="."]
-modulate = Color(0.276634, 0.650535, 0.772262, 1)
+self_modulate = Color(0.278431, 0.65098, 0.772549, 1)
 position = Vector2(0, -16)
 texture = ExtResource("2_uxov2")
+
+[node name="hat" type="Sprite2D" parent="sprite"]
+position = Vector2(0, -22)
+texture = ExtResource("3_f46kd")
 
 [node name="shape" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_player")
