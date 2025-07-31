@@ -7,13 +7,17 @@ var current_wave := -1
 
 func _ready():
   assert(waves.size() > 0, 'No waves defined')
+  Game.enemies_updated.connect(_on_enemies_updated)
+  call_deferred('_on_enemies_updated')
 
-func _process(_delta):
+func _on_enemies_updated():
   if waves.size() == 0:
     # TODO: something cool should happen here
     return
 
-  if get_tree().get_nodes_in_group('enemy').size() == 0:
+  var free_enemies = get_tree().get_nodes_in_group('enemy').filter(func(enemy: Enemy): return not enemy.is_captured())
+
+  if free_enemies.size() == 0:
     var new_wave = waves.pop_front()
     spawn_wave(new_wave)
 

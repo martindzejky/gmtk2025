@@ -62,8 +62,7 @@ func catch_all_enemies():
 
 
 func catch_enemy(enemy: Enemy):
-  # TODO: what happens here?
-  enemy.queue_free()
+  enemy.capture()
 
 func unhook():
   if state != State.HOOKED:
