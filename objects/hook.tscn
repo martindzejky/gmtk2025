@@ -6,11 +6,10 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_f46kd"]
 radius = 15.0
 
-[node name="hook" type="Area2D" node_paths=PackedStringArray("player", "lasso") groups=["hook"]]
+[node name="hook" type="Area2D" node_paths=PackedStringArray("progress_bar") groups=["hook"]]
 collision_mask = 5
 script = ExtResource("1_vff3s")
-player = NodePath("")
-lasso = NodePath("")
+progress_bar = NodePath("progress")
 max_distance_from_player = 400.0
 
 [node name="sprite" type="Sprite2D" parent="."]
@@ -18,5 +17,22 @@ texture = ExtResource("2_u8qfn")
 
 [node name="shape" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_f46kd")
+
+[node name="progress" type="ProgressBar" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 50.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 8
+max_value = 1.0
+step = 0.001
+show_percentage = false
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
