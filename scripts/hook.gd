@@ -51,6 +51,17 @@ func hook_to_enemy(enemy: Enemy):
   starting_angle = global_position.angle_to_point(player.global_position)
   last_angle = starting_angle
 
+func catch_all_enemies():
+  if state != State.HOOKED:
+    print('Hook is not hooked so it cannot catch all enemies')
+    return
+
+  catch_enemy(get_parent())
+
+  for segment in segments:
+    catch_enemy(segment.get_parent())
+
+
 func catch_enemy(enemy: Enemy):
   # TODO: what happens here?
   enemy.queue_free()
@@ -88,27 +99,7 @@ func _process(delta):
         position = Vector2.ZERO
 
     State.HOOKED:
-      var current_angle := global_position.angle_to_point(player.global_position)
-      var angle_diff := current_angle - last_angle
-
-      # handle the -PI to PI angle wrap
-      if angle_diff > PI:
-        angle_diff -= 2 * PI
-      elif angle_diff < -PI:
-        angle_diff += 2 * PI
-
-      total_angle_change += angle_diff
-      last_angle = current_angle
-
-      # have we wrapped around yet?
-      if abs(total_angle_change) >= 2 * PI:
-        catch_enemy(get_parent())
-
-        for segment in segments:
-          catch_enemy(segment.get_parent())
-
-        unhook()
-
+      calculate_loop_around_progress()
       progress_bar.value = get_catch_percentage()
 
       if segments.size() > 0:
@@ -138,6 +129,26 @@ func _on_body_entered(body: Node2D):
     call_deferred('hook_to_enemy', body)
   else:
     state = State.RETURNING
+
+func calculate_loop_around_progress():
+  if state != State.HOOKED: return
+
+  var current_angle := global_position.angle_to_point(player.global_position)
+  var angle_diff := current_angle - last_angle
+
+  # handle the -PI to PI angle wrap
+  if angle_diff > PI:
+    angle_diff -= 2 * PI
+  elif angle_diff < -PI:
+    angle_diff += 2 * PI
+
+  total_angle_change += angle_diff
+  last_angle = current_angle
+
+  # have we wrapped around yet?
+  if abs(total_angle_change) >= 2 * PI:
+    catch_all_enemies()
+    unhook()
 
 func get_catch_percentage():
   if state != State.HOOKED:
