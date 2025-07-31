@@ -108,16 +108,13 @@ func _process(delta):
         raycast.target_position = player.global_position - global_position
 
 func _draw():
-  if state != State.WITH_PLAYER:
-    # draw chain to the player or first segment
-    if segments.size() > 0:
-      draw_line(Vector2.ZERO, segments[0].global_position - global_position, Color.WHITE, 2.0)
-    else:
-      draw_line(Vector2.ZERO, player.global_position - global_position, Color.WHITE, 2.0)
+  if state == State.WITH_PLAYER: return
 
-  if state == State.HOOKED:
-    # draw the starting direction
-    draw_line(Vector2.ZERO, Vector2.RIGHT.rotated(starting_angle) * 100, Color.PINK, 2.0)
+  # draw chain to the player or first segment
+  if segments.size() > 0:
+    draw_line(Vector2.ZERO, segments[0].global_position - global_position, Color.WHITE, 2.0)
+  else:
+    draw_line(Vector2.ZERO, player.global_position - global_position, Color.WHITE, 2.0)
 
 
 func _on_body_entered(body: Node2D):
