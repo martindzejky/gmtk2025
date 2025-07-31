@@ -16,3 +16,6 @@ export_credentials.cfg
 .cursor/
 .vscode/
 .idea/
+
+# Exports
+exports/
