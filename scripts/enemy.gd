@@ -11,6 +11,10 @@ class_name Enemy
 @export var melee_strike_distance := 20.0
 @export var melee_strike_object: PackedScene
 
+@export_category('Release captured')
+@export var can_release_captured := true
+@export var release_captured_bias := 0.1
+
 @export_category('Ranged')
 @export var can_attack_ranged := true
 @export var min_ranged_attack_distance := 20.0
@@ -34,17 +38,23 @@ class_name Enemy
 
 enum State {
   ATTACKING_PLAYER,
+  RELEASING_CAPTURED,
   CAPTURED,
 }
 
 var state := State.ATTACKING_PLAYER
+var release_captured_target: Enemy
 
 func _physics_process(_delta):
   velocity = Vector2.ZERO
 
   match state:
     State.ATTACKING_PLAYER:
-      attack_player()
+      go_attack_player()
+      apply_flocking()
+
+    State.RELEASING_CAPTURED:
+      go_release_captured()
       apply_flocking()
 
   if is_hooked_by_segment():
@@ -53,7 +63,7 @@ func _physics_process(_delta):
   if can_move and state != State.CAPTURED:
     move_and_slide()
 
-func attack_player():
+func go_attack_player():
   var distance_to_player := global_position.distance_to(Game.player.global_position)
 
   if melee_cooldown_timer.time_left <= 0 and shoot_cooldown_timer.time_left <= 0:
@@ -72,10 +82,26 @@ func attack_player():
 
   if not is_hooked():
     if can_attack_melee and melee_cooldown_timer.time_left <= 0 and distance_to_player <= melee_strike_distance:
-      attack_melee()
+      attack_melee(Game.player)
 
     if can_attack_ranged and shoot_cooldown_timer.time_left <= 0 and distance_to_player >= min_ranged_attack_distance and distance_to_player <= max_ranged_attack_distance:
-      shoot_ranged()
+      shoot_ranged(Game.player)
+
+func go_release_captured():
+  if not is_instance_valid(release_captured_target) or not release_captured_target.is_captured() or not can_release_captured or not can_attack_melee:
+    state = State.ATTACKING_PLAYER
+    release_captured_target = null
+    return
+
+  var distance_to_release_captured_target := global_position.distance_to(release_captured_target.global_position)
+
+  if distance_to_release_captured_target > melee_strike_distance:
+    move_towards_release_captured_target()
+  else:
+    attack_melee(release_captured_target)
+    release_captured_target.free_from_capture() # TODO: this should be done in the melee strike object
+    state = State.ATTACKING_PLAYER
+    release_captured_target = null
 
 func move_towards_player():
   var direction := global_position.direction_to(Game.player.global_position)
@@ -83,6 +109,10 @@ func move_towards_player():
 
 func move_away_from_player():
   var direction := Game.player.global_position.direction_to(global_position)
+  velocity += direction * get_movement_speed()
+
+func move_towards_release_captured_target():
+  var direction := global_position.direction_to(release_captured_target.global_position)
   velocity += direction * get_movement_speed()
 
 func apply_flocking():
@@ -149,28 +179,30 @@ func get_movement_speed():
 
   return lerpf(move_speed/2, move_speed/10, Game.hook.get_catch_percentage())
 
-func attack_melee():
+func attack_melee(target):
   melee_cooldown_timer.start()
 
   var melee_strike = melee_strike_object.instantiate()
   get_parent().add_child(melee_strike)
 
   melee_strike.global_position = global_position
-  melee_strike.global_rotation = global_position.angle_to_point(Game.player.global_position)
+  melee_strike.global_rotation = global_position.angle_to_point(target.global_position)
 
-func shoot_ranged():
+func shoot_ranged(target):
   shoot_cooldown_timer.start()
 
   var projectile = projectile_object.instantiate()
   get_parent().add_child(projectile)
 
   projectile.global_position = global_position
-  projectile.global_rotation = global_position.angle_to_point(Game.player.global_position)
+  projectile.global_rotation = global_position.angle_to_point(target.global_position)
 
 func is_captured():
   return state == State.CAPTURED
 
 func capture():
+  if state == State.CAPTURED: return
+
   state = State.CAPTURED
   sprite.texture = captured_sprite
 
@@ -182,6 +214,8 @@ func capture():
   Game.enemies_updated.emit()
 
 func free_from_capture():
+  if state != State.CAPTURED: return
+
   state = State.ATTACKING_PLAYER
   sprite.texture = default_sprite
 
@@ -193,3 +227,33 @@ func free_from_capture():
 func collect_captured():
   # TODO: animation and add some points or something
   queue_free()
+
+func _on_ai_decision_timer_timeout():
+  if state != State.ATTACKING_PLAYER: return
+
+  if not can_release_captured: return
+  if not can_attack_melee: return
+
+  var decision := randf()
+  if decision < release_captured_bias:
+    print('Decided to release captured enemies')
+    state = State.RELEASING_CAPTURED
+
+    var all_captured_enemies := get_tree().get_nodes_in_group('enemy').filter(func(enemy): return enemy.is_captured())
+    if all_captured_enemies.size() <= 0:
+      print('There are no captured enemies to release, returning to attacking player')
+      state = State.ATTACKING_PLAYER
+      release_captured_target = null
+      return
+
+    var closest_captured_enemy := all_captured_enemies[0] as Enemy
+    var closest_distance := global_position.distance_squared_to(closest_captured_enemy.global_position)
+
+    for enemy in all_captured_enemies:
+      var distance := global_position.distance_squared_to(enemy.global_position)
+      if distance < closest_distance:
+        closest_distance = distance
+        closest_captured_enemy = enemy
+
+    release_captured_target = closest_captured_enemy
+
