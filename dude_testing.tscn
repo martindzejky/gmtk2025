@@ -1,0 +1,73 @@
+[gd_scene load_steps=6 format=3 uid="uid://dgwp7w7upisgr"]
+
+[ext_resource type="Script" uid="uid://dj64jjmmn08xj" path="res://scripts/dude_testing.gd" id="1_ds6ht"]
+[ext_resource type="Texture2D" uid="uid://vhkk0mpqefa4" path="res://sprites/dude.png" id="1_mjre8"]
+[ext_resource type="PackedScene" uid="uid://dur5dy1hc4dca" path="res://objects/dude.tscn" id="2_8t08c"]
+[ext_resource type="PackedScene" uid="uid://dwqdximdijkh3" path="res://objects/camera.tscn" id="2_sagn4"]
+[ext_resource type="Texture2D" uid="uid://cci5ot0ixu4wj" path="res://sprites/dude_captured.png" id="2_vorsc"]
+
+[node name="dude_testing" type="Node2D" node_paths=PackedStringArray("dude")]
+script = ExtResource("1_ds6ht")
+dude = NodePath("dude")
+
+[node name="dude" parent="." instance=ExtResource("2_8t08c")]
+
+[node name="ref" type="Sprite2D" parent="."]
+position = Vector2(-119, -16)
+texture = ExtResource("1_mjre8")
+
+[node name="ref2" type="Sprite2D" parent="."]
+position = Vector2(-66, -16)
+texture = ExtResource("2_vorsc")
+
+[node name="camera" parent="." instance=ExtResource("2_sagn4")]
+
+[node name="ui" type="CanvasLayer" parent="."]
+
+[node name="ui_root" type="Control" parent="ui"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="margin" type="MarginContainer" parent="ui/ui_root"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="container" type="HBoxContainer" parent="ui/ui_root/margin"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="idle" type="Button" parent="ui/ui_root/margin/container"]
+layout_mode = 2
+text = "idle"
+
+[node name="running" type="Button" parent="ui/ui_root/margin/container"]
+layout_mode = 2
+text = "running"
+
+[node name="captured" type="Button" parent="ui/ui_root/margin/container"]
+layout_mode = 2
+text = "captured"
+
+[node name="melee" type="Button" parent="ui/ui_root/margin/container"]
+layout_mode = 2
+text = "melee"
+
+[connection signal="pressed" from="ui/ui_root/margin/container/idle" to="." method="_on_idle_pressed"]
+[connection signal="pressed" from="ui/ui_root/margin/container/running" to="." method="_on_running_pressed"]
+[connection signal="pressed" from="ui/ui_root/margin/container/captured" to="." method="_on_captured_pressed"]
+[connection signal="pressed" from="ui/ui_root/margin/container/melee" to="." method="_on_melee_pressed"]
