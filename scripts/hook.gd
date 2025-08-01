@@ -194,4 +194,3 @@ func add_segment_to_enemy(enemy: Enemy, point_of_collision: Vector2, insert_segm
   segments.insert(insert_segment_at_index, new_segment)
   update_segment_indices()
   update_raycast_exceptions()
-

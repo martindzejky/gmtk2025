@@ -8,7 +8,7 @@
 radius = 15.0
 
 [node name="hook" type="Area2D" node_paths=PackedStringArray("progress_bar", "raycast") groups=["hook"]]
-collision_mask = 5
+collision_mask = 9
 script = ExtResource("1_vff3s")
 progress_bar = NodePath("progress")
 raycast = NodePath("raycast")
@@ -22,7 +22,7 @@ texture = ExtResource("2_u8qfn")
 shape = SubResource("CircleShape2D_f46kd")
 
 [node name="raycast" type="RayCast2D" parent="."]
-collision_mask = 4
+collision_mask = 8
 
 [node name="progress" type="ProgressBar" parent="."]
 anchors_preset = 7

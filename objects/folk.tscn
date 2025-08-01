@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://celdle61b8mey"]
+
+[ext_resource type="Script" uid="uid://cbeifktwaksov" path="res://scripts/folk.gd" id="1_6qcaw"]
+[ext_resource type="Texture2D" uid="uid://vhkk0mpqefa4" path="res://sprites/dude.png" id="5_vn141"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_882u1"]
+radius = 12.0
+
+[node name="folk" type="CharacterBody2D" groups=["folk"]]
+collision_layer = 32
+collision_mask = 63
+motion_mode = 1
+script = ExtResource("1_6qcaw")
+
+[node name="sprite" type="Sprite2D" parent="."]
+modulate = Color(0.922207, 0.759877, 0.550042, 1)
+position = Vector2(0, -16)
+texture = ExtResource("5_vn141")
+
+[node name="shape" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_882u1")

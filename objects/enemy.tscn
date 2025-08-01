@@ -7,11 +7,11 @@
 [ext_resource type="Texture2D" uid="uid://cci5ot0ixu4wj" path="res://sprites/dude_captured.png" id="4_3hb37"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_882u1"]
-radius = 8.0
+radius = 12.0
 
 [node name="enemy" type="CharacterBody2D" node_paths=PackedStringArray("melee_cooldown_timer", "shoot_cooldown_timer", "sprite") groups=["enemy"]]
-collision_layer = 4
-collision_mask = 15
+collision_layer = 8
+collision_mask = 63
 motion_mode = 1
 script = ExtResource("1_7jlpp")
 melee_strike_distance = 40.0

@@ -11,4 +11,4 @@ raycast = NodePath("raycast")
 texture = ExtResource("2_x60gg")
 
 [node name="raycast" type="RayCast2D" parent="."]
-collision_mask = 4
+collision_mask = 8
