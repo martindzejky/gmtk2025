@@ -26,6 +26,12 @@ class_name Enemy
 @onready var default_sprite: Texture2D = sprite.texture
 @export var captured_sprite: Texture2D
 
+@export_category('Flocking')
+@export var nearby_area: Area2D
+@export var flocking_separation_distance := 30
+@export var flocking_separation_weight := 0.1
+@export var flocking_alignment_weight := 0.1
+
 enum State {
   ATTACKING_PLAYER,
   CAPTURED,
@@ -39,6 +45,7 @@ func _physics_process(_delta):
   match state:
     State.ATTACKING_PLAYER:
       attack_player()
+      apply_flocking()
 
   if is_hooked_by_segment():
     lasso_segment_pull()
@@ -77,6 +84,39 @@ func move_towards_player():
 func move_away_from_player():
   var direction := Game.player.global_position.direction_to(global_position)
   velocity += direction * get_movement_speed()
+
+func apply_flocking():
+  var nearby_enemies := nearby_area.get_overlapping_bodies()
+
+  # limit to 10 enemies for performance... premature optimization?
+  if nearby_enemies.size() > 10:
+    nearby_enemies = nearby_enemies.slice(0, 10)
+
+  var separation_force := Vector2.ZERO
+  var alignment_force := Vector2.ZERO
+  var neighbor_count := 0
+
+  for enemy in nearby_enemies:
+    if enemy == self or not enemy is Enemy:
+      continue
+
+    neighbor_count += 1
+    var distance := global_position.distance_to(enemy.global_position)
+
+    if distance < flocking_separation_distance and distance > 0:
+      var away_direction := global_position - enemy.global_position
+      var separation_strength := flocking_separation_distance - distance
+      separation_force += away_direction.normalized() * separation_strength
+
+    if enemy.velocity.length() > 0:
+      alignment_force += enemy.velocity.normalized()
+
+  if separation_force.length() > 0:
+    velocity += separation_force.normalized() * get_movement_speed() * flocking_separation_weight
+
+  if neighbor_count > 0 and alignment_force.length() > 0:
+    alignment_force = alignment_force / neighbor_count  # Average direction
+    velocity += alignment_force.normalized() * get_movement_speed() * flocking_alignment_weight
 
 func lasso_segment_pull():
   var direction := global_position.direction_to(Game.hook.global_position)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://r4tfd7m8uo5"]
+[gd_scene load_steps=8 format=3 uid="uid://r4tfd7m8uo5"]
 
 [ext_resource type="Script" uid="uid://fieie7mlojfh" path="res://scripts/enemy.gd" id="1_7jlpp"]
 [ext_resource type="Texture2D" uid="uid://vhkk0mpqefa4" path="res://sprites/dude.png" id="1_882u1"]
@@ -9,7 +9,10 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_882u1"]
 radius = 12.0
 
-[node name="enemy" type="CharacterBody2D" node_paths=PackedStringArray("melee_cooldown_timer", "shoot_cooldown_timer", "sprite") groups=["enemy"]]
+[sub_resource type="CircleShape2D" id="CircleShape2D_3hb37"]
+radius = 107.005
+
+[node name="enemy" type="CharacterBody2D" node_paths=PackedStringArray("melee_cooldown_timer", "shoot_cooldown_timer", "sprite", "nearby_area") groups=["enemy"]]
 collision_layer = 8
 collision_mask = 63
 motion_mode = 1
@@ -23,6 +26,10 @@ melee_cooldown_timer = NodePath("melee_cooldown")
 shoot_cooldown_timer = NodePath("shoot_cooldown")
 sprite = NodePath("sprite")
 captured_sprite = ExtResource("4_3hb37")
+nearby_area = NodePath("nearby_area")
+flocking_separation_distance = 40
+flocking_separation_weight = 0.4
+flocking_alignment_weight = 0.2
 
 [node name="sprite" type="Sprite2D" parent="."]
 modulate = Color(0.959393, 0.373996, 0.395027, 1)
@@ -31,6 +38,12 @@ texture = ExtResource("1_882u1")
 
 [node name="shape" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_882u1")
+
+[node name="nearby_area" type="Area2D" parent="."]
+collision_mask = 8
+
+[node name="shape" type="CollisionShape2D" parent="nearby_area"]
+shape = SubResource("CircleShape2D_3hb37")
 
 [node name="melee_cooldown" type="Timer" parent="."]
 wait_time = 0.6

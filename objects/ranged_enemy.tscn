@@ -5,3 +5,4 @@
 [node name="ranged_enemy" instance=ExtResource("1_1x6l7")]
 move_speed = 40.0
 can_attack_melee = false
+flocking_separation_distance = 60
