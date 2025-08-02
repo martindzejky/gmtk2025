@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://dur5dy1hc4dca"]
+[gd_scene load_steps=38 format=3 uid="uid://dur5dy1hc4dca"]
 
 [ext_resource type="Script" uid="uid://c2wtknwcmawr7" path="res://scripts/dude.gd" id="1_qiy7s"]
 [ext_resource type="Texture2D" uid="uid://csenq8rfg0m0x" path="res://sprites/legs.png" id="2_tkn7g"]
@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://de3tqqaacbguy" path="res://sprites/bandana_0.png" id="7_cr6a7"]
 [ext_resource type="PackedScene" uid="uid://b3xcbsdspbjfw" path="res://objects/shadow.tscn" id="7_x15pf"]
 [ext_resource type="Texture2D" uid="uid://dasifeoxbfie0" path="res://sprites/head_outline.png" id="8_720c1"]
+[ext_resource type="AudioStream" uid="uid://b75a70qt2nxvu" path="res://sounds/step_random.tres" id="11_kj05k"]
 [ext_resource type="Texture2D" uid="uid://dd26i17r46ue3" path="res://sprites/lasso_tied.png" id="14_r7x12"]
 [ext_resource type="Texture2D" uid="uid://cgyw68824nvqd" path="res://sprites/lasso_player.png" id="15_o0308"]
 
@@ -624,6 +625,21 @@ tracks/6/keys = {
 "update": 0,
 "values": [Vector2(1, 1), Vector2(1.4, 0.8), Vector2(1.4, 0.8), Vector2(1, 1)]
 }
+tracks/7/type = "audio"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("sounds")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("11_kj05k")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/7/use_blend = true
 
 [sub_resource type="Animation" id="Animation_kj05k"]
 resource_name = "dash_lasso"
@@ -735,6 +751,21 @@ tracks/8/keys = {
 "update": 0,
 "values": [Vector2(1, 1), Vector2(1.4, 0.8), Vector2(1.4, 0.8), Vector2(1, 1)]
 }
+tracks/9/type = "audio"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("sounds")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("11_kj05k")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/9/use_blend = true
 
 [sub_resource type="Animation" id="Animation_t4klp"]
 resource_name = "fleeing"
@@ -833,6 +864,25 @@ tracks/7/keys = {
 "points": PackedFloat32Array(0.8, -0.25, 0, 0, 0.0295467, 1.1, -0.25, 0, 0.25, 0, 0.8, -2.98023e-08, 0.035996, 0, 0.0356274, 1.1, -0.25, 0, 0.25, 0, 0.8, 0, 0.0380229, 0.25, 0),
 "times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8)
 }
+tracks/8/type = "audio"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("sounds")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("11_kj05k")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("11_kj05k")
+}],
+"times": PackedFloat32Array(0, 0.4)
+}
+tracks/8/use_blend = true
 
 [sub_resource type="Animation" id="Animation_tkn7g"]
 resource_name = "idle"
@@ -1244,6 +1294,25 @@ tracks/8/keys = {
 "update": 0,
 "values": [-0.0872665, 0.0872665, -0.0872665]
 }
+tracks/9/type = "audio"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("sounds")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("11_kj05k")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("11_kj05k")
+}],
+"times": PackedFloat32Array(0, 0.4)
+}
+tracks/9/use_blend = true
 
 [sub_resource type="Animation" id="Animation_dkird"]
 resource_name = "running_hooked"
@@ -1366,6 +1435,25 @@ tracks/9/keys = {
 "update": 0,
 "values": [-0.0872665, 0.0872665, -0.0872665]
 }
+tracks/10/type = "audio"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("sounds")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("11_kj05k")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("11_kj05k")
+}],
+"times": PackedFloat32Array(0, 0.4)
+}
+tracks/10/use_blend = true
 
 [sub_resource type="Animation" id="Animation_r7x12"]
 resource_name = "running_lasso"
@@ -1500,6 +1588,25 @@ tracks/10/keys = {
 "update": 0,
 "values": [-0.0872665, 0.0872665, -0.0872665]
 }
+tracks/11/type = "audio"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("sounds")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("11_kj05k")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("11_kj05k")
+}],
+"times": PackedFloat32Array(0, 0.4)
+}
+tracks/11/use_blend = true
 
 [sub_resource type="Animation" id="Animation_3mih0"]
 resource_name = "shoot"
@@ -1774,3 +1881,7 @@ texture = ExtResource("5_v1kco")
 [node name="bow_slot_front" type="Marker2D" parent="jump_animation/rotation_scale_animation"]
 visible = false
 position = Vector2(3.52625, -24.1408)
+
+[node name="sounds" type="AudioStreamPlayer2D" parent="."]
+max_distance = 400.0
+attenuation = 3.0
