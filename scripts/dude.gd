@@ -98,3 +98,19 @@ func equip_melee_weapon(weapon: Node2D):
 func equip_bow_weapon(weapon: Node2D):
   bow_back_slot.add_child(weapon)
   bow_front_slot.add_child(weapon.duplicate())
+
+func set_bow_active():
+  for child in bow_back_slot.get_children():
+    if child is Bow:
+      child.set_active_frame()
+  for child in bow_front_slot.get_children():
+    if child is Bow:
+      child.set_active_frame()
+
+func set_bow_default():
+  for child in bow_back_slot.get_children():
+    if child is Bow:
+      child.set_default_frame()
+  for child in bow_front_slot.get_children():
+    if child is Bow:
+      child.set_default_frame()

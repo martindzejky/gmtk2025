@@ -1,8 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://djbcew1c0yi1u"]
+[gd_scene load_steps=3 format=3 uid="uid://djbcew1c0yi1u"]
 
 [ext_resource type="Texture2D" uid="uid://b1x22gx35ubxb" path="res://sprites/bow_0.png" id="1_45hh1"]
+[ext_resource type="Script" uid="uid://ope8616ogx7i" path="res://scripts/bow.gd" id="1_atebh"]
 
-[node name="bow" type="Node2D"]
+[node name="bow" type="Node2D" node_paths=PackedStringArray("sprite")]
+script = ExtResource("1_atebh")
+sprite = NodePath("sprite")
+default_frame = 1
 
 [node name="sprite" type="Sprite2D" parent="."]
 position = Vector2(-13.0392, 0)

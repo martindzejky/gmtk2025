@@ -6,4 +6,5 @@
 [node name="bow" instance=ExtResource("1_p6rfp")]
 
 [node name="sprite" parent="." index="0"]
+position = Vector2(-12.6441, 0.84281)
 texture = ExtResource("2_jang7")

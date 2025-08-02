@@ -724,6 +724,23 @@ tracks/7/keys = {
 "update": 1,
 "values": [0.0, 0.897938]
 }
+tracks/8/type = "method"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath(".")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"set_bow_active"
+}, {
+"args": [],
+"method": &"set_bow_default"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tkn7g"]
 _data = {
@@ -792,7 +809,7 @@ position = Vector2(2.57377, -18.7603)
 scale = Vector2(0.0561217, 0.0561217)
 texture = ExtResource("3_cr6a7")
 hframes = 8
-frame = 3
+frame = 7
 
 [node name="sheriff_star" type="Sprite2D" parent="jump_animation/rotation_scale_animation/body_scale/body"]
 visible = false
