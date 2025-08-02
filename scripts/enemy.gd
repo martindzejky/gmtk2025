@@ -167,7 +167,7 @@ func apply_flocking():
     velocity += separation_force.normalized() * get_movement_speed() * flocking_separation_weight
 
   if neighbor_count > 0 and alignment_force.length() > 0:
-    alignment_force = alignment_force / neighbor_count  # Average direction
+    alignment_force = alignment_force / neighbor_count
     velocity += alignment_force.normalized() * get_movement_speed() * flocking_alignment_weight
 
 func lasso_segment_pull():

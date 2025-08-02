@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bifqkl6lsp6wc"]
+[gd_scene load_steps=9 format=3 uid="uid://bifqkl6lsp6wc"]
 
 [ext_resource type="PackedScene" uid="uid://qwj8b5x4g7c1" path="res://objects/player.tscn" id="1_0xm2m"]
 [ext_resource type="Script" uid="uid://bcpmyhlyslkwq" path="res://scripts/wave_spawner.gd" id="2_0xm2m"]
@@ -8,7 +8,6 @@
 [ext_resource type="Resource" uid="uid://cspiwl2qqobau" path="res://waves/wave_2.tres" id="6_7mycd"]
 [ext_resource type="Resource" uid="uid://d1uha8uiqksby" path="res://waves/wave_3.tres" id="7_272bh"]
 [ext_resource type="PackedScene" uid="uid://celdle61b8mey" path="res://objects/folk.tscn" id="8_5vw27"]
-[ext_resource type="PackedScene" uid="uid://br2pnnu3i2hvh" path="res://objects/ranged_enemy.tscn" id="9_kek77"]
 
 [node name="main" type="Node2D"]
 y_sort_enabled = true
@@ -30,9 +29,3 @@ position = Vector2(-189, -113)
 
 [node name="folk4" parent="." instance=ExtResource("8_5vw27")]
 position = Vector2(-161, -184)
-
-[node name="ranged_enemy" parent="." instance=ExtResource("9_kek77")]
-position = Vector2(56, -76)
-
-[node name="ranged_enemy2" parent="." instance=ExtResource("9_kek77")]
-position = Vector2(90, -45)

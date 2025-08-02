@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://celdle61b8mey"]
+[gd_scene load_steps=6 format=3 uid="uid://celdle61b8mey"]
 
 [ext_resource type="Script" uid="uid://cbeifktwaksov" path="res://scripts/folk.gd" id="1_6qcaw"]
 [ext_resource type="PackedScene" uid="uid://dur5dy1hc4dca" path="res://objects/dude.tscn" id="2_6qcaw"]
@@ -9,11 +9,21 @@ colors = PackedColorArray(0.71094, 0.675425, 0.555555, 1, 0.887922, 0.827973, 0.
 [sub_resource type="CircleShape2D" id="CircleShape2D_882u1"]
 radius = 12.0
 
-[node name="folk" type="CharacterBody2D" groups=["folk"]]
+[sub_resource type="CircleShape2D" id="CircleShape2D_6qcaw"]
+radius = 183.068
+
+[node name="folk" type="CharacterBody2D" node_paths=PackedStringArray("dude", "nearby_area", "idle_timer", "running_away_from_enemies_timer") groups=["folk"]]
 collision_layer = 32
 collision_mask = 63
 motion_mode = 1
 script = ExtResource("1_6qcaw")
+dude = NodePath("dude")
+nearby_area = NodePath("nearby_area")
+flocking_separation_distance = 32
+flocking_separation_weight = 0.6
+flocking_alignment_weight = 0.6
+idle_timer = NodePath("idle_timer")
+running_away_from_enemies_timer = NodePath("running_away_timer")
 
 [node name="dude" parent="." instance=ExtResource("2_6qcaw")]
 body_color_gradient = SubResource("Gradient_6qcaw")
@@ -21,3 +31,15 @@ bandana_chance = 0.0
 
 [node name="shape" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_882u1")
+
+[node name="nearby_area" type="Area2D" parent="."]
+collision_mask = 40
+
+[node name="shape" type="CollisionShape2D" parent="nearby_area"]
+shape = SubResource("CircleShape2D_6qcaw")
+
+[node name="idle_timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="running_away_timer" type="Timer" parent="."]
+one_shot = true
