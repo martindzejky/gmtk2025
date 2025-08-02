@@ -12,12 +12,11 @@ radius = 12.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_6qcaw"]
 radius = 183.068
 
-[node name="folk" type="CharacterBody2D" node_paths=PackedStringArray("label", "dude", "nearby_area", "idle_timer", "running_away_from_enemies_timer", "enemy_attack_timer") groups=["folk"]]
+[node name="folk" type="CharacterBody2D" node_paths=PackedStringArray("dude", "nearby_area", "idle_timer", "running_away_from_enemies_timer", "enemy_attack_timer") groups=["folk"]]
 collision_layer = 32
 collision_mask = 63
 motion_mode = 1
 script = ExtResource("1_6qcaw")
-label = NodePath("")
 dude = NodePath("dude")
 nearby_area = NodePath("nearby_area")
 flocking_separation_distance = 32
