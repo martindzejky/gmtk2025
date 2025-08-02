@@ -329,4 +329,4 @@ func perform_ranged_attack():
   get_parent().add_child(projectile)
 
   projectile.global_position = global_position
-  projectile.global_rotation = global_position.angle_to_point(attack_target.global_position)
+  projectile.target_rotation = global_position.angle_to_point(attack_target.global_position)
