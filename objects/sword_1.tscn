@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://vidvvf6jqcx8"]
+
+[ext_resource type="PackedScene" uid="uid://bbvqcdrmrrngi" path="res://objects/knife.tscn" id="1_tcxht"]
+[ext_resource type="Texture2D" uid="uid://d0bqsmkndw60o" path="res://sprites/sword_1.png" id="2_b5j5x"]
+
+[node name="sword" instance=ExtResource("1_tcxht")]
+
+[node name="sprite" parent="." index="0"]
+position = Vector2(0, -3.86702)
+texture = ExtResource("2_b5j5x")

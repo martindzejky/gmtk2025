@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://djbcew1c0yi1u"]
 
-[ext_resource type="Texture2D" uid="uid://b1x22gx35ubxb" path="res://sprites/bow.png" id="1_45hh1"]
+[ext_resource type="Texture2D" uid="uid://b1x22gx35ubxb" path="res://sprites/bow_0.png" id="1_45hh1"]
 
 [node name="bow" type="Node2D"]
 

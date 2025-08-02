@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://b8agvaopbjes6"]
+
+[ext_resource type="PackedScene" uid="uid://djbcew1c0yi1u" path="res://objects/bow_0.tscn" id="1_p6rfp"]
+[ext_resource type="Texture2D" uid="uid://crpay6d4yuai8" path="res://sprites/bow_1.png" id="2_jang7"]
+
+[node name="bow" instance=ExtResource("1_p6rfp")]
+
+[node name="sprite" parent="." index="0"]
+texture = ExtResource("2_jang7")
