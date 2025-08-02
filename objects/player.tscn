@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://qwj8b5x4g7c1"]
+[gd_scene load_steps=10 format=3 uid="uid://qwj8b5x4g7c1"]
 
 [ext_resource type="Script" uid="uid://od4p2jer5wh6" path="res://scripts/player.gd" id="1_ykyjo"]
 [ext_resource type="Script" uid="uid://c4o833g47jo7o" path="res://scripts/lasso.gd" id="3_uxov2"]
@@ -9,6 +9,10 @@
 [sub_resource type="Curve" id="Curve_nmc1l"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.898618, 0), -1.85131, 0.0, 0, 0]
 point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_3rerk"]
+offsets = PackedFloat32Array(0, 0.995114)
+colors = PackedColorArray(0.24343, 0.154164, 0.109248, 1, 0.353278, 0.184261, 0.104613, 1)
 
 [sub_resource type="Gradient" id="Gradient_f46kd"]
 colors = PackedColorArray(0.283345, 0.5721, 0.707218, 1, 0.335716, 0.312536, 0.731633, 1)
@@ -29,10 +33,12 @@ dash_cooldown_timer = NodePath("dash_cooldown")
 dash_cooldown_progress = NodePath("dash_cooldown_progress")
 
 [node name="dude" parent="." instance=ExtResource("5_f46kd")]
+legs_color_gradient = SubResource("Gradient_3rerk")
 body_color_gradient = SubResource("Gradient_f46kd")
 hat_chance = 1.0
 bandana_chance = 0.0
 has_sheriff_star = true
+force_first_hat = true
 
 [node name="shape" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_player")
@@ -63,9 +69,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -50.0
-offset_top = -50.0
+offset_top = -78.0
 offset_right = 50.0
-offset_bottom = -40.0
+offset_bottom = -68.0
 grow_horizontal = 2
 grow_vertical = 0
 max_value = 1.0

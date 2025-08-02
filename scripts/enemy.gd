@@ -95,15 +95,15 @@ func go_release_captured():
     release_captured_target = null
     return
 
+  if melee_cooldown_timer.time_left > 0 or shoot_cooldown_timer.time_left > 0: return
+
   var distance_to_release_captured_target := global_position.distance_to(release_captured_target.global_position)
 
   if distance_to_release_captured_target > melee_strike_distance:
     move_towards_release_captured_target()
   else:
     attack_melee(release_captured_target)
-    release_captured_target.free_from_capture() # TODO: this should be done in the melee strike object
     state = State.ATTACKING_PLAYER
-    release_captured_target = null
 
 func move_towards_player():
   var direction := global_position.direction_to(Game.player.global_position)
@@ -287,6 +287,10 @@ func _on_dude_melee_attack():
 
   melee_strike.global_position = global_position
   melee_strike.global_rotation = global_position.angle_to_point(attack_target.global_position)
+
+  if attack_target == release_captured_target:
+    release_captured_target.free_from_capture() # TODO: this should be done in the melee strike object
+    release_captured_target = null
 
 
 func _on_dude_shoot_attack() -> void:

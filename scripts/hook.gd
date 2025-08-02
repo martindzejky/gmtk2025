@@ -178,7 +178,7 @@ func _physics_process(_delta):
         print('New enemy hit by hook raycast, adding a segment at index 0')
         add_segment_to_enemy(raycast.get_collider(), raycast.get_collision_point(), 0)
 
-func add_segment_to_enemy(enemy: Enemy, point_of_collision: Vector2, insert_segment_at_index: int):
+func add_segment_to_enemy(enemy: Enemy, _point_of_collision: Vector2, insert_segment_at_index: int):
   # test: recalculate the starting angle but only if this is a newly hooked enemy
   # result: it feels nice!
   if enemy != get_parent() and segments.all(func(segment: Segment): return segment.get_parent() != enemy):

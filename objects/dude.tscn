@@ -1,15 +1,19 @@
-[gd_scene load_steps=25 format=3 uid="uid://dur5dy1hc4dca"]
+[gd_scene load_steps=29 format=3 uid="uid://dur5dy1hc4dca"]
 
 [ext_resource type="Script" uid="uid://c2wtknwcmawr7" path="res://scripts/dude.gd" id="1_qiy7s"]
 [ext_resource type="Texture2D" uid="uid://csenq8rfg0m0x" path="res://sprites/legs.png" id="2_tkn7g"]
 [ext_resource type="Texture2D" uid="uid://c1wawimfk30kr" path="res://sprites/body.png" id="3_cr6a7"]
+[ext_resource type="Texture2D" uid="uid://b3oenjnnwr1tu" path="res://sprites/hat_1.png" id="3_dkird"]
 [ext_resource type="Texture2D" uid="uid://cq3tk3x5fgylh" path="res://sprites/head.png" id="4_720c1"]
+[ext_resource type="Texture2D" uid="uid://dnnm50fws0bnk" path="res://sprites/hat_2.png" id="4_r7x12"]
 [ext_resource type="Texture2D" uid="uid://dj6p7eh4668mm" path="res://sprites/bandana_1.png" id="4_swm5h"]
 [ext_resource type="Texture2D" uid="uid://d2jswiwlf5a4n" path="res://sprites/sheriff_star.png" id="4_tkn7g"]
-[ext_resource type="Texture2D" uid="uid://dpnid40fk8abh" path="res://sprites/hat.png" id="5_v1kco"]
+[ext_resource type="Texture2D" uid="uid://12yeoyovjqeo" path="res://sprites/hat_3.png" id="5_o0308"]
+[ext_resource type="Texture2D" uid="uid://dpnid40fk8abh" path="res://sprites/hat_0.png" id="5_v1kco"]
 [ext_resource type="Texture2D" uid="uid://s3ysoivu63da" path="res://sprites/bandana_2.png" id="5_x15pf"]
 [ext_resource type="Texture2D" uid="uid://c5s7ncmp44jgo" path="res://sprites/bandana_3.png" id="6_3ed03"]
 [ext_resource type="Texture2D" uid="uid://de3tqqaacbguy" path="res://sprites/bandana_0.png" id="7_cr6a7"]
+[ext_resource type="PackedScene" uid="uid://b3xcbsdspbjfw" path="res://objects/shadow.tscn" id="7_x15pf"]
 [ext_resource type="Texture2D" uid="uid://dasifeoxbfie0" path="res://sprites/head_outline.png" id="8_720c1"]
 
 [sub_resource type="Gradient" id="Gradient_qiy7s"]
@@ -279,7 +283,7 @@ tracks/1/path = NodePath("jump_animation/rotation_scale_animation/body_scale/bod
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.0333333),
+"times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [0]
@@ -436,8 +440,12 @@ body_color_gradient = SubResource("Gradient_tkn7g")
 head_color_gradient = SubResource("Gradient_cr6a7")
 hat_color_gradient = SubResource("Gradient_720c1")
 bandana_color_gradient = SubResource("Gradient_swm5h")
-hat_sprites = Array[Texture2D]([ExtResource("5_v1kco")])
+hat_sprites = Array[Texture2D]([ExtResource("5_v1kco"), ExtResource("3_dkird"), ExtResource("4_r7x12"), ExtResource("5_o0308")])
 bandana_sprites = Array[Texture2D]([ExtResource("7_cr6a7"), ExtResource("4_swm5h"), ExtResource("5_x15pf"), ExtResource("6_3ed03")])
+
+[node name="shadow" parent="." instance=ExtResource("7_x15pf")]
+z_index = -10
+position = Vector2(0.282782, 0)
 
 [node name="animation" type="AnimationPlayer" parent="."]
 deterministic = true
@@ -494,5 +502,4 @@ texture = ExtResource("8_720c1")
 [node name="hat" type="Sprite2D" parent="jump_animation/rotation_scale_animation/head_scale/head_animation/head"]
 position = Vector2(-13.9239, -153.162)
 rotation = -0.254909
-scale = Vector2(1, 1)
 texture = ExtResource("5_v1kco")

@@ -34,6 +34,7 @@ signal shoot_attack
 @export var hat_chance: float = 0.4
 @export var bandana_chance: float = 0.4
 @export var has_sheriff_star := false
+@export var force_first_hat := false
 
 @export_category('Sprites')
 @export var hat_sprites: Array[Texture2D]
@@ -75,6 +76,8 @@ func randomize():
   hat_sprite.texture = hat_sprites.pick_random()
   bandana_sprite.texture = bandana_sprites.pick_random()
 
+  if force_first_hat:
+    hat_sprite.texture = hat_sprites[0]
 
 func emit_melee_attack():
   melee_attack.emit()
