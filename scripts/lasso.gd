@@ -18,9 +18,14 @@ func _process(_delta):
       hook.shoot_in_direction(global_position.direction_to(get_global_mouse_position()))
     elif hook_is_hooked():
       hook.unhook()
+    elif hook_is_flying():
+      hook.state = Hook.State.RETURNING
 
 func has_hook():
   return hook.state == Hook.State.WITH_PLAYER
 
 func hook_is_hooked():
   return hook.state == Hook.State.HOOKED
+
+func hook_is_flying():
+  return hook.state == Hook.State.FLYING

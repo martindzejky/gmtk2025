@@ -57,13 +57,13 @@ func _physics_process(_delta):
       apply_flocking()
 
     State.RUNNING_AWAY_FROM_ENEMIES:
-      dude.play_animation('running')
+      dude.play_animation('fleeing')
       run_away_from_enemies()
       apply_flocking()
 
     # hacky way to try and allow enemies to actually have a chance to hit folks
     State.GETTING_ATTACKED_BY_ENEMY:
-      dude.play_animation('captured')
+      dude.play_animation('attacked')
 
   move_and_slide()
 

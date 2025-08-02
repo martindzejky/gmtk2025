@@ -49,9 +49,16 @@ func _ready():
   self.randomize()
 
 func play_animation(animation_name: String):
+  var current_animation := animation_player.current_animation
+  var current_position := animation_player.current_animation_position
+
   if animation_name != animation_player.current_animation:
-    animation_player.play('RESET')
-    animation_player.queue(animation_name)
+    if (animation_name == 'idle_lasso' or animation_name == 'running_lasso') and (current_animation == 'idle_lasso' or current_animation == 'running_lasso'):
+      animation_player.play(animation_name)
+      animation_player.seek(current_position)
+    else:
+      animation_player.play('RESET')
+      animation_player.queue(animation_name)
 
 func randomize():
   # sheriff star

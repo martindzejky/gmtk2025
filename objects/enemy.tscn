@@ -25,6 +25,7 @@ collision_mask = 63
 motion_mode = 1
 script = ExtResource("1_7jlpp")
 dude = NodePath("dude")
+hook_pull_speed = 30.0
 melee_strike_distance = 40.0
 melee_strike_object = ExtResource("2_41oev")
 attack_folks_bias = 0.2

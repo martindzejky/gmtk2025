@@ -20,7 +20,7 @@ colors = PackedColorArray(0.283345, 0.5721, 0.707218, 1, 0.335716, 0.312536, 0.7
 [sub_resource type="CircleShape2D" id="CircleShape2D_player"]
 radius = 12.0
 
-[node name="player" type="CharacterBody2D" node_paths=PackedStringArray("dude", "dash_progress_timer", "dash_cooldown_timer", "dash_cooldown_progress") groups=["player"]]
+[node name="player" type="CharacterBody2D" node_paths=PackedStringArray("dude", "dash_progress_timer", "dash_cooldown_timer", "dash_cooldown_progress", "lasso") groups=["player"]]
 collision_layer = 2
 collision_mask = 63
 motion_mode = 1
@@ -31,6 +31,7 @@ dash_curve = SubResource("Curve_nmc1l")
 dash_progress_timer = NodePath("dash_progress")
 dash_cooldown_timer = NodePath("dash_cooldown")
 dash_cooldown_progress = NodePath("dash_cooldown_progress")
+lasso = NodePath("lasso")
 
 [node name="dude" parent="." instance=ExtResource("5_f46kd")]
 legs_color_gradient = SubResource("Gradient_3rerk")

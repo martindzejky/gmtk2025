@@ -12,6 +12,9 @@ class_name Player
 @export var dash_cooldown_timer: Timer
 @export var dash_cooldown_progress: ProgressBar
 
+@export_category('Lasso')
+@export var lasso: Lasso
+
 func _ready():
   Game.player = self
 
@@ -36,12 +39,23 @@ func _physics_process(_delta):
   else:
     dash_cooldown_progress.visible = false
 
-  if dash_progress_timer.time_left > 0:
-    dude.play_animation('dash')
-  elif velocity.length() > 0:
-    dude.play_animation('running')
+  if lasso.has_hook():
+    if dash_progress_timer.time_left > 0:
+      dude.play_animation('dash_lasso')
+    elif velocity.length() > 0:
+      dude.play_animation('running_lasso')
+    else:
+      dude.play_animation('idle_lasso')
   else:
-    dude.play_animation('idle')
+    if dash_progress_timer.time_left > 0:
+      dude.play_animation('dash')
+    elif velocity.length() > 0:
+      dude.play_animation('running')
+    else:
+      dude.play_animation('idle')
 
   if abs(velocity.x) > 0:
     dude.scale.x = sign(velocity.x)
+
+func get_melee_slot():
+  return dude.melee_slot

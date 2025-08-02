@@ -8,6 +8,9 @@ class_name Hook
 @export var max_distance_from_player := 100.0
 @export var speed := 300.0
 @export var segment_object: PackedScene
+@export var rotation_node: Node2D
+@export var line_start_marker: Marker2D
+@export var shadow_node: Node2D
 
 enum State {
   WITH_PLAYER,
@@ -79,7 +82,10 @@ func _process(delta):
   queue_redraw()
 
   visible = state != State.WITH_PLAYER
+  rotation_node.visible = state != State.HOOKED
+  rotation_node.rotation = player.global_position.angle_to_point(global_position)
   progress_bar.visible = state == State.HOOKED
+  shadow_node.visible = rotation_node.visible
 
   match state:
     State.FLYING:
@@ -109,11 +115,17 @@ func _process(delta):
 func _draw():
   if state == State.WITH_PLAYER: return
 
-  # draw chain to the player or first segment
+  var line_start := line_start_marker.global_position - global_position
+  if state == State.HOOKED:
+    line_start = Vector2(0, -20)
+
+  var line_end = player.get_melee_slot().global_position - global_position
+
   if segments.size() > 0:
-    draw_line(Vector2.ZERO, segments[0].global_position - global_position, Color.WHITE, 2.0)
-  else:
-    draw_line(Vector2.ZERO, player.global_position - global_position, Color.WHITE, 2.0)
+    line_end = segments[0].global_position - global_position
+    line_end.y -= 20
+
+  draw_line(line_start, line_end, '#734234', 1.5)
 
 
 func _on_body_entered(body: Node2D):

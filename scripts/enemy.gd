@@ -88,7 +88,7 @@ func _physics_process(_delta):
       apply_flocking()
 
   if is_hooked_by_segment():
-    lasso_segment_pull()
+    lasso_pull()
 
   if can_move and state != State.CAPTURED:
     move_and_slide()
@@ -218,9 +218,17 @@ func apply_flocking():
     alignment_force = alignment_force / neighbor_count
     velocity += alignment_force.normalized() * get_movement_speed() * flocking_alignment_weight
 
-func lasso_segment_pull():
-  var direction := global_position.direction_to(Game.hook.global_position)
-  velocity += direction * hook_pull_speed
+func lasso_pull():
+  var direction_to_hook := global_position.direction_to(Game.hook.global_position)
+  var distance_to_hook := global_position.distance_to(Game.hook.global_position)
+  var direction_to_player := global_position.direction_to(Game.player.global_position)
+  var distance_to_player := global_position.distance_to(Game.player.global_position)
+
+  var hook_force := lerpf(0, hook_pull_speed, clampf(distance_to_hook / 100, 0, 1))
+  var player_force := lerpf(0, hook_pull_speed, clampf(distance_to_player / 100, 0, 1))
+
+  velocity += direction_to_hook * hook_force
+  velocity += direction_to_player * player_force
 
 func is_hooked():
   var groups := ['hook', 'segment']
@@ -292,7 +300,8 @@ func free_from_capture():
 
 func collect_captured():
   # TODO: animation and add some points or something
-  queue_free()
+  # queue_free()
+  pass
 
 func _on_ai_decision_timer_timeout():
   if state != State.ATTACKING_PLAYER: return
@@ -366,7 +375,10 @@ func update_dude_animation():
 
     _:
       if velocity.length() > 0:
-        dude.play_animation('running')
+        if is_hooked():
+          dude.play_animation('running_hooked')
+        else:
+          dude.play_animation('running')
       else:
         dude.play_animation('idle')
 
