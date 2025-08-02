@@ -1,0 +1,64 @@
+[gd_scene load_steps=6 format=3 uid="uid://cfm04ntunurdu"]
+
+[ext_resource type="Script" uid="uid://bb8jo10py3qxv" path="res://scripts/projectile.gd" id="1_dgol7"]
+[ext_resource type="Texture2D" uid="uid://w42mx33bn3l6" path="res://sprites/knife.png" id="2_dgol7"]
+
+[sub_resource type="Animation" id="Animation_3f73b"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("rotation:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_dgol7"]
+resource_name = "rotating"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("rotation:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3f73b"]
+_data = {
+&"RESET": SubResource("Animation_3f73b"),
+&"rotating": SubResource("Animation_dgol7")
+}
+
+[node name="arrow" type="Node2D"]
+script = ExtResource("1_dgol7")
+
+[node name="rotation" type="Node2D" parent="."]
+
+[node name="sprite" type="Sprite2D" parent="rotation"]
+position = Vector2(0, -2.58188)
+scale = Vector2(0.101021, 0.101021)
+texture = ExtResource("2_dgol7")
+
+[node name="delete_timer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[node name="animation" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_3f73b")
+}
+autoplay = "rotating"
+
+[connection signal="timeout" from="delete_timer" to="." method="queue_free"]

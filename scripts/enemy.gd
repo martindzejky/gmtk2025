@@ -27,6 +27,8 @@ class_name Enemy
 @export_category('Weapons')
 @export var melee_weapons: Array[PackedScene]
 @export var ranged_weapons: Array[PackedScene]
+@export var melee_weapon_attack_animation := 'melee'
+@export var ranged_weapon_attack_animation := 'shoot'
 
 @export_category('Timers')
 @export var melee_cooldown_timer: Timer
@@ -47,14 +49,15 @@ enum State {
 var state := State.ATTACKING_PLAYER
 var release_captured_target: Enemy
 var attack_target: Node2D
+var performing_attack: String
 
 func _ready():
-  if can_attack_melee:
+  if can_attack_melee and melee_weapons.size() > 0:
     var melee_weapon = melee_weapons.pick_random()
     var melee_weapon_instance = melee_weapon.instantiate()
     dude.equip_melee_weapon(melee_weapon_instance)
 
-  if can_attack_ranged:
+  if can_attack_ranged and ranged_weapons.size() > 0:
     var ranged_weapon = ranged_weapons.pick_random()
     var ranged_weapon_instance = ranged_weapon.instantiate()
     dude.equip_bow_weapon(ranged_weapon_instance)
@@ -200,11 +203,13 @@ func get_movement_speed():
 
 func attack_melee(target):
   attack_target = target
+  performing_attack = 'melee'
   melee_cooldown_timer.start()
   dude_melee_animation(target)
 
 func shoot_ranged(target):
   attack_target = target
+  performing_attack = 'ranged'
   shoot_cooldown_timer.start()
   dude_shoot_animation(target)
 
@@ -267,14 +272,14 @@ func _on_ai_decision_timer_timeout():
     release_captured_target = closest_captured_enemy
 
 func dude_melee_animation(target):
-  dude.play_animation('melee')
+  dude.play_animation(melee_weapon_attack_animation)
 
   var dir := global_position.direction_to(target.global_position)
   if abs(dir.x) > 0:
     dude.scale.x = sign(dir.x)
 
 func dude_shoot_animation(target):
-  dude.play_animation('shoot')
+  dude.play_animation(ranged_weapon_attack_animation)
   var dir := global_position.direction_to(target.global_position)
   if abs(dir.x) > 0:
     dude.scale.x = sign(dir.x)
@@ -297,6 +302,18 @@ func update_dude_animation():
         dude.scale.x = sign(velocity.x)
 
 func _on_dude_melee_attack():
+  if performing_attack == 'melee':
+    perform_melee_attack()
+  elif performing_attack == 'ranged':
+    perform_ranged_attack()
+
+func _on_dude_shoot_attack():
+  if performing_attack == 'melee':
+    perform_melee_attack()
+  elif performing_attack == 'ranged':
+    perform_ranged_attack()
+
+func perform_melee_attack():
   var melee_strike = melee_strike_object.instantiate()
   get_parent().add_child(melee_strike)
 
@@ -307,8 +324,7 @@ func _on_dude_melee_attack():
     release_captured_target.free_from_capture() # TODO: this should be done in the melee strike object
     release_captured_target = null
 
-
-func _on_dude_shoot_attack() -> void:
+func perform_ranged_attack():
   var projectile = projectile_object.instantiate()
   get_parent().add_child(projectile)
 

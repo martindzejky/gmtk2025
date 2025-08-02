@@ -778,7 +778,6 @@ next/shoot = &"idle"
 
 [node name="bow_slot_back" type="Marker2D" parent="jump_animation/rotation_scale_animation"]
 position = Vector2(3.52625, -24.1408)
-scale = Vector2(0.0561217, 0.0561217)
 
 [node name="body_scale" type="Node2D" parent="jump_animation/rotation_scale_animation"]
 
@@ -805,7 +804,6 @@ texture = ExtResource("4_tkn7g")
 [node name="melee_slot" type="Marker2D" parent="jump_animation/rotation_scale_animation/body_scale"]
 position = Vector2(7.52731, -19.1992)
 rotation = 1.23266
-scale = Vector2(0.0561217, 0.0561217)
 
 [node name="head_scale" type="Node2D" parent="jump_animation/rotation_scale_animation"]
 position = Vector2(1, -30)
@@ -832,4 +830,3 @@ texture = ExtResource("5_v1kco")
 [node name="bow_slot_front" type="Marker2D" parent="jump_animation/rotation_scale_animation"]
 visible = false
 position = Vector2(3.52625, -24.1408)
-scale = Vector2(0.0561217, 0.0561217)

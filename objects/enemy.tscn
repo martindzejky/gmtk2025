@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://fieie7mlojfh" path="res://scripts/enemy.gd" id="1_7jlpp"]
 [ext_resource type="PackedScene" uid="uid://ccv1x3ptc2xx" path="res://objects/melee_strike.tscn" id="2_41oev"]
-[ext_resource type="PackedScene" uid="uid://dr57aya15ff0d" path="res://objects/projectile.tscn" id="3_we7g8"]
+[ext_resource type="PackedScene" uid="uid://dr57aya15ff0d" path="res://objects/arrow.tscn" id="3_we7g8"]
 [ext_resource type="PackedScene" uid="uid://bbvqcdrmrrngi" path="res://objects/knife.tscn" id="4_3hb37"]
 [ext_resource type="PackedScene" uid="uid://djbcew1c0yi1u" path="res://objects/bow.tscn" id="5_2ld5k"]
 [ext_resource type="PackedScene" uid="uid://dur5dy1hc4dca" path="res://objects/dude.tscn" id="5_3hb37"]

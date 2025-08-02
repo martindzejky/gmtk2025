@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://c8fg07divs5ef"]
+
+[ext_resource type="PackedScene" uid="uid://br2pnnu3i2hvh" path="res://objects/ranged_enemy.tscn" id="1_rr8aq"]
+[ext_resource type="PackedScene" uid="uid://cfm04ntunurdu" path="res://objects/throwing_knife.tscn" id="2_kp6sq"]
+
+[node name="throwing_knife_enemy" instance=ExtResource("1_rr8aq")]
+move_speed = 35.0
+can_attack_melee = true
+projectile_object = ExtResource("2_kp6sq")
+ranged_weapons = Array[PackedScene]([])
+ranged_weapon_attack_animation = "melee"

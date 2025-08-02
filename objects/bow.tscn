@@ -5,7 +5,8 @@
 [node name="bow" type="Node2D"]
 
 [node name="sprite" type="Sprite2D" parent="."]
-position = Vector2(-233.529, 0)
+position = Vector2(-13.0392, 0)
+scale = Vector2(0.056, 0.056)
 texture = ExtResource("1_45hh1")
 hframes = 2
 frame = 1
