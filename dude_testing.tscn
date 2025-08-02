@@ -67,7 +67,17 @@ text = "captured"
 layout_mode = 2
 text = "melee"
 
+[node name="shoot" type="Button" parent="ui/ui_root/margin/container"]
+layout_mode = 2
+text = "shoot"
+
+[node name="randomize" type="Button" parent="ui/ui_root/margin/container"]
+layout_mode = 2
+text = "randomize"
+
 [connection signal="pressed" from="ui/ui_root/margin/container/idle" to="." method="_on_idle_pressed"]
 [connection signal="pressed" from="ui/ui_root/margin/container/running" to="." method="_on_running_pressed"]
 [connection signal="pressed" from="ui/ui_root/margin/container/captured" to="." method="_on_captured_pressed"]
 [connection signal="pressed" from="ui/ui_root/margin/container/melee" to="." method="_on_melee_pressed"]
+[connection signal="pressed" from="ui/ui_root/margin/container/shoot" to="." method="_on_shoot_pressed"]
+[connection signal="pressed" from="ui/ui_root/margin/container/randomize" to="." method="_on_randomize_pressed"]

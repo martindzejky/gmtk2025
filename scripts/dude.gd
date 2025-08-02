@@ -9,21 +9,40 @@ class_name Dude
 
 @export_category('Animations')
 @export var animation_player: AnimationPlayer
-@export var jump_animation_player: AnimationPlayer
 
-var animations_starting_with_jump: Array[String] = ['running', 'captured']
-var animations_without_blending: Array[String] = ['melee']
+@export_category('Randomization')
+@export var scale_body_node: Node2D
+@export var scale_head_node: Node2D
+@export var scale_body_min: float = 0.8
+@export var scale_body_max: float = 1.2
+@export var scale_head_min_x: float = 0.8
+@export var scale_head_max_x: float = 1.2
+@export var scale_head_min_y: float = 0.8
+@export var scale_head_max_y: float = 1.2
+@export var legs_color_gradient: Gradient
+@export var body_color_gradient: Gradient
+@export var head_color_gradient: Gradient
+@export var hat_color_gradient: Gradient
+
+func _ready():
+  self.randomize()
 
 func play_animation(animation_name: String):
-  if animations_without_blending.has(animation_name):
-    animation_player.play(animation_name)
-  else:
-    animation_player.play(animation_name, 0.1)
+  animation_player.play(animation_name)
 
-  if animations_starting_with_jump.has(animation_name):
-    play_jump_animation()
+func randomize():
+  # scaling
+  var scale_body = randf_range(scale_body_min, scale_body_max)
+  scale_body_node.scale = Vector2(scale_body, 1)
 
+  var scale_head_x = randf_range(scale_head_min_x, scale_head_max_x)
+  var scale_head_y = randf_range(scale_head_min_y, scale_head_max_y)
+  scale_head_node.scale = Vector2(scale_head_x, scale_head_y)
 
-func play_jump_animation():
-  jump_animation_player.play('jump')
-  jump_animation_player.seek(0)
+  # colors
+  legs_sprite.self_modulate = legs_color_gradient.sample(randf())
+  body_sprite.self_modulate = body_color_gradient.sample(randf())
+  head_sprite.self_modulate = head_color_gradient.sample(randf())
+  hat_sprite.self_modulate = hat_color_gradient.sample(randf())
+
+  # TODO: sprites, hats, bandanas, etc.

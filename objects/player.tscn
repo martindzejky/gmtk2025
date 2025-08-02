@@ -1,8 +1,8 @@
 [gd_scene load_steps=11 format=3 uid="uid://qwj8b5x4g7c1"]
 
 [ext_resource type="Script" uid="uid://od4p2jer5wh6" path="res://scripts/player.gd" id="1_ykyjo"]
-[ext_resource type="Texture2D" uid="uid://bynb34h3wnd36" path="res://sprites/legs.png" id="2_nmc1l"]
-[ext_resource type="Texture2D" uid="uid://c1wawimfk30kr" path="res://sprites/body_0.png" id="3_f46kd"]
+[ext_resource type="Texture2D" uid="uid://csenq8rfg0m0x" path="res://sprites/legs.png" id="2_nmc1l"]
+[ext_resource type="Texture2D" uid="uid://c1wawimfk30kr" path="res://sprites/body.png" id="3_f46kd"]
 [ext_resource type="Script" uid="uid://c4o833g47jo7o" path="res://scripts/lasso.gd" id="3_uxov2"]
 [ext_resource type="Texture2D" uid="uid://bjx3e714hhs35" path="res://sprites/head_1.png" id="4_3rerk"]
 [ext_resource type="PackedScene" uid="uid://ca585k0y784dp" path="res://objects/hook.tscn" id="4_nmc1l"]
