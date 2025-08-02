@@ -1,10 +1,16 @@
-[gd_scene load_steps=18 format=3 uid="uid://dur5dy1hc4dca"]
+[gd_scene load_steps=25 format=3 uid="uid://dur5dy1hc4dca"]
 
 [ext_resource type="Script" uid="uid://c2wtknwcmawr7" path="res://scripts/dude.gd" id="1_qiy7s"]
 [ext_resource type="Texture2D" uid="uid://csenq8rfg0m0x" path="res://sprites/legs.png" id="2_tkn7g"]
 [ext_resource type="Texture2D" uid="uid://c1wawimfk30kr" path="res://sprites/body.png" id="3_cr6a7"]
-[ext_resource type="Texture2D" uid="uid://cq3tk3x5fgylh" path="res://sprites/head_0.png" id="4_720c1"]
+[ext_resource type="Texture2D" uid="uid://cq3tk3x5fgylh" path="res://sprites/head.png" id="4_720c1"]
+[ext_resource type="Texture2D" uid="uid://dj6p7eh4668mm" path="res://sprites/bandana_1.png" id="4_swm5h"]
+[ext_resource type="Texture2D" uid="uid://d2jswiwlf5a4n" path="res://sprites/sheriff_star.png" id="4_tkn7g"]
 [ext_resource type="Texture2D" uid="uid://dpnid40fk8abh" path="res://sprites/hat.png" id="5_v1kco"]
+[ext_resource type="Texture2D" uid="uid://s3ysoivu63da" path="res://sprites/bandana_2.png" id="5_x15pf"]
+[ext_resource type="Texture2D" uid="uid://c5s7ncmp44jgo" path="res://sprites/bandana_3.png" id="6_3ed03"]
+[ext_resource type="Texture2D" uid="uid://de3tqqaacbguy" path="res://sprites/bandana_0.png" id="7_cr6a7"]
+[ext_resource type="Texture2D" uid="uid://dasifeoxbfie0" path="res://sprites/head_outline.png" id="8_720c1"]
 
 [sub_resource type="Gradient" id="Gradient_qiy7s"]
 offsets = PackedFloat32Array(0, 0.501629, 0.995114)
@@ -19,6 +25,9 @@ colors = PackedColorArray(0.378233, 0.293623, 0.224357, 1, 0.884154, 0.781745, 0
 
 [sub_resource type="Gradient" id="Gradient_720c1"]
 colors = PackedColorArray(0.373735, 0.2179, 0.144153, 1, 0.545058, 0.360087, 0.264678, 1)
+
+[sub_resource type="Gradient" id="Gradient_swm5h"]
+colors = PackedColorArray(0.578061, 0.306966, 0.0352612, 1, 0.593392, 0.500568, 0.00908131, 1)
 
 [sub_resource type="Animation" id="Animation_qiy7s"]
 resource_name = "RESET"
@@ -411,12 +420,14 @@ _data = {
 &"shoot": SubResource("Animation_3mih0")
 }
 
-[node name="dude" type="Node2D" node_paths=PackedStringArray("legs_sprite", "body_sprite", "head_sprite", "hat_sprite", "animation_player", "scale_body_node", "scale_head_node")]
+[node name="dude" type="Node2D" node_paths=PackedStringArray("legs_sprite", "body_sprite", "head_sprite", "hat_sprite", "bandana_sprite", "sheriff_star_sprite", "animation_player", "scale_body_node", "scale_head_node")]
 script = ExtResource("1_qiy7s")
 legs_sprite = NodePath("jump_animation/rotation_scale_animation/body_scale/legs")
 body_sprite = NodePath("jump_animation/rotation_scale_animation/body_scale/body")
 head_sprite = NodePath("jump_animation/rotation_scale_animation/head_scale/head_animation/head")
 hat_sprite = NodePath("jump_animation/rotation_scale_animation/head_scale/head_animation/head/hat")
+bandana_sprite = NodePath("jump_animation/rotation_scale_animation/head_scale/head_animation/head/bandana")
+sheriff_star_sprite = NodePath("jump_animation/rotation_scale_animation/body_scale/body/sheriff_star")
 animation_player = NodePath("animation")
 scale_body_node = NodePath("jump_animation/rotation_scale_animation/body_scale")
 scale_head_node = NodePath("jump_animation/rotation_scale_animation/head_scale")
@@ -424,6 +435,9 @@ legs_color_gradient = SubResource("Gradient_qiy7s")
 body_color_gradient = SubResource("Gradient_tkn7g")
 head_color_gradient = SubResource("Gradient_cr6a7")
 hat_color_gradient = SubResource("Gradient_720c1")
+bandana_color_gradient = SubResource("Gradient_swm5h")
+hat_sprites = Array[Texture2D]([ExtResource("5_v1kco")])
+bandana_sprites = Array[Texture2D]([ExtResource("7_cr6a7"), ExtResource("4_swm5h"), ExtResource("5_x15pf"), ExtResource("6_3ed03")])
 
 [node name="animation" type="AnimationPlayer" parent="."]
 deterministic = true
@@ -452,7 +466,13 @@ position = Vector2(2.57377, -18.7603)
 scale = Vector2(0.0561217, 0.0561217)
 texture = ExtResource("3_cr6a7")
 hframes = 8
-frame = 4
+
+[node name="sheriff_star" type="Sprite2D" parent="jump_animation/rotation_scale_animation/body_scale/body"]
+visible = false
+self_modulate = Color(0.988131, 0.771395, 0.273741, 1)
+position = Vector2(7.59474, -4.27108)
+scale = Vector2(0.0881257, 0.0881257)
+texture = ExtResource("4_tkn7g")
 
 [node name="head_scale" type="Node2D" parent="jump_animation/rotation_scale_animation"]
 position = Vector2(1, -30)
@@ -463,9 +483,16 @@ position = Vector2(1, -30)
 scale = Vector2(0.0561217, 0.0561217)
 texture = ExtResource("4_720c1")
 
+[node name="bandana" type="Sprite2D" parent="jump_animation/rotation_scale_animation/head_scale/head_animation/head"]
+position = Vector2(-25.614, -121.806)
+scale = Vector2(0.448058, 0.448058)
+texture = ExtResource("7_cr6a7")
+
+[node name="head_outline" type="Sprite2D" parent="jump_animation/rotation_scale_animation/head_scale/head_animation/head"]
+texture = ExtResource("8_720c1")
+
 [node name="hat" type="Sprite2D" parent="jump_animation/rotation_scale_animation/head_scale/head_animation/head"]
 position = Vector2(-13.9239, -153.162)
 rotation = -0.254909
+scale = Vector2(1, 1)
 texture = ExtResource("5_v1kco")
-
-[node name="bandana" type="Sprite2D" parent="jump_animation/rotation_scale_animation/head_scale/head_animation/head"]

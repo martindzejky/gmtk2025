@@ -1,7 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://celdle61b8mey"]
+[gd_scene load_steps=5 format=3 uid="uid://celdle61b8mey"]
 
 [ext_resource type="Script" uid="uid://cbeifktwaksov" path="res://scripts/folk.gd" id="1_6qcaw"]
 [ext_resource type="PackedScene" uid="uid://dur5dy1hc4dca" path="res://objects/dude.tscn" id="2_6qcaw"]
+
+[sub_resource type="Gradient" id="Gradient_6qcaw"]
+colors = PackedColorArray(0.71094, 0.675425, 0.555555, 1, 0.887922, 0.827973, 0.746662, 1)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_882u1"]
 radius = 12.0
@@ -13,6 +16,8 @@ motion_mode = 1
 script = ExtResource("1_6qcaw")
 
 [node name="dude" parent="." instance=ExtResource("2_6qcaw")]
+body_color_gradient = SubResource("Gradient_6qcaw")
+bandana_chance = 0.0
 
 [node name="shape" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_882u1")

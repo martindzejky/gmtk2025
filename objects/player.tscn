@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://qwj8b5x4g7c1"]
+[gd_scene load_steps=9 format=3 uid="uid://qwj8b5x4g7c1"]
 
 [ext_resource type="Script" uid="uid://od4p2jer5wh6" path="res://scripts/player.gd" id="1_ykyjo"]
 [ext_resource type="Script" uid="uid://c4o833g47jo7o" path="res://scripts/lasso.gd" id="3_uxov2"]
@@ -10,22 +10,29 @@
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.898618, 0), -1.85131, 0.0, 0, 0]
 point_count = 2
 
+[sub_resource type="Gradient" id="Gradient_f46kd"]
+colors = PackedColorArray(0.283345, 0.5721, 0.707218, 1, 0.335716, 0.312536, 0.731633, 1)
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_player"]
 radius = 12.0
 
-[node name="player" type="CharacterBody2D" node_paths=PackedStringArray("dash_progress_timer", "dash_cooldown_timer", "dash_cooldown_progress", "dude") groups=["player"]]
+[node name="player" type="CharacterBody2D" node_paths=PackedStringArray("dude", "dash_progress_timer", "dash_cooldown_timer", "dash_cooldown_progress") groups=["player"]]
 collision_layer = 2
 collision_mask = 63
 motion_mode = 1
 script = ExtResource("1_ykyjo")
+dude = NodePath("dude")
 dash_speed = 500.0
 dash_curve = SubResource("Curve_nmc1l")
 dash_progress_timer = NodePath("dash_progress")
 dash_cooldown_timer = NodePath("dash_cooldown")
 dash_cooldown_progress = NodePath("dash_cooldown_progress")
-dude = NodePath("dude")
 
 [node name="dude" parent="." instance=ExtResource("5_f46kd")]
+body_color_gradient = SubResource("Gradient_f46kd")
+hat_chance = 1.0
+bandana_chance = 0.0
+has_sheriff_star = true
 
 [node name="shape" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_player")

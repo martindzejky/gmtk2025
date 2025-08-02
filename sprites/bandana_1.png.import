@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cq3tk3x5fgylh"
-path="res://.godot/imported/head_0.png-8165899d9b2b66dcf90c44629259cd14.ctex"
+uid="uid://dj6p7eh4668mm"
+path="res://.godot/imported/bandana_1.png-3b3399add8845d9919f9e810ebe2425e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/head_0.png"
-dest_files=["res://.godot/imported/head_0.png-8165899d9b2b66dcf90c44629259cd14.ctex"]
+source_file="res://sprites/bandana_1.png"
+dest_files=["res://.godot/imported/bandana_1.png-3b3399add8845d9919f9e810ebe2425e.ctex"]
 
 [params]
 
