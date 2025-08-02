@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dur5dy1hc4dca"]
+[gd_scene load_steps=18 format=3 uid="uid://dur5dy1hc4dca"]
 
 [ext_resource type="Script" uid="uid://c2wtknwcmawr7" path="res://scripts/dude.gd" id="1_qiy7s"]
 [ext_resource type="Texture2D" uid="uid://csenq8rfg0m0x" path="res://sprites/legs.png" id="2_tkn7g"]
@@ -167,6 +167,86 @@ tracks/11/keys = {
 "times": PackedFloat32Array(0)
 }
 
+[sub_resource type="Animation" id="Animation_720c1"]
+resource_name = "captured"
+length = 0.001
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("jump_animation/rotation_scale_animation/body_scale/legs:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("jump_animation/rotation_scale_animation/body_scale/body:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("jump_animation:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.000378019),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 5)]
+}
+
+[sub_resource type="Animation" id="Animation_swm5h"]
+resource_name = "dash"
+length = 0.8
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("jump_animation:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, 0, -1, 0, -1, -4.00988, -0.15, 0, 0.15, 0, 0, 0, -1, 0, -1),
+"times": PackedFloat32Array(0, 0.4, 0.8)
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("jump_animation/rotation_scale_animation/body_scale/legs:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("jump_animation/rotation_scale_animation/body_scale/body:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+
 [sub_resource type="Animation" id="Animation_tkn7g"]
 resource_name = "idle"
 length = 0.001
@@ -194,6 +274,48 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_v1kco"]
+resource_name = "melee"
+length = 1.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("jump_animation/rotation_scale_animation/body_scale/body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [4, 5, 0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("jump_animation/rotation_scale_animation/body_scale/legs:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.8, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 0]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.8),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"emit_melee_attack"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_cr6a7"]
@@ -236,75 +358,6 @@ tracks/2/keys = {
 "values": [1, 2]
 }
 
-[sub_resource type="Animation" id="Animation_720c1"]
-resource_name = "captured"
-length = 0.001
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("jump_animation/rotation_scale_animation/body_scale/legs:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [3]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("jump_animation/rotation_scale_animation/body_scale/body:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [3]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("jump_animation:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0.000378019),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 5)]
-}
-
-[sub_resource type="Animation" id="Animation_v1kco"]
-resource_name = "melee"
-length = 1.4
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("jump_animation/rotation_scale_animation/body_scale/body:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.8, 1.2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [4, 5, 0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("jump_animation/rotation_scale_animation/body_scale/legs:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.8, 1.2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [0, 1, 0]
-}
-
 [sub_resource type="Animation" id="Animation_3mih0"]
 resource_name = "shoot"
 length = 1.4
@@ -332,11 +385,26 @@ tracks/1/keys = {
 "update": 1,
 "values": [0, 1, 0]
 }
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.8),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"emit_shoot_attack"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tkn7g"]
 _data = {
 &"RESET": SubResource("Animation_qiy7s"),
 &"captured": SubResource("Animation_720c1"),
+&"dash": SubResource("Animation_swm5h"),
 &"idle": SubResource("Animation_tkn7g"),
 &"melee": SubResource("Animation_v1kco"),
 &"running": SubResource("Animation_cr6a7"),
@@ -363,6 +431,7 @@ libraries = {
 &"": SubResource("AnimationLibrary_tkn7g")
 }
 autoplay = "idle"
+next/dash = &"idle"
 next/melee = &"idle"
 next/shoot = &"idle"
 
@@ -383,6 +452,7 @@ position = Vector2(2.57377, -18.7603)
 scale = Vector2(0.0561217, 0.0561217)
 texture = ExtResource("3_cr6a7")
 hframes = 8
+frame = 4
 
 [node name="head_scale" type="Node2D" parent="jump_animation/rotation_scale_animation"]
 position = Vector2(1, -30)

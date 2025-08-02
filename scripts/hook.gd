@@ -189,7 +189,7 @@ func add_segment_to_enemy(enemy: Enemy, point_of_collision: Vector2, insert_segm
 
   enemy.add_child(new_segment)
   new_segment.hook = self
-  new_segment.global_position = point_of_collision
+  # new_segment.global_position = point_of_collision
 
   segments.insert(insert_segment_at_index, new_segment)
   update_segment_indices()

@@ -1,6 +1,10 @@
 extends CharacterBody2D
 class_name Player
 
+@export_category('Dude')
+@export var dude: Dude
+
+@export_category('Movement')
 @export var move_speed := 200.0
 @export var dash_speed := 400.0
 @export var dash_curve: Curve
@@ -31,3 +35,13 @@ func _physics_process(_delta):
     dash_cooldown_progress.visible = true
   else:
     dash_cooldown_progress.visible = false
+
+  if dash_progress_timer.time_left > 0:
+    dude.play_animation('dash')
+  elif velocity.length() > 0:
+    dude.play_animation('running')
+  else:
+    dude.play_animation('idle')
+
+  if abs(velocity.x) > 0:
+    dude.scale.x = sign(velocity.x)

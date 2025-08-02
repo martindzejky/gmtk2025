@@ -1,6 +1,9 @@
 extends CharacterBody2D
 class_name Enemy
 
+@export_category('Dude')
+@export var dude: Dude
+
 @export_category('Movement')
 @export var can_move := true
 @export var move_speed := 50.0
@@ -25,11 +28,6 @@ class_name Enemy
 @export var melee_cooldown_timer: Timer
 @export var shoot_cooldown_timer: Timer
 
-@export_category('Sprites')
-@export var sprite: Sprite2D
-@onready var default_sprite: Texture2D = sprite.texture
-@export var captured_sprite: Texture2D
-
 @export_category('Flocking')
 @export var nearby_area: Area2D
 @export var flocking_separation_distance := 30
@@ -44,6 +42,10 @@ enum State {
 
 var state := State.ATTACKING_PLAYER
 var release_captured_target: Enemy
+var attack_target: Node2D
+
+func _process(_delta):
+  update_dude_animation()
 
 func _physics_process(_delta):
   velocity = Vector2.ZERO
@@ -116,6 +118,8 @@ func move_towards_release_captured_target():
   velocity += direction * get_movement_speed()
 
 func apply_flocking():
+  if melee_cooldown_timer.time_left > 0 or shoot_cooldown_timer.time_left > 0: return
+
   var nearby_enemies := nearby_area.get_overlapping_bodies()
 
   # limit to 10 enemies for performance... premature optimization?
@@ -180,22 +184,14 @@ func get_movement_speed():
   return lerpf(move_speed/2, move_speed/10, Game.hook.get_catch_percentage())
 
 func attack_melee(target):
+  attack_target = target
   melee_cooldown_timer.start()
-
-  var melee_strike = melee_strike_object.instantiate()
-  get_parent().add_child(melee_strike)
-
-  melee_strike.global_position = global_position
-  melee_strike.global_rotation = global_position.angle_to_point(target.global_position)
+  dude_melee_animation(target)
 
 func shoot_ranged(target):
+  attack_target = target
   shoot_cooldown_timer.start()
-
-  var projectile = projectile_object.instantiate()
-  get_parent().add_child(projectile)
-
-  projectile.global_position = global_position
-  projectile.global_rotation = global_position.angle_to_point(target.global_position)
+  dude_shoot_animation(target)
 
 func is_captured():
   return state == State.CAPTURED
@@ -204,7 +200,6 @@ func capture():
   if state == State.CAPTURED: return
 
   state = State.CAPTURED
-  sprite.texture = captured_sprite
 
   # this is a quick hack to save time:
   # I want to change the collision layer from 'enemy' to 'captured_enemy' which is the next layer
@@ -217,7 +212,6 @@ func free_from_capture():
   if state != State.CAPTURED: return
 
   state = State.ATTACKING_PLAYER
-  sprite.texture = default_sprite
 
   # again the hack mentioned above
   collision_layer = collision_layer >> 1
@@ -257,3 +251,47 @@ func _on_ai_decision_timer_timeout():
 
     release_captured_target = closest_captured_enemy
 
+func dude_melee_animation(target):
+  dude.play_animation('melee')
+
+  var dir := global_position.direction_to(target.global_position)
+  if abs(dir.x) > 0:
+    dude.scale.x = sign(dir.x)
+
+func dude_shoot_animation(target):
+  dude.play_animation('shoot')
+  var dir := global_position.direction_to(target.global_position)
+  if abs(dir.x) > 0:
+    dude.scale.x = sign(dir.x)
+
+func update_dude_animation():
+  if melee_cooldown_timer.time_left > 0: return
+  if shoot_cooldown_timer.time_left > 0: return
+
+  match state:
+    State.CAPTURED:
+      dude.play_animation('captured')
+
+    _:
+      if velocity.length() > 0:
+        dude.play_animation('running')
+      else:
+        dude.play_animation('idle')
+
+      if abs(velocity.x) > 0:
+        dude.scale.x = sign(velocity.x)
+
+func _on_dude_melee_attack():
+  var melee_strike = melee_strike_object.instantiate()
+  get_parent().add_child(melee_strike)
+
+  melee_strike.global_position = global_position
+  melee_strike.global_rotation = global_position.angle_to_point(attack_target.global_position)
+
+
+func _on_dude_shoot_attack() -> void:
+  var projectile = projectile_object.instantiate()
+  get_parent().add_child(projectile)
+
+  projectile.global_position = global_position
+  projectile.global_rotation = global_position.angle_to_point(attack_target.global_position)

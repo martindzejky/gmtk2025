@@ -1,12 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://qwj8b5x4g7c1"]
+[gd_scene load_steps=8 format=3 uid="uid://qwj8b5x4g7c1"]
 
 [ext_resource type="Script" uid="uid://od4p2jer5wh6" path="res://scripts/player.gd" id="1_ykyjo"]
-[ext_resource type="Texture2D" uid="uid://csenq8rfg0m0x" path="res://sprites/legs.png" id="2_nmc1l"]
-[ext_resource type="Texture2D" uid="uid://c1wawimfk30kr" path="res://sprites/body.png" id="3_f46kd"]
 [ext_resource type="Script" uid="uid://c4o833g47jo7o" path="res://scripts/lasso.gd" id="3_uxov2"]
-[ext_resource type="Texture2D" uid="uid://bjx3e714hhs35" path="res://sprites/head_1.png" id="4_3rerk"]
 [ext_resource type="PackedScene" uid="uid://ca585k0y784dp" path="res://objects/hook.tscn" id="4_nmc1l"]
-[ext_resource type="Texture2D" uid="uid://dpnid40fk8abh" path="res://sprites/hat.png" id="5_i825w"]
+[ext_resource type="PackedScene" uid="uid://dur5dy1hc4dca" path="res://objects/dude.tscn" id="5_f46kd"]
 [ext_resource type="PackedScene" uid="uid://dwqdximdijkh3" path="res://objects/camera.tscn" id="6_3rfka"]
 
 [sub_resource type="Curve" id="Curve_nmc1l"]
@@ -16,7 +13,7 @@ point_count = 2
 [sub_resource type="CircleShape2D" id="CircleShape2D_player"]
 radius = 12.0
 
-[node name="player" type="CharacterBody2D" node_paths=PackedStringArray("dash_progress_timer", "dash_cooldown_timer", "dash_cooldown_progress") groups=["player"]]
+[node name="player" type="CharacterBody2D" node_paths=PackedStringArray("dash_progress_timer", "dash_cooldown_timer", "dash_cooldown_progress", "dude") groups=["player"]]
 collision_layer = 2
 collision_mask = 63
 motion_mode = 1
@@ -26,30 +23,9 @@ dash_curve = SubResource("Curve_nmc1l")
 dash_progress_timer = NodePath("dash_progress")
 dash_cooldown_timer = NodePath("dash_cooldown")
 dash_cooldown_progress = NodePath("dash_cooldown_progress")
+dude = NodePath("dude")
 
-[node name="sprites" type="Node2D" parent="."]
-
-[node name="legs" type="Sprite2D" parent="sprites"]
-position = Vector2(2, -11)
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("2_nmc1l")
-hframes = 3
-
-[node name="body" type="Sprite2D" parent="sprites"]
-position = Vector2(1, -37)
-scale = Vector2(0.139998, 0.139998)
-texture = ExtResource("3_f46kd")
-
-[node name="head" type="Sprite2D" parent="sprites"]
-position = Vector2(2, -59)
-scale = Vector2(0.076202, 0.076202)
-texture = ExtResource("4_3rerk")
-
-[node name="hat" type="Sprite2D" parent="sprites"]
-position = Vector2(2, -72)
-rotation = -0.170823
-scale = Vector2(0.0994262, 0.0994262)
-texture = ExtResource("5_i825w")
+[node name="dude" parent="." instance=ExtResource("5_f46kd")]
 
 [node name="shape" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_player")

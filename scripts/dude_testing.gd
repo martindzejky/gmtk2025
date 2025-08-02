@@ -19,3 +19,6 @@ func _on_shoot_pressed() -> void:
 
 func _on_randomize_pressed() -> void:
   dude.randomize()
+
+func _on_dash_pressed() -> void:
+  dude.play_animation('dash')

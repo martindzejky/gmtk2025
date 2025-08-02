@@ -1,6 +1,9 @@
 extends Node2D
 class_name Dude
 
+signal melee_attack
+signal shoot_attack
+
 @export_category('Sprites')
 @export var legs_sprite: Sprite2D
 @export var body_sprite: Sprite2D
@@ -46,3 +49,9 @@ func randomize():
   hat_sprite.self_modulate = hat_color_gradient.sample(randf())
 
   # TODO: sprites, hats, bandanas, etc.
+
+func emit_melee_attack():
+  melee_attack.emit()
+
+func emit_shoot_attack():
+  shoot_attack.emit()

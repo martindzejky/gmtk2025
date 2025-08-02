@@ -59,6 +59,10 @@ text = "idle"
 layout_mode = 2
 text = "running"
 
+[node name="dash" type="Button" parent="ui/ui_root/margin/container"]
+layout_mode = 2
+text = "dash"
+
 [node name="captured" type="Button" parent="ui/ui_root/margin/container"]
 layout_mode = 2
 text = "captured"
@@ -77,6 +81,7 @@ text = "randomize"
 
 [connection signal="pressed" from="ui/ui_root/margin/container/idle" to="." method="_on_idle_pressed"]
 [connection signal="pressed" from="ui/ui_root/margin/container/running" to="." method="_on_running_pressed"]
+[connection signal="pressed" from="ui/ui_root/margin/container/dash" to="." method="_on_dash_pressed"]
 [connection signal="pressed" from="ui/ui_root/margin/container/captured" to="." method="_on_captured_pressed"]
 [connection signal="pressed" from="ui/ui_root/margin/container/melee" to="." method="_on_melee_pressed"]
 [connection signal="pressed" from="ui/ui_root/margin/container/shoot" to="." method="_on_shoot_pressed"]

@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Lasso Sheriff"
 config/version="1"
-run/main_scene="uid://dgwp7w7upisgr"
+run/main_scene="uid://bifqkl6lsp6wc"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="uid://dpnid40fk8abh"
 
