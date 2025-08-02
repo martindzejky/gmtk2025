@@ -40,11 +40,18 @@ signal shoot_attack
 @export var hat_sprites: Array[Texture2D]
 @export var bandana_sprites: Array[Texture2D]
 
+@export_category('Weapons')
+@export var melee_slot: Node2D
+@export var bow_back_slot: Node2D
+@export var bow_front_slot: Node2D
+
 func _ready():
   self.randomize()
 
 func play_animation(animation_name: String):
-  animation_player.play(animation_name)
+  if animation_name != animation_player.current_animation:
+    animation_player.play('RESET')
+    animation_player.queue(animation_name)
 
 func randomize():
   # sheriff star
@@ -84,3 +91,10 @@ func emit_melee_attack():
 
 func emit_shoot_attack():
   shoot_attack.emit()
+
+func equip_melee_weapon(weapon: Node2D):
+  melee_slot.add_child(weapon)
+
+func equip_bow_weapon(weapon: Node2D):
+  bow_back_slot.add_child(weapon)
+  bow_front_slot.add_child(weapon.duplicate())

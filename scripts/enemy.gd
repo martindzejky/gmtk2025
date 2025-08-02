@@ -24,6 +24,10 @@ class_name Enemy
 @export var max_ranged_attack_distance := 100.0
 @export var projectile_object: PackedScene
 
+@export_category('Weapons')
+@export var melee_weapons: Array[PackedScene]
+@export var ranged_weapons: Array[PackedScene]
+
 @export_category('Timers')
 @export var melee_cooldown_timer: Timer
 @export var shoot_cooldown_timer: Timer
@@ -43,6 +47,17 @@ enum State {
 var state := State.ATTACKING_PLAYER
 var release_captured_target: Enemy
 var attack_target: Node2D
+
+func _ready():
+  if can_attack_melee:
+    var melee_weapon = melee_weapons.pick_random()
+    var melee_weapon_instance = melee_weapon.instantiate()
+    dude.equip_melee_weapon(melee_weapon_instance)
+
+  if can_attack_ranged:
+    var ranged_weapon = ranged_weapons.pick_random()
+    var ranged_weapon_instance = ranged_weapon.instantiate()
+    dude.equip_bow_weapon(ranged_weapon_instance)
 
 func _process(_delta):
   update_dude_animation()

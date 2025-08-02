@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bbvqcdrmrrngi"]
+
+[ext_resource type="Texture2D" uid="uid://w42mx33bn3l6" path="res://sprites/knife.png" id="1_25txl"]
+
+[node name="knife" type="Node2D"]
+
+[node name="sprite" type="Sprite2D" parent="."]
+position = Vector2(0, -40.8964)
+texture = ExtResource("1_25txl")

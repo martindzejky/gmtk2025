@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://djbcew1c0yi1u"]
+
+[ext_resource type="Texture2D" uid="uid://b1x22gx35ubxb" path="res://sprites/bow.png" id="1_45hh1"]
+
+[node name="bow" type="Node2D"]
+
+[node name="sprite" type="Sprite2D" parent="."]
+position = Vector2(-233.529, 0)
+texture = ExtResource("1_45hh1")
+hframes = 2
+frame = 1
