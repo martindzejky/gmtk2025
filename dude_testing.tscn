@@ -23,6 +23,7 @@ texture = ExtResource("2_vorsc")
 [node name="camera" parent="." instance=ExtResource("2_sagn4")]
 
 [node name="ui" type="CanvasLayer" parent="."]
+layer = 10
 
 [node name="ui_root" type="Control" parent="ui"]
 layout_mode = 3

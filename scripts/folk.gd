@@ -27,7 +27,8 @@ enum State {
   IDLE,
   WANDERING,
   RUNNING_AWAY_FROM_ENEMIES,
-  GETTING_ATTACKED_BY_ENEMY
+  GETTING_ATTACKED_BY_ENEMY,
+  DYING
 }
 
 var state: State = State.IDLE
@@ -42,16 +43,20 @@ func _ready():
 func _physics_process(_delta):
   velocity = Vector2.ZERO
 
-  if enemy_attack_timer.time_left > 0:
-    pass
-  elif are_enemies_nearby() or running_away_from_enemies_timer.time_left > 0:
-    state = State.RUNNING_AWAY_FROM_ENEMIES
-  elif state == State.RUNNING_AWAY_FROM_ENEMIES:
-    go_to_idle_from_random_duration()
+  if state != State.DYING:
+    if enemy_attack_timer.time_left > 0:
+      pass
+    elif are_enemies_nearby() or running_away_from_enemies_timer.time_left > 0:
+      state = State.RUNNING_AWAY_FROM_ENEMIES
+    elif state == State.RUNNING_AWAY_FROM_ENEMIES:
+      go_to_idle_from_random_duration()
 
   match state:
     State.IDLE:
       dude.play_animation('idle')
+
+    State.DYING:
+      dude.play_animation('die')
 
     State.WANDERING:
       dude.play_animation('running')
@@ -153,8 +158,17 @@ func go_to_wandering_position():
     velocity = direction * move_speed
 
 func start_enemy_attacking_timer():
-  state = State.GETTING_ATTACKED_BY_ENEMY
-  enemy_attack_timer.start()
+  if state != State.DYING:
+    state = State.GETTING_ATTACKED_BY_ENEMY
+    enemy_attack_timer.start()
 
 func _on_enemy_attack_timer_timeout():
-  state = State.RUNNING_AWAY_FROM_ENEMIES
+  if state != State.DYING:
+    state = State.RUNNING_AWAY_FROM_ENEMIES
+
+func hit_by_enemy():
+  state = State.DYING
+
+func _on_dude_die_end() -> void:
+  # TODO: something more grandiose
+  queue_free()

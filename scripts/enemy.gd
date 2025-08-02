@@ -331,7 +331,7 @@ func _on_ai_decision_timer_timeout():
 
   if can_attack_folks:
     if randf() < attack_folks_bias:
-      print('Decided to attack a folk')
+      print('Decided to attack folks')
       state = State.ATTACKING_FOLK
 
       var all_folks := get_tree().get_nodes_in_group('folk')
@@ -402,9 +402,17 @@ func perform_melee_attack():
   melee_strike.global_position = global_position
   melee_strike.global_rotation = global_position.angle_to_point(attack_target.global_position)
 
-  if attack_target == release_captured_target:
-    release_captured_target.free_from_capture() # TODO: this should be done in the melee strike object
-    release_captured_target = null
+  if is_instance_valid(release_captured_target):
+    if attack_target == release_captured_target:
+      release_captured_target.free_from_capture() # TODO: this should be done in the melee strike object
+      release_captured_target = null
+      attack_target = null
+
+  if is_instance_valid(attack_folks_target):
+    if attack_target == attack_folks_target:
+      attack_folks_target.hit_by_enemy() # TODO: this should be done in the ranged strike object
+      attack_folks_target = null
+      attack_target = null
 
 func perform_ranged_attack():
   var projectile = projectile_object.instantiate()

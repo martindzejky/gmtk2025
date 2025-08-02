@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://dur5dy1hc4dca"]
+[gd_scene load_steps=39 format=3 uid="uid://dur5dy1hc4dca"]
 
 [ext_resource type="Script" uid="uid://c2wtknwcmawr7" path="res://scripts/dude.gd" id="1_qiy7s"]
 [ext_resource type="Texture2D" uid="uid://csenq8rfg0m0x" path="res://sprites/legs.png" id="2_tkn7g"]
@@ -766,6 +766,92 @@ tracks/9/keys = {
 "times": PackedFloat32Array(0)
 }
 tracks/9/use_blend = true
+
+[sub_resource type="Animation" id="Animation_nb8wc"]
+resource_name = "die"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("jump_animation/rotation_scale_animation/body_scale/body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [11]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("jump_animation/rotation_scale_animation/body_scale/legs:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("jump_animation:position:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, 0, -1, 0, -1, -3.84175, -0.15, 0, 0.15, 0, 0, 0, -1, 0, -1),
+"times": PackedFloat32Array(0, 0.266667, 0.6)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("jump_animation/rotation_scale_animation:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1.5708, -0.2, -1.27871, 0.25, 0),
+"times": PackedFloat32Array(0, 0.6)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("jump_animation/rotation_scale_animation:scale:x")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 2, 1),
+"points": PackedFloat32Array(1.2, -0.25, 0, 0.0666667, -0.698407, 1.19741, -0.0367525, -0.496502, 0.0388369, 0.52466, 0.8, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.166667, 0.6)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("jump_animation/rotation_scale_animation:scale:y")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0, 2, 2),
+"points": PackedFloat32Array(0.9, -0.25, 0, 0.0706288, 0.797932, 0.91416, -0.0269663, 0.255547, 0.0475129, -0.450258, 1.2, -0.0941325, 0.238526, 0, 0),
+"times": PackedFloat32Array(0, 0.164374, 0.6)
+}
+tracks/6/type = "method"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath(".")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"emit_die_end"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_t4klp"]
 resource_name = "fleeing"
@@ -1756,6 +1842,7 @@ _data = {
 &"captured": SubResource("Animation_720c1"),
 &"dash": SubResource("Animation_swm5h"),
 &"dash_lasso": SubResource("Animation_kj05k"),
+&"die": SubResource("Animation_nb8wc"),
 &"fleeing": SubResource("Animation_t4klp"),
 &"idle": SubResource("Animation_tkn7g"),
 &"idle_lasso": SubResource("Animation_o0308"),
@@ -1823,7 +1910,6 @@ position = Vector2(2.57377, -18.7603)
 scale = Vector2(0.0561217, 0.0561217)
 texture = ExtResource("3_cr6a7")
 hframes = 13
-frame = 8
 
 [node name="sheriff_star" type="Sprite2D" parent="jump_animation/rotation_scale_animation/body_scale/body"]
 visible = false

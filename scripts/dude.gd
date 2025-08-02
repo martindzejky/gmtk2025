@@ -3,6 +3,7 @@ class_name Dude
 
 signal melee_attack
 signal shoot_attack
+signal die_end
 
 @export_category('Sprites')
 @export var legs_sprite: Sprite2D
@@ -119,6 +120,9 @@ func emit_melee_attack():
 
 func emit_shoot_attack():
   shoot_attack.emit()
+
+func emit_die_end():
+  die_end.emit()
 
 func equip_melee_weapon(weapon: Node2D):
   melee_slot.add_child(weapon)
