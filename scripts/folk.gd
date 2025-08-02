@@ -21,11 +21,13 @@ class_name Folk
 @export_category('Timers')
 @export var idle_timer: Timer
 @export var running_away_from_enemies_timer: Timer
+@export var enemy_attack_timer: Timer
 
 enum State {
   IDLE,
   WANDERING,
-  RUNNING_AWAY_FROM_ENEMIES
+  RUNNING_AWAY_FROM_ENEMIES,
+  GETTING_ATTACKED_BY_ENEMY
 }
 
 var state: State = State.IDLE
@@ -38,7 +40,9 @@ func _ready():
 func _physics_process(_delta):
   velocity = Vector2.ZERO
 
-  if are_enemies_nearby() or running_away_from_enemies_timer.time_left > 0:
+  if enemy_attack_timer.time_left > 0:
+    pass
+  elif are_enemies_nearby() or running_away_from_enemies_timer.time_left > 0:
     state = State.RUNNING_AWAY_FROM_ENEMIES
   elif state == State.RUNNING_AWAY_FROM_ENEMIES:
     go_to_idle_from_random_duration()
@@ -56,6 +60,10 @@ func _physics_process(_delta):
       dude.play_animation('running')
       run_away_from_enemies()
       apply_flocking()
+
+    # hacky way to try and allow enemies to actually have a chance to hit folks
+    State.GETTING_ATTACKED_BY_ENEMY:
+      dude.play_animation('captured')
 
   move_and_slide()
 
@@ -138,3 +146,10 @@ func go_to_wandering_position():
     go_to_idle_from_random_duration()
   else:
     velocity = direction * move_speed
+
+func start_enemy_attacking_timer():
+  state = State.GETTING_ATTACKED_BY_ENEMY
+  enemy_attack_timer.start()
+
+func _on_enemy_attack_timer_timeout():
+  state = State.RUNNING_AWAY_FROM_ENEMIES

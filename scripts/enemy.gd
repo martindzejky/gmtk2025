@@ -18,6 +18,10 @@ class_name Enemy
 @export var can_release_captured := true
 @export var release_captured_bias := 0.1
 
+@export_category('Folks')
+@export var can_attack_folks := true
+@export var attack_folks_bias := 0.1
+
 @export_category('Ranged')
 @export var can_attack_ranged := true
 @export var min_ranged_attack_distance := 20.0
@@ -42,12 +46,14 @@ class_name Enemy
 
 enum State {
   ATTACKING_PLAYER,
+  ATTACKING_FOLK,
   RELEASING_CAPTURED,
   CAPTURED,
 }
 
 var state := State.ATTACKING_PLAYER
 var release_captured_target: Enemy
+var attack_folks_target: Folk
 var attack_target: Node2D
 var performing_attack: String
 
@@ -71,6 +77,10 @@ func _physics_process(_delta):
   match state:
     State.ATTACKING_PLAYER:
       go_attack_player()
+      apply_flocking()
+
+    State.ATTACKING_FOLK:
+      go_attack_folk()
       apply_flocking()
 
     State.RELEASING_CAPTURED:
@@ -107,6 +117,36 @@ func go_attack_player():
     if can_attack_ranged and shoot_cooldown_timer.time_left <= 0 and distance_to_player >= min_ranged_attack_distance and distance_to_player <= max_ranged_attack_distance:
       shoot_ranged(Game.player)
 
+func go_attack_folk():
+  if not is_instance_valid(attack_folks_target) or not can_attack_folks:
+    state = State.ATTACKING_PLAYER
+    attack_folks_target = null
+    return
+
+  var distance_to_folk := global_position.distance_to(attack_folks_target.global_position)
+
+  if melee_cooldown_timer.time_left <= 0 and shoot_cooldown_timer.time_left <= 0:
+    if can_attack_ranged:
+      if distance_to_folk > max_ranged_attack_distance:
+        move_towards_folk()
+      elif distance_to_folk < min_ranged_attack_distance:
+        if can_attack_melee:
+          if distance_to_folk > melee_strike_distance:
+            move_towards_folk()
+        else:
+          move_away_from_folk()
+    elif can_attack_melee:
+      if distance_to_folk > melee_strike_distance:
+        move_towards_folk()
+
+  if not is_hooked():
+    if can_attack_melee and melee_cooldown_timer.time_left <= 0 and distance_to_folk <= melee_strike_distance:
+      attack_melee(attack_folks_target)
+
+    if can_attack_ranged and shoot_cooldown_timer.time_left <= 0 and distance_to_folk >= min_ranged_attack_distance and distance_to_folk <= max_ranged_attack_distance:
+      shoot_ranged(attack_folks_target)
+
+
 func go_release_captured():
   if not is_instance_valid(release_captured_target) or not release_captured_target.is_captured() or not can_release_captured or not can_attack_melee:
     state = State.ATTACKING_PLAYER
@@ -133,6 +173,14 @@ func move_away_from_player():
 
 func move_towards_release_captured_target():
   var direction := global_position.direction_to(release_captured_target.global_position)
+  velocity += direction * get_movement_speed()
+
+func move_towards_folk():
+  var direction := global_position.direction_to(attack_folks_target.global_position)
+  velocity += direction * get_movement_speed()
+
+func move_away_from_folk():
+  var direction := attack_folks_target.global_position.direction_to(global_position)
   velocity += direction * get_movement_speed()
 
 func apply_flocking():
@@ -207,6 +255,10 @@ func attack_melee(target):
   melee_cooldown_timer.start()
   dude_melee_animation(target)
 
+  # hacky way to try and allow enemies to actually have a chance to hit folks
+  if target is Folk:
+    target.start_enemy_attacking_timer()
+
 func shoot_ranged(target):
   attack_target = target
   performing_attack = 'ranged'
@@ -245,31 +297,51 @@ func collect_captured():
 func _on_ai_decision_timer_timeout():
   if state != State.ATTACKING_PLAYER: return
 
-  if not can_release_captured: return
-  if not can_attack_melee: return
+  if can_release_captured:
+    if randf() < release_captured_bias:
+      print('Decided to release captured enemies')
+      state = State.RELEASING_CAPTURED
 
-  var decision := randf()
-  if decision < release_captured_bias:
-    print('Decided to release captured enemies')
-    state = State.RELEASING_CAPTURED
+      var all_captured_enemies := get_tree().get_nodes_in_group('enemy').filter(func(enemy): return enemy.is_captured())
+      if all_captured_enemies.size() <= 0:
+        print('There are no captured enemies to release, returning to attacking player')
+        state = State.ATTACKING_PLAYER
+        release_captured_target = null
+        return
 
-    var all_captured_enemies := get_tree().get_nodes_in_group('enemy').filter(func(enemy): return enemy.is_captured())
-    if all_captured_enemies.size() <= 0:
-      print('There are no captured enemies to release, returning to attacking player')
-      state = State.ATTACKING_PLAYER
-      release_captured_target = null
-      return
+      var closest_captured_enemy := all_captured_enemies[0] as Enemy
+      var closest_distance := global_position.distance_squared_to(closest_captured_enemy.global_position)
 
-    var closest_captured_enemy := all_captured_enemies[0] as Enemy
-    var closest_distance := global_position.distance_squared_to(closest_captured_enemy.global_position)
+      for enemy in all_captured_enemies:
+        var distance := global_position.distance_squared_to(enemy.global_position)
+        if distance < closest_distance:
+          closest_distance = distance
+          closest_captured_enemy = enemy
 
-    for enemy in all_captured_enemies:
-      var distance := global_position.distance_squared_to(enemy.global_position)
-      if distance < closest_distance:
-        closest_distance = distance
-        closest_captured_enemy = enemy
+      release_captured_target = closest_captured_enemy
 
-    release_captured_target = closest_captured_enemy
+  if can_attack_folks:
+    if randf() < attack_folks_bias:
+      print('Decided to attack a folk')
+      state = State.ATTACKING_FOLK
+
+      var all_folks := get_tree().get_nodes_in_group('folk')
+      if all_folks.size() <= 0:
+        print('There are no folks to attack, returning to attacking player')
+        state = State.ATTACKING_PLAYER
+        attack_folks_target = null
+        return
+
+      var closest_folks := all_folks[0] as Folk
+      var closest_distance := global_position.distance_squared_to(closest_folks.global_position)
+
+      for folk in all_folks:
+        var distance := global_position.distance_squared_to(folk.global_position)
+        if distance < closest_distance:
+          closest_distance = distance
+          closest_folks = folk
+
+      attack_folks_target = closest_folks
 
 func dude_melee_animation(target):
   dude.play_animation(melee_weapon_attack_animation)
