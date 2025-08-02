@@ -32,9 +32,11 @@ enum State {
 
 var state: State = State.IDLE
 var global_wandering_position: Vector2
+var global_home_position: Vector2
 var last_running_away_from_enemies_direction: Vector2
 
 func _ready():
+  global_home_position = global_position # TODO: maybe something else?
   go_to_idle_from_random_duration()
 
 func _physics_process(_delta):
@@ -116,8 +118,11 @@ func run_away_from_enemies():
   if nearby_enemies.size() == 0:
     average_escape_direction = last_running_away_from_enemies_direction
 
-  velocity += average_escape_direction.normalized() * move_speed
+  # try to steer back towards home slightly
+  var home_direction := global_position.direction_to(global_home_position)
+  average_escape_direction = average_escape_direction.normalized().lerp(home_direction, 0.2).normalized()
 
+  velocity += average_escape_direction * move_speed
   last_running_away_from_enemies_direction = average_escape_direction
 
   if nearby_enemies.size() > 0:
@@ -137,7 +142,7 @@ func go_to_idle_from_random_duration():
   if state != State.IDLE: return
 
   state = State.WANDERING
-  global_wandering_position = global_position + Vector2.UP.rotated(randf_range(0, 2 * PI)) * randf_range(wandering_min_distance, wandering_max_distance)
+  global_wandering_position = global_home_position + Vector2.UP.rotated(randf_range(0, 2 * PI)) * randf_range(wandering_min_distance, wandering_max_distance)
 
 func go_to_wandering_position():
   var direction := global_position.direction_to(global_wandering_position)
