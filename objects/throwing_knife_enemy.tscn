@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bbvqcdrmrrngi" path="res://objects/knife.tscn" id="3_mxxnb"]
 
 [node name="throwing_knife_enemy" instance=ExtResource("1_rr8aq")]
-move_speed = 35.0
+move_speed = 60.0
 can_attack_melee = true
 min_ranged_attack_distance = 80.0
 max_ranged_attack_distance = 120.0
@@ -13,3 +13,8 @@ projectile_object = ExtResource("2_kp6sq")
 melee_weapons = Array[PackedScene]([ExtResource("3_mxxnb")])
 ranged_weapons = Array[PackedScene]([])
 ranged_weapon_attack_animation = "melee"
+
+[node name="dude" parent="." index="0"]
+running_animation_scale = 1.2
+melee_animation_scale = 1.4
+shoot_animation_scale = 1.4

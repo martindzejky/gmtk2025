@@ -366,24 +366,22 @@ func dude_shoot_animation(target):
     dude.scale.x = sign(dir.x)
 
 func update_dude_animation():
-  if melee_cooldown_timer.time_left > 0: return
-  if shoot_cooldown_timer.time_left > 0: return
-
   match state:
     State.CAPTURED:
       dude.play_animation('captured')
 
-    _:
-      if velocity.length() > 0:
-        if is_hooked():
-          dude.play_animation('running_hooked')
-        else:
-          dude.play_animation('running')
-      else:
-        dude.play_animation('idle')
+    _ when is_hooked():
+      dude.play_animation('running_hooked')
 
-      if abs(velocity.x) > 0:
-        dude.scale.x = sign(velocity.x)
+    _:
+      if melee_cooldown_timer.time_left <= 0 and shoot_cooldown_timer.time_left <= 0:
+        if velocity.length() > 0:
+          dude.play_animation('running')
+        else:
+          dude.play_animation('idle')
+
+        if abs(velocity.x) > 0:
+          dude.scale.x = sign(velocity.x)
 
 func _on_dude_melee_attack():
   if performing_attack == 'melee':

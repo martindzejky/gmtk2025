@@ -14,6 +14,9 @@ signal shoot_attack
 
 @export_category('Animations')
 @export var animation_player: AnimationPlayer
+@export var running_animation_scale := 1.0
+@export var melee_animation_scale := 1.0
+@export var shoot_animation_scale := 1.0
 
 @export_category('Randomization')
 @export var scale_body_node: Node2D
@@ -52,13 +55,31 @@ func play_animation(animation_name: String):
   var current_animation := animation_player.current_animation
   var current_position := animation_player.current_animation_position
 
+  match animation_name:
+    'running', 'running_lasso':
+      animation_player.speed_scale = running_animation_scale
+    'melee':
+      animation_player.speed_scale = melee_animation_scale
+    'shoot':
+      animation_player.speed_scale = shoot_animation_scale
+    'captured':
+      animation_player.speed_scale = randf_range(0.9, 1.1)
+    _:
+      animation_player.speed_scale = 1.0
+
   if animation_name != animation_player.current_animation:
-    if (animation_name == 'idle_lasso' or animation_name == 'running_lasso') and (current_animation == 'idle_lasso' or current_animation == 'running_lasso'):
-      animation_player.play(animation_name)
-      animation_player.seek(current_position)
-    else:
-      animation_player.play('RESET')
-      animation_player.queue(animation_name)
+    match animation_name:
+      'idle_lasso', 'running_lasso' when current_animation == 'idle_lasso' or current_animation == 'running_lasso':
+        animation_player.play(animation_name)
+        animation_player.seek(current_position)
+      'captured':
+        animation_player.play('RESET')
+        animation_player.advance(0)
+        animation_player.play('captured')
+        animation_player.seek(randf_range(0, animation_player.get_animation('captured').get_length()))
+      _:
+        animation_player.play('RESET')
+        animation_player.queue(animation_name)
 
 func randomize():
   # sheriff star

@@ -34,6 +34,7 @@ dash_cooldown_progress = NodePath("dash_cooldown_progress")
 lasso = NodePath("lasso")
 
 [node name="dude" parent="." instance=ExtResource("5_f46kd")]
+running_animation_scale = 1.6
 legs_color_gradient = SubResource("Gradient_3rerk")
 body_color_gradient = SubResource("Gradient_f46kd")
 hat_chance = 1.0

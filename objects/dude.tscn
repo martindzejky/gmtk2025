@@ -313,6 +313,28 @@ tracks/22/keys = {
 "update": 1,
 "values": [0]
 }
+tracks/23/type = "bezier"
+tracks/23/imported = false
+tracks/23/enabled = true
+tracks/23/path = NodePath("jump_animation/rotation_scale_animation:scale:x")
+tracks/23/interp = 1
+tracks/23/loop_wrap = true
+tracks/23/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/24/type = "bezier"
+tracks/24/imported = false
+tracks/24/enabled = true
+tracks/24/path = NodePath("jump_animation/rotation_scale_animation:scale:y")
+tracks/24/interp = 1
+tracks/24/loop_wrap = true
+tracks/24/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
 
 [sub_resource type="Animation" id="Animation_6i87g"]
 resource_name = "attacked"
@@ -417,7 +439,7 @@ tracks/7/keys = {
 
 [sub_resource type="Animation" id="Animation_720c1"]
 resource_name = "captured"
-length = 0.001
+length = 1.4
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -503,6 +525,18 @@ tracks/6/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("jump_animation/rotation_scale_animation:scale")
+tracks/7/interp = 2
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.2, 0.9), Vector2(1, 1), Vector2(1, 1), Vector2(1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_swm5h"]
 resource_name = "dash"
@@ -577,6 +611,18 @@ tracks/5/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("jump_animation/rotation_scale_animation:scale")
+tracks/6/interp = 2
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.466667, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.4, 0.8), Vector2(1.4, 0.8), Vector2(1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_kj05k"]
@@ -677,6 +723,18 @@ tracks/7/keys = {
 "update": 1,
 "values": [0, 1]
 }
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("jump_animation/rotation_scale_animation:scale")
+tracks/8/interp = 2
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.466667, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.4, 0.8), Vector2(1.4, 0.8), Vector2(1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_t4klp"]
 resource_name = "fleeing"
@@ -753,10 +811,32 @@ tracks/5/keys = {
 "update": 1,
 "values": [2.02408, 0.778489]
 }
+tracks/6/type = "bezier"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("jump_animation/rotation_scale_animation:scale:x")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
+"points": PackedFloat32Array(1.5, -0.25, 0, 0, -0.0653261, 0.95, -0.25, 0, 0.25, 0, 1.5, -2.98023e-08, -0.0642205, 0, -0.0650496, 0.95, -0.25, 0, 0.25, 0, 1.5, 0, -0.0758291, 0.25, 0),
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8)
+}
+tracks/7/type = "bezier"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("jump_animation/rotation_scale_animation:scale:y")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
+"points": PackedFloat32Array(0.8, -0.25, 0, 0, 0.0295467, 1.1, -0.25, 0, 0.25, 0, 0.8, -2.98023e-08, 0.035996, 0, 0.0356274, 1.1, -0.25, 0, 0.25, 0, 0.8, 0, 0.0380229, 0.25, 0),
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8)
+}
 
 [sub_resource type="Animation" id="Animation_tkn7g"]
 resource_name = "idle"
-length = 0.001
+length = 0.8
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -817,6 +897,18 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("jump_animation/rotation_scale_animation:scale")
+tracks/5/interp = 2
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.9, 1.1), Vector2(1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_o0308"]
@@ -919,6 +1011,18 @@ tracks/7/keys = {
 "update": 0,
 "values": [Vector2(0, 0)]
 }
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("jump_animation/rotation_scale_animation:scale")
+tracks/8/interp = 2
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.9, 1.1), Vector2(1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_v1kco"]
 resource_name = "melee"
@@ -997,6 +1101,28 @@ tracks/5/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/6/type = "bezier"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("jump_animation/rotation_scale_animation:scale:x")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.166667, -0.0705087, 0.9, -0.366667, 0.00351018, 0, 0.633642, 1, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.8, 1.1)
+}
+tracks/7/type = "bezier"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("jump_animation/rotation_scale_animation:scale:y")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.0666667, 0.132919, 1.2, -0.25, 0, 0, -0.625423, 1, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.8, 1.1)
+}
 
 [sub_resource type="Animation" id="Animation_cr6a7"]
 resource_name = "running"
@@ -1072,6 +1198,28 @@ tracks/5/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [2.02408, 0.778489]
+}
+tracks/6/type = "bezier"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("jump_animation/rotation_scale_animation:scale:x")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
+"points": PackedFloat32Array(1.3, -0.25, 0, 0, -0.0653261, 0.95, -0.25, 0, 0.25, 0, 1.3, -2.98023e-08, -0.0642205, 0, -0.0650496, 0.95, -0.25, 0, 0.25, 0, 1.3, 0, -0.0758291, 0.25, 0),
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8)
+}
+tracks/7/type = "bezier"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("jump_animation/rotation_scale_animation:scale:y")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
+"points": PackedFloat32Array(0.8, -0.25, 0, 0, 0.0295467, 1.1, -0.25, 0, 0.25, 0, 0.8, -2.98023e-08, 0.035996, 0, 0.0356274, 1.1, -0.25, 0, 0.25, 0, 0.8, 0, 0.0380229, 0.25, 0),
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8)
 }
 
 [sub_resource type="Animation" id="Animation_dkird"]
@@ -1160,6 +1308,28 @@ tracks/6/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/7/type = "bezier"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("jump_animation/rotation_scale_animation:scale:x")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
+"points": PackedFloat32Array(1.3, -0.25, 0, 0, -0.0653261, 0.95, -0.25, 0, 0.25, 0, 1.3, -2.98023e-08, -0.0642205, 0, -0.0650496, 0.95, -0.25, 0, 0.25, 0, 1.3, 0, -0.0758291, 0.25, 0),
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8)
+}
+tracks/8/type = "bezier"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("jump_animation/rotation_scale_animation:scale:y")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
+"points": PackedFloat32Array(0.8, -0.25, 0, 0, 0.0295467, 1.1, -0.25, 0, 0.25, 0, 0.8, -2.98023e-08, 0.035996, 0, 0.0356274, 1.1, -0.25, 0, 0.25, 0, 0.8, 0, 0.0380229, 0.25, 0),
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8)
 }
 
 [sub_resource type="Animation" id="Animation_r7x12"]
@@ -1260,6 +1430,28 @@ tracks/7/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [0, 1]
+}
+tracks/8/type = "bezier"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("jump_animation/rotation_scale_animation:scale:x")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
+"points": PackedFloat32Array(1.3, -0.25, 0, 0, -0.0653261, 0.95, -0.25, 0, 0.25, 0, 1.3, -2.98023e-08, -0.0642205, 0, -0.0650496, 0.95, -0.25, 0, 0.25, 0, 1.3, 0, -0.0758291, 0.25, 0),
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8)
+}
+tracks/9/type = "bezier"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("jump_animation/rotation_scale_animation:scale:y")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
+"points": PackedFloat32Array(0.8, -0.25, 0, 0, 0.0295467, 1.1, -0.25, 0, 0.25, 0, 0.8, -2.98023e-08, 0.035996, 0, 0.0356274, 1.1, -0.25, 0, 0.25, 0, 0.8, 0, 0.0380229, 0.25, 0),
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8)
 }
 
 [sub_resource type="Animation" id="Animation_3mih0"]
@@ -1380,6 +1572,28 @@ tracks/8/keys = {
 "method": &"set_bow_default"
 }]
 }
+tracks/9/type = "bezier"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("jump_animation/rotation_scale_animation:scale:x")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.166667, -0.0705087, 0.9, -0.366667, 0.00351018, 0, 0.633642, 1, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.8, 1.1)
+}
+tracks/10/type = "bezier"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("jump_animation/rotation_scale_animation:scale:y")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.0666667, 0.132919, 1.2, -0.25, 0, 0, -0.625423, 1, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.8, 1.1)
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tkn7g"]
 _data = {
@@ -1455,7 +1669,6 @@ position = Vector2(2.57377, -18.7603)
 scale = Vector2(0.0561217, 0.0561217)
 texture = ExtResource("3_cr6a7")
 hframes = 13
-frame = 11
 
 [node name="sheriff_star" type="Sprite2D" parent="jump_animation/rotation_scale_animation/body_scale/body"]
 visible = false
