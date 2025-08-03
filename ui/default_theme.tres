@@ -5,12 +5,12 @@
 [resource]
 default_font = ExtResource("1_vos2p")
 default_font_size = 24
-BoxContainer/constants/separation = 30
-FlowContainer/constants/h_separation = 30
-FlowContainer/constants/v_separation = 30
-GridContainer/constants/h_separation = 30
-GridContainer/constants/v_separation = 30
-MarginContainer/constants/margin_bottom = 15
-MarginContainer/constants/margin_left = 15
-MarginContainer/constants/margin_right = 15
-MarginContainer/constants/margin_top = 15
+BoxContainer/constants/separation = 10
+FlowContainer/constants/h_separation = 10
+FlowContainer/constants/v_separation = 10
+GridContainer/constants/h_separation = 10
+GridContainer/constants/v_separation = 10
+MarginContainer/constants/margin_bottom = 10
+MarginContainer/constants/margin_left = 10
+MarginContainer/constants/margin_right = 10
+MarginContainer/constants/margin_top = 10
