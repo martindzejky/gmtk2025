@@ -1,19 +1,38 @@
-[gd_scene load_steps=3 format=3 uid="uid://ccv1x3ptc2xx"]
+[gd_scene load_steps=4 format=3 uid="uid://ccv1x3ptc2xx"]
 
 [ext_resource type="Texture2D" uid="uid://bf34oh7ibnpc4" path="res://sprites/melee_strike.png" id="1_1x5pd"]
 [ext_resource type="Script" uid="uid://dm0ei106x2jrl" path="res://scripts/melee_strike.gd" id="1_iumy6"]
 
-[node name="melee_strike" type="Node2D"]
-script = ExtResource("1_iumy6")
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iumy6"]
+size = Vector2(12, 30)
 
-[node name="sprite" type="Sprite2D" parent="."]
-z_index = 1
-position = Vector2(27, 0)
-texture = ExtResource("1_1x5pd")
+[node name="melee_strike" type="Node2D" node_paths=PackedStringArray("sprite_rotation_node", "collider_rotation_node")]
+script = ExtResource("1_iumy6")
+sprite_rotation_node = NodePath("sprite_rotation")
+collider_rotation_node = NodePath("collider_rotation")
 
 [node name="delete_timer" type="Timer" parent="."]
 wait_time = 0.1
 one_shot = true
 autostart = true
 
+[node name="sprite_rotation" type="Node2D" parent="."]
+position = Vector2(0, -20)
+
+[node name="sprite" type="Sprite2D" parent="sprite_rotation"]
+z_index = 1
+position = Vector2(27, 0)
+scale = Vector2(0.056, 0.056)
+texture = ExtResource("1_1x5pd")
+
+[node name="collider_rotation" type="Node2D" parent="."]
+
+[node name="hitbox" type="Area2D" parent="collider_rotation"]
+position = Vector2(25, 0)
+collision_mask = 50
+
+[node name="shape" type="CollisionShape2D" parent="collider_rotation/hitbox"]
+shape = SubResource("RectangleShape2D_iumy6")
+
 [connection signal="timeout" from="delete_timer" to="." method="queue_free"]
+[connection signal="body_entered" from="collider_rotation/hitbox" to="." method="_on_hitbox_body_entered"]

@@ -174,7 +174,7 @@ func _on_enemy_attack_timer_timeout():
   if state != State.DYING:
     state = State.RUNNING_AWAY_FROM_ENEMIES
 
-func hit_by_enemy():
+func hit():
   state = State.DYING
 
 func _on_dude_die_end() -> void:

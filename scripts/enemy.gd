@@ -401,22 +401,9 @@ func perform_melee_attack():
     return
 
   var melee_strike = melee_strike_object.instantiate()
-  get_parent().add_child(melee_strike)
-
   melee_strike.global_position = global_position
-  melee_strike.global_rotation = global_position.angle_to_point(attack_target.global_position)
-
-  if is_instance_valid(release_captured_target):
-    if attack_target == release_captured_target:
-      release_captured_target.free_from_capture() # TODO: this should be done in the melee strike object
-      release_captured_target = null
-      attack_target = null
-
-  if is_instance_valid(attack_folks_target):
-    if attack_target == attack_folks_target:
-      attack_folks_target.hit_by_enemy() # TODO: this should be done in the ranged strike object
-      attack_folks_target = null
-      attack_target = null
+  melee_strike.target_rotation = global_position.angle_to_point(attack_target.global_position)
+  get_parent().add_child(melee_strike)
 
 func perform_ranged_attack():
   if not is_instance_valid(attack_target):
@@ -424,7 +411,6 @@ func perform_ranged_attack():
     return
 
   var projectile = projectile_object.instantiate()
-  get_parent().add_child(projectile)
-
   projectile.global_position = global_position
   projectile.target_rotation = global_position.angle_to_point(attack_target.global_position)
+  get_parent().add_child(projectile)
