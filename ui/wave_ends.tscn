@@ -10,7 +10,7 @@ font_color = Color(0, 0, 0, 1)
 font_size = 32
 font_color = Color(0, 0, 0, 1)
 
-[node name="wave_ends" type="CenterContainer" node_paths=PackedStringArray("text")]
+[node name="wave_ends" type="CenterContainer" node_paths=PackedStringArray("display_timer", "text")]
 process_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -18,7 +18,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_bqo52")
+display_timer = NodePath("display_timer")
 text = NodePath("panel/center/container/title")
+
+[node name="display_timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
 
 [node name="panel" type="PanelContainer" parent="."]
 layout_mode = 2
@@ -37,6 +42,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="subtitle" type="Label" parent="panel/center/container"]
+visible = false
 layout_mode = 2
 text = "Choose an upgrade"
 label_settings = SubResource("LabelSettings_a884e")
@@ -44,6 +50,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="upgrades" type="HBoxContainer" parent="panel/center/container"]
+visible = false
 layout_mode = 2
 alignment = 1
 
@@ -60,11 +67,14 @@ layout_mode = 2
 text = "3"
 
 [node name="spacing" type="Control" parent="panel/center/container"]
+visible = false
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 
 [node name="continue" type="Button" parent="panel/center/container"]
+visible = false
 layout_mode = 2
 text = "Continue"
 
+[connection signal="timeout" from="display_timer" to="." method="_on_display_timer_timeout"]
 [connection signal="pressed" from="panel/center/container/continue" to="." method="_on_continue_pressed"]
