@@ -29,6 +29,11 @@ class_name Folk
 @export_category('Grave')
 @export var grave_scene: PackedScene
 
+@export_category('Speech')
+@export var speech_timer: Timer
+@export var speech_bubble_root: Node2D
+@export var speech_bubble_text: Label
+
 enum State {
   IDLE,
   WANDERING,
@@ -199,3 +204,17 @@ func end_cutscene():
     start_wandering()
   else:
     go_to_idle_from_random_duration()
+
+func _on_speech_timer_timeout():
+  var tween := create_tween()
+  tween.tween_property(speech_bubble_root, 'scale', Vector2.ZERO, 0.3).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN)
+  tween.tween_callback(func(): speech_bubble_root.visible = false)
+
+func show_speech(text: String):
+  speech_bubble_root.visible = true
+  speech_bubble_text.text = text
+  speech_timer.start(len(text) * 0.15)
+
+  speech_bubble_root.scale = Vector2.ZERO
+  var tween := create_tween()
+  tween.tween_property(speech_bubble_root, 'scale', Vector2.ONE, 0.6).set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)

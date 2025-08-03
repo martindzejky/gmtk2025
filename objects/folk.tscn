@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://celdle61b8mey"]
+[gd_scene load_steps=9 format=3 uid="uid://celdle61b8mey"]
 
 [ext_resource type="Script" uid="uid://cbeifktwaksov" path="res://scripts/folk.gd" id="1_6qcaw"]
 [ext_resource type="PackedScene" uid="uid://dur5dy1hc4dca" path="res://objects/dude.tscn" id="2_6qcaw"]
@@ -13,7 +13,25 @@ radius = 12.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_6qcaw"]
 radius = 183.068
 
-[node name="folk" type="CharacterBody2D" node_paths=PackedStringArray("dude", "nearby_area", "idle_timer", "running_away_from_enemies_timer", "enemy_attack_timer") groups=["folk"]]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_va2jn"]
+bg_color = Color(0.97, 0.97, 0.97, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_left = 8.0
+expand_margin_top = 4.0
+expand_margin_right = 8.0
+expand_margin_bottom = 4.0
+shadow_color = Color(0, 0, 0, 0.0313726)
+shadow_size = 3
+
+[sub_resource type="LabelSettings" id="LabelSettings_va2jn"]
+line_spacing = 0.0
+font_size = 10
+font_color = Color(0, 0, 0, 1)
+
+[node name="folk" type="CharacterBody2D" node_paths=PackedStringArray("dude", "nearby_area", "idle_timer", "running_away_from_enemies_timer", "enemy_attack_timer", "speech_timer", "speech_bubble_root", "speech_bubble_text") groups=["folk"]]
 collision_layer = 32
 collision_mask = 63
 motion_mode = 1
@@ -27,6 +45,9 @@ idle_timer = NodePath("idle_timer")
 running_away_from_enemies_timer = NodePath("running_away_timer")
 enemy_attack_timer = NodePath("enemy_attack_timer")
 grave_scene = ExtResource("2_va2jn")
+speech_timer = NodePath("speech_bubble_root/speech_timer")
+speech_bubble_root = NodePath("speech_bubble_root")
+speech_bubble_text = NodePath("speech_bubble_root/speech_bubble/text")
 
 [node name="dude" parent="." instance=ExtResource("2_6qcaw")]
 body_color_gradient = SubResource("Gradient_6qcaw")
@@ -51,5 +72,38 @@ one_shot = true
 [node name="enemy_attack_timer" type="Timer" parent="."]
 one_shot = true
 
+[node name="speech_bubble_root" type="Node2D" parent="."]
+visible = false
+position = Vector2(0, -60)
+
+[node name="speech_timer" type="Timer" parent="speech_bubble_root"]
+one_shot = true
+
+[node name="speech_bubble" type="PanelContainer" parent="speech_bubble_root"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -32.0
+offset_right = 40.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_va2jn")
+
+[node name="text" type="Label" parent="speech_bubble_root/speech_bubble"]
+custom_minimum_size = Vector2(80, 10)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Bandits are coming!"
+label_settings = SubResource("LabelSettings_va2jn")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
 [connection signal="die_end" from="dude" to="." method="_on_dude_die_end"]
 [connection signal="timeout" from="enemy_attack_timer" to="." method="_on_enemy_attack_timer_timeout"]
+[connection signal="timeout" from="speech_bubble_root/speech_timer" to="." method="_on_speech_timer_timeout"]

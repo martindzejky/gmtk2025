@@ -10,7 +10,7 @@
 
 [sub_resource type="Animation" id="Animation_qyljj"]
 resource_name = "cutscene"
-length = 3.0
+length = 20.0
 tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -18,7 +18,7 @@ tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(3),
+"times": PackedFloat32Array(17.0667),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
@@ -32,11 +32,31 @@ tracks/1/path = NodePath("wave_spawner")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(3),
+"times": PackedFloat32Array(19.9),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
 "method": &"start_spawning"
+}]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("folk")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(2.1, 7.03333, 17.0333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"values": [{
+"args": ["Bandits are coming!"],
+"method": &"show_speech"
+}, {
+"args": ["You have to protect us, Lasso Sheriff!"],
+"method": &"show_speech"
+}, {
+"args": ["Here they come"],
+"method": &"show_speech"
 }]
 }
 

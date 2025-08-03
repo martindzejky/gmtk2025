@@ -3,7 +3,7 @@
 [ext_resource type="FontVariation" uid="uid://q6nkrkl8lof" path="res://font/default_font.tres" id="1_vos2p"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vos2p"]
-bg_color = Color(0.886262, 0.886261, 0.886262, 1)
+bg_color = Color(0.968627, 0.968627, 0.968627, 1)
 corner_radius_top_left = 20
 corner_radius_top_right = 20
 corner_radius_bottom_right = 20
