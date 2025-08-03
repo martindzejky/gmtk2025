@@ -1,14 +1,16 @@
-[gd_scene load_steps=9 format=3 uid="uid://br0r8y3hx422t"]
+[gd_scene load_steps=13 format=3 uid="uid://br0r8y3hx422t"]
 
 [ext_resource type="Script" uid="uid://c7qaqx2r8j3kl" path="res://scripts/prop_spawner.gd" id="1_abcde"]
 [ext_resource type="Script" path="res://scripts/prop_chance_pair.gd" id="2_tuoyq"]
 [ext_resource type="PackedScene" uid="uid://dfcygyt6d0b5s" path="res://objects/grass.tscn" id="3_130r7"]
 [ext_resource type="PackedScene" uid="uid://bab3h54c3ftkn" path="res://objects/pole.tscn" id="4_130r7"]
 [ext_resource type="PackedScene" uid="uid://cfajtv05rc8o3" path="res://objects/cactus.tscn" id="5_680h0"]
+[ext_resource type="PackedScene" uid="uid://cf4ureujleufb" path="res://objects/rock.tscn" id="6_cafgr"]
+[ext_resource type="PackedScene" uid="uid://dufl57qk2u188" path="res://objects/big_rock.tscn" id="7_yebyj"]
 
 [sub_resource type="Resource" id="Resource_680h0"]
 script = ExtResource("2_tuoyq")
-chance = 5
+chance = 8
 prop = ExtResource("3_130r7")
 metadata/_custom_type_script = "uid://bweqxf8h5n6y0"
 
@@ -24,8 +26,20 @@ chance = 1
 prop = ExtResource("5_680h0")
 metadata/_custom_type_script = "uid://bweqxf8h5n6y0"
 
+[sub_resource type="Resource" id="Resource_ocak5"]
+script = ExtResource("2_tuoyq")
+chance = 7
+prop = ExtResource("6_cafgr")
+metadata/_custom_type_script = "uid://bweqxf8h5n6y0"
+
+[sub_resource type="Resource" id="Resource_xrjxe"]
+script = ExtResource("2_tuoyq")
+chance = 1
+prop = ExtResource("7_yebyj")
+metadata/_custom_type_script = "uid://bweqxf8h5n6y0"
+
 [node name="prop_spawner" type="Node2D"]
 script = ExtResource("1_abcde")
-props = Array[ExtResource("2_tuoyq")]([SubResource("Resource_680h0"), SubResource("Resource_l4kk4"), SubResource("Resource_cafgr")])
+props = Array[ExtResource("2_tuoyq")]([SubResource("Resource_680h0"), SubResource("Resource_l4kk4"), SubResource("Resource_cafgr"), SubResource("Resource_ocak5"), SubResource("Resource_xrjxe")])
 radius = 600.0
-amount = 200
+amount = 300

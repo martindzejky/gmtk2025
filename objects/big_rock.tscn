@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://dufl57qk2u188"]
+
+[ext_resource type="PackedScene" uid="uid://b3eomk5mxspe6" path="res://objects/obstacle.tscn" id="1_be31o"]
+[ext_resource type="Texture2D" uid="uid://c3hpxxj4qsd37" path="res://sprites/rock_big.png" id="2_0jhm8"]
+[ext_resource type="Script" uid="uid://x8um1nksuk8c" path="res://scripts/random_color.gd" id="3_0jhm8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tk7tc"]
+radius = 6.55059
+
+[sub_resource type="Gradient" id="Gradient_u4csy"]
+colors = PackedColorArray(0.511069, 0.598069, 0.614028, 1, 0.693697, 0.707497, 0.727068, 1)
+
+[node name="big_rock" instance=ExtResource("1_be31o")]
+
+[node name="shadow" parent="." index="0"]
+scale = Vector2(0.0217955, 0.0078492)
+
+[node name="shape" parent="." index="1"]
+shape = SubResource("CircleShape2D_tk7tc")
+
+[node name="sprite" parent="." index="2" node_paths=PackedStringArray("target")]
+position = Vector2(0.389699, -8.41867)
+scale = Vector2(0.138762, 0.138762)
+texture = ExtResource("2_0jhm8")
+script = ExtResource("3_0jhm8")
+gradient_color = SubResource("Gradient_u4csy")
+target = NodePath(".")

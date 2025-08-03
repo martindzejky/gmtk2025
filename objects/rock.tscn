@@ -1,0 +1,29 @@
+[gd_scene load_steps=8 format=3 uid="uid://cf4ureujleufb"]
+
+[ext_resource type="PackedScene" uid="uid://b3xcbsdspbjfw" path="res://objects/shadow.tscn" id="1_fh460"]
+[ext_resource type="Texture2D" uid="uid://bay0pqdicuwg8" path="res://sprites/rock_0.png" id="2_qb4xt"]
+[ext_resource type="Script" uid="uid://x8um1nksuk8c" path="res://scripts/random_color.gd" id="3_qb4xt"]
+[ext_resource type="Script" uid="uid://cp587rdrca1sw" path="res://scripts/random_sprite.gd" id="4_qf660"]
+[ext_resource type="Texture2D" uid="uid://dad6onx3c2n3h" path="res://sprites/rock_1.png" id="5_fh460"]
+[ext_resource type="Texture2D" uid="uid://db2c5mloanghj" path="res://sprites/rock_2.png" id="6_ikdnq"]
+
+[sub_resource type="Gradient" id="Gradient_ikdnq"]
+colors = PackedColorArray(0.511069, 0.598069, 0.614028, 1, 0.693697, 0.707497, 0.727068, 1)
+
+[node name="rock" type="Node2D"]
+
+[node name="shadow" parent="." instance=ExtResource("1_fh460")]
+scale = Vector2(0.00479031, 0.00256988)
+
+[node name="sprite" type="Sprite2D" parent="." node_paths=PackedStringArray("target")]
+position = Vector2(0, -1.18919)
+scale = Vector2(0.056, 0.056)
+texture = ExtResource("2_qb4xt")
+script = ExtResource("3_qb4xt")
+gradient_color = SubResource("Gradient_ikdnq")
+target = NodePath(".")
+
+[node name="random_sprite" type="Node" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("4_qf660")
+sprites = Array[Texture2D]([ExtResource("2_qb4xt"), ExtResource("5_fh460"), ExtResource("6_ikdnq")])
+target = NodePath("../sprite")
