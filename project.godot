@@ -15,7 +15,7 @@ config/description="GMTK game jam 2025"
 config/version="1"
 run/main_scene="uid://bifqkl6lsp6wc"
 config/features=PackedStringArray("4.4", "GL Compatibility")
-config/icon="uid://dpnid40fk8abh"
+config/icon="uid://dhdbfe078odwe"
 
 [audio]
 
