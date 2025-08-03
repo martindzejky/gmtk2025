@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dxnx8k27jooot"]
+[gd_scene load_steps=23 format=3 uid="uid://dxnx8k27jooot"]
 
 [ext_resource type="Script" uid="uid://bcpmyhlyslkwq" path="res://scripts/wave_spawner.gd" id="1_wdwvi"]
 [ext_resource type="Script" uid="uid://dmo2rhel62y5f" path="res://scripts/spawn_wave.gd" id="2_42pq5"]
@@ -6,10 +6,26 @@
 [ext_resource type="Resource" uid="uid://bkjxd3s8qho82" path="res://waves/wave_1.tres" id="4_q6l54"]
 [ext_resource type="Resource" uid="uid://cspiwl2qqobau" path="res://waves/wave_2.tres" id="5_xv4kr"]
 [ext_resource type="Resource" uid="uid://d1uha8uiqksby" path="res://waves/wave_3.tres" id="6_qpf0f"]
+[ext_resource type="Resource" uid="uid://47pdikhnp6u4" path="res://waves/wave_4.tres" id="7_wave4"]
+[ext_resource type="Resource" uid="uid://baa2qst1pfjmn" path="res://waves/wave_5.tres" id="8_wave5"]
+[ext_resource type="Resource" uid="uid://dy07otrb8ildj" path="res://waves/wave_6.tres" id="9_wave6"]
+[ext_resource type="Resource" uid="uid://c2g64l25is444" path="res://waves/wave_7.tres" id="10_wave7"]
+[ext_resource type="Resource" uid="uid://c4v32sy4q3aui" path="res://waves/wave_8.tres" id="11_wave8"]
+[ext_resource type="Resource" uid="uid://dn6am4cr5yfju" path="res://waves/wave_9.tres" id="12_wave9"]
+[ext_resource type="Resource" uid="uid://df7xrs37t3wop" path="res://waves/wave_10.tres" id="13_wave10"]
+[ext_resource type="Resource" uid="uid://c0rjwadmmjcki" path="res://waves/wave_11.tres" id="14_wave11"]
+[ext_resource type="Resource" uid="uid://dceo6picyby7k" path="res://waves/wave_12.tres" id="15_wave12"]
+[ext_resource type="Resource" uid="uid://dqole8eh1skvd" path="res://waves/wave_13.tres" id="16_wave13"]
+[ext_resource type="Resource" uid="uid://b4utogt8e56la" path="res://waves/wave_14.tres" id="17_wave14"]
+[ext_resource type="Resource" uid="uid://bvn1huk1bvp1w" path="res://waves/wave_15.tres" id="18_wave15"]
+[ext_resource type="Resource" uid="uid://div1nx78puqqv" path="res://waves/wave_16.tres" id="19_wave16"]
+[ext_resource type="Resource" uid="uid://b0jjb3m14pm6v" path="res://waves/wave_17.tres" id="20_wave17"]
+[ext_resource type="Resource" uid="uid://bxdstp37wvuus" path="res://waves/wave_18.tres" id="21_wave18"]
+[ext_resource type="Resource" uid="uid://dms2x6isfxpd7" path="res://waves/wave_19.tres" id="22_wave19"]
 
 [node name="wave_spawner" type="Node" node_paths=PackedStringArray("wave_pause_timer")]
 script = ExtResource("1_wdwvi")
-waves = Array[ExtResource("2_42pq5")]([ExtResource("3_nfhig"), ExtResource("4_q6l54"), ExtResource("5_xv4kr"), ExtResource("6_qpf0f")])
+waves = Array[ExtResource("2_42pq5")]([ExtResource("3_nfhig"), ExtResource("4_q6l54"), ExtResource("5_xv4kr"), ExtResource("6_qpf0f"), ExtResource("7_wave4"), ExtResource("8_wave5"), ExtResource("9_wave6"), ExtResource("10_wave7"), ExtResource("11_wave8"), ExtResource("12_wave9"), ExtResource("13_wave10"), ExtResource("14_wave11"), ExtResource("15_wave12"), ExtResource("16_wave13"), ExtResource("17_wave14"), ExtResource("18_wave15"), ExtResource("19_wave16"), ExtResource("20_wave17"), ExtResource("21_wave18"), ExtResource("22_wave19")])
 wave_pause_timer = NodePath("wave_pause")
 
 [node name="wave_pause" type="Timer" parent="."]

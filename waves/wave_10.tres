@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="SpawnWave" load_steps=5 format=3 uid="uid://df7xrs37t3wop"]
+
+[ext_resource type="Script" uid="uid://cpie7uioixb8s" path="res://scripts/wave_chance_pair.gd" id="1_chance"]
+[ext_resource type="PackedScene" uid="uid://br2pnnu3i2hvh" path="res://objects/ranged_enemy.tscn" id="2_ranged"]
+[ext_resource type="Script" uid="uid://dmo2rhel62y5f" path="res://scripts/spawn_wave.gd" id="3_wave"]
+
+[sub_resource type="Resource" id="Resource_ranged"]
+script = ExtResource("1_chance")
+chance = 1
+enemy = ExtResource("2_ranged")
+metadata/_custom_type_script = "uid://cpie7uioixb8s"
+
+[resource]
+script = ExtResource("3_wave")
+enemies = Array[ExtResource("1_chance")]([SubResource("Resource_ranged")])
+spawn_number = 9
+spawn_min_distance = 600.0
+spawn_max_distance = 900.0
+metadata/_custom_type_script = "uid://dmo2rhel62y5f"

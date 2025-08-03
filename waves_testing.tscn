@@ -17,3 +17,21 @@ spawning = true
 
 [node name="folk" parent="." instance=ExtResource("8_5vw27")]
 position = Vector2(178, 135)
+
+[node name="folk2" parent="." instance=ExtResource("8_5vw27")]
+position = Vector2(-50.2835, 78.504)
+
+[node name="folk3" parent="." instance=ExtResource("8_5vw27")]
+position = Vector2(-99.2248, 42.0443)
+
+[node name="folk4" parent="." instance=ExtResource("8_5vw27")]
+position = Vector2(-178.385, -62.0793)
+
+[node name="folk5" parent="." instance=ExtResource("8_5vw27")]
+position = Vector2(-10.885, -190.079)
+
+[node name="folk6" parent="." instance=ExtResource("8_5vw27")]
+position = Vector2(44.115, -218.579)
+
+[node name="folk7" parent="." instance=ExtResource("8_5vw27")]
+position = Vector2(194.615, -110.079)

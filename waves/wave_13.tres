@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="SpawnWave" load_steps=9 format=3 uid="uid://dqole8eh1skvd"]
+
+[ext_resource type="Script" uid="uid://cpie7uioixb8s" path="res://scripts/wave_chance_pair.gd" id="1_chance"]
+[ext_resource type="PackedScene" uid="uid://6x8fg57qy4w7" path="res://objects/melee_enemy.tscn" id="2_melee"]
+[ext_resource type="PackedScene" uid="uid://c8fg07divs5ef" path="res://objects/throwing_knife_enemy.tscn" id="3_knife"]
+[ext_resource type="PackedScene" uid="uid://br2pnnu3i2hvh" path="res://objects/ranged_enemy.tscn" id="4_ranged"]
+[ext_resource type="Script" uid="uid://dmo2rhel62y5f" path="res://scripts/spawn_wave.gd" id="5_wave"]
+
+[sub_resource type="Resource" id="Resource_melee"]
+script = ExtResource("1_chance")
+chance = 3
+enemy = ExtResource("2_melee")
+metadata/_custom_type_script = "uid://cpie7uioixb8s"
+
+[sub_resource type="Resource" id="Resource_knife"]
+script = ExtResource("1_chance")
+chance = 1
+enemy = ExtResource("3_knife")
+metadata/_custom_type_script = "uid://cpie7uioixb8s"
+
+[sub_resource type="Resource" id="Resource_ranged"]
+script = ExtResource("1_chance")
+chance = 2
+enemy = ExtResource("4_ranged")
+metadata/_custom_type_script = "uid://cpie7uioixb8s"
+
+[resource]
+script = ExtResource("5_wave")
+enemies = Array[ExtResource("1_chance")]([SubResource("Resource_melee"), SubResource("Resource_knife"), SubResource("Resource_ranged")])
+spawn_number = 16
+spawn_min_distance = 200.0
+spawn_max_distance = 700.0
+metadata/_custom_type_script = "uid://dmo2rhel62y5f"

@@ -130,6 +130,8 @@ func _process(delta):
 
 func _draw():
   if state == State.WITH_PLAYER: return
+  if player.dead or player.dying or Game.game_is_failed or player.cutscene:
+    return
 
   var line_start := line_start_marker.global_position - global_position
   if state == State.HOOKED:

@@ -2135,7 +2135,7 @@ visible = false
 position = Vector2(3.52625, -24.1408)
 
 [node name="steps" type="AudioStreamPlayer2D" parent="."]
-volume_db = -2.0
+volume_db = -10.0
 max_distance = 400.0
 attenuation = 3.0
 bus = &"sound effects"

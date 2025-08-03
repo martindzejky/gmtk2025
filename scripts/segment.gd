@@ -15,6 +15,9 @@ func _process(_delta):
     raycast.target_position = get_next_segment().global_position - global_position
 
 func _draw():
+  if hook.player.dead or hook.player.dying or Game.game_is_failed or hook.player.cutscene:
+    return
+
   var line_start := Vector2(0, -20)
   var line_end = hook.player.dude.melee_slot.global_position - global_position
 
