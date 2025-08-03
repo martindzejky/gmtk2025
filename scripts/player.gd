@@ -18,6 +18,9 @@ class_name Player
 @export_category('Cutscene')
 @export var cutscene := false
 
+@export_category('Grave')
+@export var grave_scene: PackedScene
+
 # super duper state for the player...
 var dying := false
 var dead := false
@@ -84,5 +87,10 @@ func hit():
 
 func _on_dude_die_end() -> void:
   dead = true
+
+  var grave = grave_scene.instantiate()
+  get_parent().add_child(grave)
+  grave.global_position = global_position
+
   dude.queue_free()
   Game.call_deferred('emit_player_died')

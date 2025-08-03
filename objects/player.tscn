@@ -1,6 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://qwj8b5x4g7c1"]
+[gd_scene load_steps=11 format=3 uid="uid://qwj8b5x4g7c1"]
 
 [ext_resource type="Script" uid="uid://od4p2jer5wh6" path="res://scripts/player.gd" id="1_ykyjo"]
+[ext_resource type="PackedScene" uid="uid://dq0vrkcd8rcbx" path="res://objects/grave.tscn" id="2_3rerk"]
 [ext_resource type="Script" uid="uid://c4o833g47jo7o" path="res://scripts/lasso.gd" id="3_uxov2"]
 [ext_resource type="PackedScene" uid="uid://ca585k0y784dp" path="res://objects/hook.tscn" id="4_nmc1l"]
 [ext_resource type="PackedScene" uid="uid://dur5dy1hc4dca" path="res://objects/dude.tscn" id="5_f46kd"]
@@ -32,6 +33,7 @@ dash_progress_timer = NodePath("dash_progress")
 dash_cooldown_timer = NodePath("dash_cooldown")
 dash_cooldown_progress = NodePath("dash_cooldown_progress")
 lasso = NodePath("lasso")
+grave_scene = ExtResource("2_3rerk")
 
 [node name="dude" parent="." instance=ExtResource("5_f46kd")]
 running_animation_scale = 1.4

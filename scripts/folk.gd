@@ -26,6 +26,9 @@ class_name Folk
 @export_category('Cutscene')
 @export var cutscene := false
 
+@export_category('Grave')
+@export var grave_scene: PackedScene
+
 enum State {
   IDLE,
   WANDERING,
@@ -180,6 +183,11 @@ func hit():
 
 func _on_dude_die_end() -> void:
   # TODO: something more grandiose
+
+  var grave = grave_scene.instantiate()
+  get_parent().add_child(grave)
+  grave.global_position = global_position
+
   queue_free()
   await tree_exited
   Game.call_deferred('emit_folks_updated')

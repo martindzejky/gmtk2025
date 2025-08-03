@@ -34,16 +34,17 @@ func collect_captured_enemies():
   get_tree().call_group('enemy', 'collect_captured')
 
 func spawn_wave():
-  if waves.size() == 0:
+  current_wave += 1
+
+  if current_wave >= waves.size():
     print('NO MORE WAVES LEFT!!!')
     # TODO: something cool should happen here
     return
 
-  var wave = waves.pop_front()
-
-  current_wave += 1
   print('Spawning wave %d' % current_wave)
   Game.emit_wave_starts(current_wave)
+
+  var wave = waves[current_wave]
 
   var total_chance = 0
   for enemy in wave.enemies:
