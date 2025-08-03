@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bqwm2wk7eekdc" path="res://effects/smoke_effect.tscn" id="3_1kb0i"]
 
 [node name="effects" type="Node"]
+process_mode = 3
 script = ExtResource("1_w5h4p")
 cloud_effect = ExtResource("2_qpwhr")
 smoke_effect = ExtResource("3_1kb0i")

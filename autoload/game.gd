@@ -26,9 +26,12 @@ var fail_game_reason: FailGameReason
 
 func _process(_delta):
   # editor shortcuts
-  if Engine.is_editor_hint():
+  if OS.is_debug_build():
     if Input.is_action_just_pressed('restart'):
       get_tree().reload_current_scene()
+
+    if Input.is_action_just_pressed('freeze'):
+      get_tree().paused = !get_tree().paused
 
     if Input.is_action_just_pressed('exit'):
       get_tree().quit()

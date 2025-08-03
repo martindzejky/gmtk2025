@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bahnhyo8eqbet" path="res://ui/failed_ui.tscn" id="4_kujy2"]
 
 [node name="game" type="Node"]
+process_mode = 3
 script = ExtResource("1_1w5w3")
 main_menu_scene = ExtResource("2_pjkha")
 village_scene = ExtResource("3_kujy2")
