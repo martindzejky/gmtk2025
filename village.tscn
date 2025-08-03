@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://doppk32uafy8x"]
+[gd_scene load_steps=10 format=3 uid="uid://doppk32uafy8x"]
 
 [ext_resource type="Script" uid="uid://cf6547v4lhn7r" path="res://scripts/village.gd" id="1_jak2h"]
 [ext_resource type="PackedScene" uid="uid://qwj8b5x4g7c1" path="res://objects/player.tscn" id="1_q5e70"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://celdle61b8mey" path="res://objects/folk.tscn" id="2_pxdql"]
 [ext_resource type="PackedScene" uid="uid://dxnx8k27jooot" path="res://waves/wave_spawner.tscn" id="2_wybox"]
 [ext_resource type="PackedScene" uid="uid://t478gv53rdvw" path="res://objects/folk_turned_left.tscn" id="3_qyljj"]
+[ext_resource type="PackedScene" uid="uid://br0r8y3hx422t" path="res://objects/prop_spawner.tscn" id="4_efnqa"]
 
 [sub_resource type="Animation" id="Animation_qyljj"]
 resource_name = "cutscene"
@@ -51,6 +52,8 @@ script = ExtResource("1_jak2h")
 [node name="ui" parent="." instance=ExtResource("2_6t5gs")]
 
 [node name="wave_spawner" parent="." instance=ExtResource("2_wybox")]
+
+[node name="prop_spawner" parent="." instance=ExtResource("4_efnqa")]
 
 [node name="cutscene" type="AnimationPlayer" parent="."]
 libraries = {

@@ -85,3 +85,4 @@ max_value = 1.0
 show_percentage = false
 
 [connection signal="die_end" from="dude" to="." method="_on_dude_die_end"]
+[connection signal="timeout" from="dash_progress" to="." method="_on_dash_progress_timeout"]

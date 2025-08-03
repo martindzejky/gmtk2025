@@ -1,13 +1,25 @@
-[gd_scene load_steps=9 format=3 uid="uid://bqwj8b5x4g7c2"]
+[gd_scene load_steps=12 format=3 uid="uid://bqwj8b5x4g7c2"]
 
 [ext_resource type="Script" uid="uid://case8pfh1qfpo" path="res://scripts/main_menu.gd" id="1_main_menu"]
-[ext_resource type="Texture2D" uid="uid://dhdbfe078odwe" path="res://sprites/icon.png" id="2_7vrkn"]
+[ext_resource type="PackedScene" uid="uid://dur5dy1hc4dca" path="res://objects/dude.tscn" id="2_8qtwp"]
 [ext_resource type="PackedScene" uid="uid://br0r8y3hx422t" path="res://objects/prop_spawner.tscn" id="3_fu7sn"]
 [ext_resource type="PackedScene" uid="uid://celdle61b8mey" path="res://objects/folk.tscn" id="5_glbon"]
 [ext_resource type="PackedScene" uid="uid://6x8fg57qy4w7" path="res://objects/melee_enemy.tscn" id="6_nlkkf"]
 [ext_resource type="PackedScene" uid="uid://c8fg07divs5ef" path="res://objects/throwing_knife_enemy.tscn" id="7_qe12f"]
 [ext_resource type="PackedScene" uid="uid://br2pnnu3i2hvh" path="res://objects/ranged_enemy.tscn" id="8_8qtwp"]
 [ext_resource type="PackedScene" uid="uid://qwj8b5x4g7c1" path="res://objects/player.tscn" id="9_dy7ct"]
+
+[sub_resource type="Gradient" id="Gradient_8qtwp"]
+offsets = PackedFloat32Array(0, 0.995114)
+colors = PackedColorArray(0.24343, 0.154164, 0.109248, 1, 0.353278, 0.184261, 0.104613, 1)
+
+[sub_resource type="Gradient" id="Gradient_dy7ct"]
+colors = PackedColorArray(0.283345, 0.5721, 0.707218, 1, 0.335716, 0.312536, 0.731633, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_qe12f"]
+font_size = 64
+outline_size = 12
+outline_color = Color(0, 0, 0, 1)
 
 [node name="main_menu" type="Node2D"]
 y_sort_enabled = true
@@ -37,20 +49,50 @@ layout_mode = 2
 [node name="vbox_container" type="VBoxContainer" parent="ui/main_menu/margin_container/center_container"]
 layout_mode = 2
 
-[node name="logo" type="TextureRect" parent="ui/main_menu/margin_container/center_container/vbox_container"]
+[node name="title" type="HBoxContainer" parent="ui/main_menu/margin_container/center_container/vbox_container"]
 layout_mode = 2
-texture = ExtResource("2_7vrkn")
-expand_mode = 4
 
-[node name="play_button" type="Button" parent="ui/main_menu/margin_container/center_container/vbox_container"]
+[node name="sheriff" type="Control" parent="ui/main_menu/margin_container/center_container/vbox_container/title"]
+clip_contents = true
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="sheriff_dude" parent="ui/main_menu/margin_container/center_container/vbox_container/title/sheriff" instance=ExtResource("2_8qtwp")]
+position = Vector2(53.7158, 181.747)
+scale = Vector2(4.06817, 4.06817)
+legs_color_gradient = SubResource("Gradient_8qtwp")
+body_color_gradient = SubResource("Gradient_dy7ct")
+hat_chance = 1.0
+bandana_chance = 0.0
+has_sheriff_star = true
+force_first_hat = true
+frozen = true
+
+[node name="text" type="Label" parent="ui/main_menu/margin_container/center_container/vbox_container/title"]
+layout_mode = 2
+text = "Lasso Sheriff"
+label_settings = SubResource("LabelSettings_qe12f")
+
+[node name="spacer" type="Control" parent="ui/main_menu/margin_container/center_container/vbox_container"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="buttons" type="VBoxContainer" parent="ui/main_menu/margin_container/center_container/vbox_container"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="play_button" type="Button" parent="ui/main_menu/margin_container/center_container/vbox_container/buttons"]
 layout_mode = 2
 text = "Play"
 
-[node name="settings_button" type="Button" parent="ui/main_menu/margin_container/center_container/vbox_container"]
+[node name="settings_button" type="Button" parent="ui/main_menu/margin_container/center_container/vbox_container/buttons"]
 layout_mode = 2
 text = "Settings"
 
-[node name="exit_button" type="Button" parent="ui/main_menu/margin_container/center_container/vbox_container"]
+[node name="exit_button" type="Button" parent="ui/main_menu/margin_container/center_container/vbox_container/buttons"]
 layout_mode = 2
 text = "Exit"
 
@@ -121,5 +163,5 @@ position = Vector2(-520.195, -736.003)
 [node name="ranged_enemy3" parent="." instance=ExtResource("8_8qtwp")]
 position = Vector2(-527.442, -695.74)
 
-[connection signal="pressed" from="ui/main_menu/margin_container/center_container/vbox_container/play_button" to="ui/main_menu" method="_on_play_button_pressed"]
-[connection signal="pressed" from="ui/main_menu/margin_container/center_container/vbox_container/exit_button" to="ui/main_menu" method="_on_exit_button_pressed"]
+[connection signal="pressed" from="ui/main_menu/margin_container/center_container/vbox_container/buttons/play_button" to="ui/main_menu" method="_on_play_button_pressed"]
+[connection signal="pressed" from="ui/main_menu/margin_container/center_container/vbox_container/buttons/exit_button" to="ui/main_menu" method="_on_exit_button_pressed"]

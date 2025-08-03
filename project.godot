@@ -12,9 +12,11 @@ config_version=5
 
 config/name="Lasso Sheriff"
 config/description="GMTK game jam 2025"
-config/version="7"
-run/main_scene="uid://bifqkl6lsp6wc"
+config/version="8"
+run/main_scene="uid://bqwj8b5x4g7c2"
 config/features=PackedStringArray("4.4", "GL Compatibility")
+boot_splash/bg_color=Color(0.921569, 0.858824, 0.752941, 1)
+boot_splash/image="uid://b1eodprlgh7io"
 config/icon="uid://dhdbfe078odwe"
 
 [audio]

@@ -14,7 +14,7 @@ font_color = Color(0, 0, 0, 1)
 [sub_resource type="Gradient" id="Gradient_fekgo"]
 colors = PackedColorArray(0.856869, 0.279472, 0.265211, 1, 0.701292, 0.259397, 0.058602, 1)
 
-[node name="margin" type="MarginContainer"]
+[node name="status_bar" type="MarginContainer"]
 offset_right = 258.0
 offset_bottom = 100.0
 
