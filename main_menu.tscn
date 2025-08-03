@@ -89,6 +89,7 @@ layout_mode = 2
 text = "Play"
 
 [node name="settings_button" type="Button" parent="ui/main_menu/margin_container/center_container/vbox_container/buttons"]
+visible = false
 layout_mode = 2
 text = "Settings"
 
