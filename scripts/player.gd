@@ -91,6 +91,7 @@ func _on_dude_die_end() -> void:
   var grave = grave_scene.instantiate()
   get_parent().add_child(grave)
   grave.global_position = global_position
+  grave.show_sheriff_star()
 
   dude.queue_free()
   Game.call_deferred('emit_player_died')

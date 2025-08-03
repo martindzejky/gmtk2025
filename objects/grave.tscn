@@ -1,14 +1,31 @@
-[gd_scene load_steps=9 format=3 uid="uid://dq0vrkcd8rcbx"]
+[gd_scene load_steps=11 format=3 uid="uid://dq0vrkcd8rcbx"]
 
+[ext_resource type="Script" uid="uid://c3vcbh3bgxsvi" path="res://scripts/grave.gd" id="1_akk8c"]
 [ext_resource type="PackedScene" uid="uid://b3xcbsdspbjfw" path="res://objects/shadow.tscn" id="1_gupqt"]
 [ext_resource type="Texture2D" uid="uid://dloefiudwormq" path="res://sprites/grave.png" id="2_qywvv"]
 [ext_resource type="Script" uid="uid://x8um1nksuk8c" path="res://scripts/random_color.gd" id="3_gupqt"]
+[ext_resource type="Texture2D" uid="uid://d2jswiwlf5a4n" path="res://sprites/sheriff_star.png" id="4_vrmtf"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qywvv"]
 radius = 12.0
 
 [sub_resource type="Gradient" id="Gradient_gupqt"]
 colors = PackedColorArray(0.453073, 0.507602, 0.498564, 1, 0.592317, 0.67773, 0.747926, 1)
+
+[sub_resource type="Animation" id="Animation_vrmtf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("scale:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_gupqt"]
 resource_name = "spawn"
@@ -26,28 +43,15 @@ tracks/0/keys = {
 "values": [Vector2(0.857532, 1.29391), Vector2(2.07144, 0.647385), Vector2(0.642828, 1.07585), Vector2(1.12121, 0.862046), Vector2(1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_vrmtf"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("scale:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vrmtf"]
 _data = {
 &"RESET": SubResource("Animation_vrmtf"),
 &"spawn": SubResource("Animation_gupqt")
 }
 
-[node name="grave" type="StaticBody2D"]
+[node name="grave" type="StaticBody2D" node_paths=PackedStringArray("sheriff_star")]
+script = ExtResource("1_akk8c")
+sheriff_star = NodePath("scale/sheriff_star")
 
 [node name="shadow" parent="." instance=ExtResource("1_gupqt")]
 scale = Vector2(0.0244474, 0.0135069)
@@ -64,6 +68,14 @@ texture = ExtResource("2_qywvv")
 script = ExtResource("3_gupqt")
 gradient_color = SubResource("Gradient_gupqt")
 target = NodePath(".")
+
+[node name="sheriff_star" type="Sprite2D" parent="scale"]
+visible = false
+self_modulate = Color(0.988235, 0.772549, 0.27451, 1)
+position = Vector2(2.8645, -28.3903)
+rotation = 0.127414
+scale = Vector2(0.0129704, 0.0128122)
+texture = ExtResource("4_vrmtf")
 
 [node name="animation" type="AnimationPlayer" parent="."]
 libraries = {
