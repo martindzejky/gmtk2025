@@ -1,0 +1,59 @@
+[gd_scene load_steps=3 format=3 uid="uid://bahnhyo8eqbet"]
+
+[ext_resource type="Script" uid="uid://b46228m31aa4d" path="res://scripts/failed_ui.gd" id="1_ky5ax"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_pnaw2"]
+font_size = 56
+font_color = Color(0, 0, 0, 1)
+
+[node name="failed_ui" type="CanvasLayer" node_paths=PackedStringArray("title")]
+layer = 12
+script = ExtResource("1_ky5ax")
+title = NodePath("root/margin/center/panel/container/text")
+
+[node name="root" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="margin" type="MarginContainer" parent="root"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="center" type="CenterContainer" parent="root/margin"]
+layout_mode = 2
+
+[node name="panel" type="PanelContainer" parent="root/margin/center"]
+layout_mode = 2
+
+[node name="container" type="VBoxContainer" parent="root/margin/center/panel"]
+layout_mode = 2
+
+[node name="text" type="Label" parent="root/margin/center/panel/container"]
+layout_mode = 2
+text = "You failed!"
+label_settings = SubResource("LabelSettings_pnaw2")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="buttons" type="HBoxContainer" parent="root/margin/center/panel/container"]
+layout_mode = 2
+alignment = 1
+
+[node name="restart" type="Button" parent="root/margin/center/panel/container/buttons"]
+layout_mode = 2
+text = "Try again"
+
+[node name="exit" type="Button" parent="root/margin/center/panel/container/buttons"]
+layout_mode = 2
+text = "Exit"
+
+[connection signal="pressed" from="root/margin/center/panel/container/buttons/restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="root/margin/center/panel/container/buttons/exit" to="." method="_on_exit_pressed"]

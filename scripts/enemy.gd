@@ -169,11 +169,11 @@ func go_release_captured():
     state = State.ATTACKING_PLAYER
 
 func move_towards_player():
-  var direction := global_position.direction_to(Game.player.global_position)
+  var direction = global_position.direction_to(Game.player.global_position)
   velocity += direction * get_movement_speed()
 
 func move_away_from_player():
-  var direction := Game.player.global_position.direction_to(global_position)
+  var direction = Game.player.global_position.direction_to(global_position)
   velocity += direction * get_movement_speed()
 
 func move_towards_release_captured_target():

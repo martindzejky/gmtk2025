@@ -24,15 +24,16 @@ var dead := false
 
 func _ready():
   Game.player = self
+  Game.reset_game()
 
 func _physics_process(_delta):
   if dead: return
 
   var input_vector := Vector2.ZERO
-  if not cutscene and not dying:
+  if not cutscene and not dying and not Game.game_is_failed:
     input_vector = Input.get_vector('move_left', 'move_right', 'move_up', 'move_down')
 
-  if dash_cooldown_timer.time_left <= 0 and Input.is_action_just_pressed('dash') and not cutscene and not dying:
+  if dash_cooldown_timer.time_left <= 0 and Input.is_action_just_pressed('dash') and not cutscene and not dying and not Game.game_is_failed:
     dash_progress_timer.start()
     dash_cooldown_timer.start()
 
@@ -42,7 +43,7 @@ func _physics_process(_delta):
     velocity = input_vector * move_speed
 
   # just in case
-  if cutscene or dying:
+  if cutscene or dying or Game.game_is_failed:
     velocity = Vector2.ZERO
 
   move_and_slide()
@@ -79,7 +80,9 @@ func end_cutscene():
 
 func hit():
   dying = true
+  Game.call_deferred('player_dying')
 
 func _on_dude_die_end() -> void:
   dead = true
   dude.queue_free()
+  Game.call_deferred('emit_player_died')

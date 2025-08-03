@@ -176,6 +176,7 @@ func _on_enemy_attack_timer_timeout():
 
 func hit():
   state = State.DYING
+  Game.call_deferred('folk_dying')
 
 func _on_dude_die_end() -> void:
   # TODO: something more grandiose
@@ -186,7 +187,7 @@ func _on_dude_die_end() -> void:
 func end_cutscene():
   cutscene = false
 
-  if randf() < 0.5:
+  if randf() < 0.3:
     start_wandering()
   else:
     go_to_idle_from_random_duration()

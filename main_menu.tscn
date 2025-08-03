@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://bqwj8b5x4g7c2"]
+[gd_scene load_steps=2 format=3 uid="uid://bqwj8b5x4g7c2"]
 
 [ext_resource type="Script" uid="uid://case8pfh1qfpo" path="res://scripts/main_menu.gd" id="1_main_menu"]
-[ext_resource type="PackedScene" uid="uid://doppk32uafy8x" path="res://village.tscn" id="2_7vrkn"]
 
 [node name="main_menu" type="Control"]
 layout_mode = 3
@@ -11,7 +10,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_main_menu")
-village_scene = ExtResource("2_7vrkn")
 
 [node name="margin_container" type="MarginContainer" parent="."]
 layout_mode = 1
