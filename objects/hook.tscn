@@ -68,6 +68,7 @@ bus = &"sound effects"
 
 [node name="rope_tied" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_xstaa")
+volume_db = -8.0
 bus = &"sound effects"
 
 [node name="swoosh" type="AudioStreamPlayer" parent="."]
