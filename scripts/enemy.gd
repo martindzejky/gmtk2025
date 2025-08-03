@@ -396,6 +396,10 @@ func _on_dude_shoot_attack():
     perform_ranged_attack()
 
 func perform_melee_attack():
+  if not is_instance_valid(attack_target):
+    attack_target = null
+    return
+
   var melee_strike = melee_strike_object.instantiate()
   get_parent().add_child(melee_strike)
 
@@ -415,6 +419,10 @@ func perform_melee_attack():
       attack_target = null
 
 func perform_ranged_attack():
+  if not is_instance_valid(attack_target):
+    attack_target = null
+    return
+
   var projectile = projectile_object.instantiate()
   get_parent().add_child(projectile)
 

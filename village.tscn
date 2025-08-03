@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://doppk32uafy8x"]
+[gd_scene load_steps=8 format=3 uid="uid://doppk32uafy8x"]
 
 [ext_resource type="Script" uid="uid://cf6547v4lhn7r" path="res://scripts/village.gd" id="1_jak2h"]
 [ext_resource type="PackedScene" uid="uid://qwj8b5x4g7c1" path="res://objects/player.tscn" id="1_q5e70"]
 [ext_resource type="PackedScene" uid="uid://celdle61b8mey" path="res://objects/folk.tscn" id="2_pxdql"]
-[ext_resource type="PackedScene" uid="uid://t478gv53rdvw" path="res://folk_turned_left.tscn" id="3_qyljj"]
+[ext_resource type="PackedScene" uid="uid://dxnx8k27jooot" path="res://waves/wave_spawner.tscn" id="2_wybox"]
+[ext_resource type="PackedScene" uid="uid://t478gv53rdvw" path="res://objects/folk_turned_left.tscn" id="3_qyljj"]
 
 [sub_resource type="Animation" id="Animation_qyljj"]
 resource_name = "cutscene"
@@ -22,6 +23,20 @@ tracks/0/keys = {
 "method": &"end_cutscene_for_folks_and_player"
 }]
 }
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("wave_spawner")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"start_spawning"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jak2h"]
 _data = {
@@ -37,6 +52,8 @@ libraries = {
 &"": SubResource("AnimationLibrary_jak2h")
 }
 autoplay = "cutscene"
+
+[node name="wave_spawner" parent="." instance=ExtResource("2_wybox")]
 
 [node name="player" parent="." instance=ExtResource("1_q5e70")]
 cutscene = true

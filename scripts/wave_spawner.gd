@@ -2,32 +2,48 @@ extends Node
 class_name WaveSpawner
 
 @export var waves: Array[SpawnWave]
+@export var wave_pause_timer: Timer
+@export var spawning := false
 
-var current_wave := -1
+var current_wave := -1 # first wave is 0, but the UI should show 1
 
 func _ready():
   assert(waves.size() > 0, 'No waves defined')
   Game.enemies_updated.connect(_on_enemies_updated)
-  call_deferred('_on_enemies_updated')
+
+  if spawning:
+    call_deferred('start_spawning')
+
+func start_spawning():
+  spawning = true
+  call_deferred('spawn_wave')
 
 func _on_enemies_updated():
-  if waves.size() == 0:
-    # TODO: something cool should happen here
+  if wave_pause_timer.time_left > 0:
     return
 
   var free_enemies = get_tree().get_nodes_in_group('enemy').filter(func(enemy: Enemy): return not enemy.is_captured())
 
   if free_enemies.size() == 0:
+    print('Wave %d completed' % current_wave)
     collect_captured_enemies()
-    var new_wave = waves.pop_front()
-    spawn_wave(new_wave)
+    wave_pause_timer.start()
+    Game.emit_wave_ends(current_wave)
 
 func collect_captured_enemies():
   get_tree().call_group('enemy', 'collect_captured')
 
-func spawn_wave(wave: SpawnWave):
+func spawn_wave():
+  if waves.size() == 0:
+    print('NO MORE WAVES LEFT!!!')
+    # TODO: something cool should happen here
+    return
+
+  var wave = waves.pop_front()
+
   current_wave += 1
-  print('Spawning wave ', current_wave)
+  print('Spawning wave %d' % current_wave)
+  Game.emit_wave_starts(current_wave)
 
   var total_chance = 0
   for enemy in wave.enemies:
@@ -50,3 +66,7 @@ func spawn_wave(wave: SpawnWave):
 
         break
 
+  Game.call_deferred('emit_enemies_updated')
+
+func _on_wave_pause_timeout():
+  spawn_wave()

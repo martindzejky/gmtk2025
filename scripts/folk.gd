@@ -180,6 +180,8 @@ func hit_by_enemy():
 func _on_dude_die_end() -> void:
   # TODO: something more grandiose
   queue_free()
+  await tree_exited
+  Game.call_deferred('emit_folks_updated')
 
 func end_cutscene():
   cutscene = false

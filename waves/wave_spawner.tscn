@@ -1,0 +1,19 @@
+[gd_scene load_steps=7 format=3 uid="uid://dxnx8k27jooot"]
+
+[ext_resource type="Script" uid="uid://bcpmyhlyslkwq" path="res://scripts/wave_spawner.gd" id="1_wdwvi"]
+[ext_resource type="Script" uid="uid://dmo2rhel62y5f" path="res://scripts/spawn_wave.gd" id="2_42pq5"]
+[ext_resource type="Resource" uid="uid://b15ivea504ili" path="res://waves/wave_0.tres" id="3_nfhig"]
+[ext_resource type="Resource" uid="uid://bkjxd3s8qho82" path="res://waves/wave_1.tres" id="4_q6l54"]
+[ext_resource type="Resource" uid="uid://cspiwl2qqobau" path="res://waves/wave_2.tres" id="5_xv4kr"]
+[ext_resource type="Resource" uid="uid://d1uha8uiqksby" path="res://waves/wave_3.tres" id="6_qpf0f"]
+
+[node name="wave_spawner" type="Node" node_paths=PackedStringArray("wave_pause_timer")]
+script = ExtResource("1_wdwvi")
+waves = Array[ExtResource("2_42pq5")]([ExtResource("3_nfhig"), ExtResource("4_q6l54"), ExtResource("5_xv4kr"), ExtResource("6_qpf0f")])
+wave_pause_timer = NodePath("wave_pause")
+
+[node name="wave_pause" type="Timer" parent="."]
+wait_time = 6.0
+one_shot = true
+
+[connection signal="timeout" from="wave_pause" to="." method="_on_wave_pause_timeout"]
