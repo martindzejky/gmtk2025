@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://dur5dy1hc4dca"]
+[gd_scene load_steps=46 format=3 uid="uid://dur5dy1hc4dca"]
 
 [ext_resource type="Script" uid="uid://c2wtknwcmawr7" path="res://scripts/dude.gd" id="1_qiy7s"]
 [ext_resource type="Texture2D" uid="uid://csenq8rfg0m0x" path="res://sprites/legs.png" id="2_tkn7g"]
@@ -16,8 +16,15 @@
 [ext_resource type="PackedScene" uid="uid://b3xcbsdspbjfw" path="res://objects/shadow.tscn" id="7_x15pf"]
 [ext_resource type="Texture2D" uid="uid://dasifeoxbfie0" path="res://sprites/head_outline.png" id="8_720c1"]
 [ext_resource type="AudioStream" uid="uid://b75a70qt2nxvu" path="res://sounds/step_random.tres" id="11_kj05k"]
+[ext_resource type="AudioStream" uid="uid://b377smgltv54p" path="res://sounds/body_hit_random.tres" id="12_6i87g"]
+[ext_resource type="AudioStream" uid="uid://cafcgsqjddu60" path="res://sounds/dash_random.tres" id="12_d8ske"]
+[ext_resource type="AudioStream" uid="uid://davpq21s78diy" path="res://sounds/swoosh_random.tres" id="12_t4klp"]
+[ext_resource type="AudioStream" uid="uid://c0xjwxkn2bybs" path="res://sounds/fall_hit.wav" id="14_nb8wc"]
 [ext_resource type="Texture2D" uid="uid://dd26i17r46ue3" path="res://sprites/lasso_tied.png" id="14_r7x12"]
 [ext_resource type="Texture2D" uid="uid://cgyw68824nvqd" path="res://sprites/lasso_player.png" id="15_o0308"]
+[ext_resource type="AudioStream" uid="uid://bod381p4isvpn" path="res://sounds/cink.wav" id="16_xucpr"]
+[ext_resource type="AudioStream" uid="uid://7htxjwl1jso" path="res://sounds/bow_shoot_random.tres" id="17_7wbbr"]
+[ext_resource type="AudioStream" uid="uid://7x4w3fjen8ci" path="res://sounds/rope_random.tres" id="17_dqeom"]
 
 [sub_resource type="Gradient" id="Gradient_qiy7s"]
 offsets = PackedFloat32Array(0, 0.501629, 0.995114)
@@ -538,6 +545,20 @@ tracks/7/keys = {
 "update": 0,
 "values": [Vector2(1, 1), Vector2(1.2, 0.9), Vector2(1, 1), Vector2(1, 1), Vector2(1, 1)]
 }
+tracks/8/type = "method"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath(".")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"play_rope_sound"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_swm5h"]
 resource_name = "dash"
@@ -628,14 +649,14 @@ tracks/6/keys = {
 tracks/7/type = "audio"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("steps")
+tracks/7/path = NodePath("dash")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": ExtResource("11_kj05k")
+"stream": ExtResource("12_d8ske")
 }],
 "times": PackedFloat32Array(0)
 }
@@ -754,22 +775,41 @@ tracks/8/keys = {
 tracks/9/type = "audio"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("steps")
+tracks/9/path = NodePath("swoosh")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": ExtResource("11_kj05k")
+"stream": ExtResource("12_t4klp")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("12_t4klp")
+}],
+"times": PackedFloat32Array(0, 0.4)
+}
+tracks/9/use_blend = true
+tracks/10/type = "audio"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("dash")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("12_d8ske")
 }],
 "times": PackedFloat32Array(0)
 }
-tracks/9/use_blend = true
+tracks/10/use_blend = true
 
 [sub_resource type="Animation" id="Animation_nb8wc"]
 resource_name = "die"
-length = 0.6
+length = 1.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -845,13 +885,32 @@ tracks/6/path = NodePath(".")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0.6),
+"times": PackedFloat32Array(1.2),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
 "method": &"emit_die_end"
 }]
 }
+tracks/7/type = "audio"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("hit")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("12_6i87g")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("14_nb8wc")
+}],
+"times": PackedFloat32Array(0, 0.6)
+}
+tracks/7/use_blend = true
 
 [sub_resource type="Animation" id="Animation_t4klp"]
 resource_name = "fleeing"
@@ -1159,6 +1218,25 @@ tracks/8/keys = {
 "update": 0,
 "values": [Vector2(1, 1), Vector2(0.9, 1.1), Vector2(1, 1)]
 }
+tracks/9/type = "audio"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("swoosh")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("12_t4klp")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("12_t4klp")
+}],
+"times": PackedFloat32Array(0, 0.4)
+}
+tracks/9/use_blend = true
 
 [sub_resource type="Animation" id="Animation_v1kco"]
 resource_name = "melee"
@@ -1270,6 +1348,40 @@ tracks/8/keys = {
 "points": PackedFloat32Array(0, -0.25, 0, 0, -0.0691475, -0.10472, -0.25, 0, 0.0333332, 0.473882, 0, 0, 0, 0, 0),
 "times": PackedFloat32Array(0, 0.8, 1.1)
 }
+tracks/9/type = "audio"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("swoosh")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("12_t4klp")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("12_t4klp")
+}],
+"times": PackedFloat32Array(0, 0.8)
+}
+tracks/9/use_blend = true
+tracks/10/type = "audio"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("cink")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("16_xucpr")
+}],
+"times": PackedFloat32Array(0.533333)
+}
+tracks/10/use_blend = true
 
 [sub_resource type="Animation" id="Animation_cr6a7"]
 resource_name = "running"
@@ -1540,6 +1652,20 @@ tracks/10/keys = {
 "times": PackedFloat32Array(0, 0.4)
 }
 tracks/10/use_blend = true
+tracks/11/type = "method"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath(".")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"play_rope_sound"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_r7x12"]
 resource_name = "running_lasso"
@@ -1693,6 +1819,25 @@ tracks/11/keys = {
 "times": PackedFloat32Array(0, 0.4)
 }
 tracks/11/use_blend = true
+tracks/12/type = "audio"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("swoosh")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("12_t4klp")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("12_t4klp")
+}],
+"times": PackedFloat32Array(0, 0.4)
+}
+tracks/12/use_blend = true
 
 [sub_resource type="Animation" id="Animation_3mih0"]
 resource_name = "shoot"
@@ -1834,6 +1979,25 @@ tracks/10/keys = {
 "points": PackedFloat32Array(1, -0.25, 0, 0.0666667, 0.132919, 1.2, -0.25, 0, 0, -0.625423, 1, 0, 0, 0, 0),
 "times": PackedFloat32Array(0, 0.8, 1.1)
 }
+tracks/11/type = "audio"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("bow")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("17_dqeom")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("17_7wbbr")
+}],
+"times": PackedFloat32Array(0, 0.8)
+}
+tracks/11/use_blend = true
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tkn7g"]
 _data = {
@@ -1853,7 +2017,7 @@ _data = {
 &"shoot": SubResource("Animation_3mih0")
 }
 
-[node name="dude" type="Node2D" node_paths=PackedStringArray("legs_sprite", "body_sprite", "head_sprite", "hat_sprite", "bandana_sprite", "sheriff_star_sprite", "animation_player", "scale_body_node", "scale_head_node", "melee_slot", "bow_back_slot", "bow_front_slot")]
+[node name="dude" type="Node2D" node_paths=PackedStringArray("legs_sprite", "body_sprite", "head_sprite", "hat_sprite", "bandana_sprite", "sheriff_star_sprite", "animation_player", "scale_body_node", "scale_head_node", "melee_slot", "bow_back_slot", "bow_front_slot", "rope_sound_player")]
 script = ExtResource("1_qiy7s")
 legs_sprite = NodePath("jump_animation/rotation_scale_animation/body_scale/legs")
 body_sprite = NodePath("jump_animation/rotation_scale_animation/body_scale/body")
@@ -1874,6 +2038,7 @@ bandana_sprites = Array[Texture2D]([ExtResource("7_cr6a7"), ExtResource("4_swm5h
 melee_slot = NodePath("jump_animation/rotation_scale_animation/body_scale/melee_slot")
 bow_back_slot = NodePath("jump_animation/rotation_scale_animation/bow_slot_back")
 bow_front_slot = NodePath("jump_animation/rotation_scale_animation/bow_slot_front")
+rope_sound_player = NodePath("rope_random")
 
 [node name="shadow" parent="." instance=ExtResource("7_x15pf")]
 z_index = -10
@@ -1910,6 +2075,7 @@ position = Vector2(2.57377, -18.7603)
 scale = Vector2(0.0561217, 0.0561217)
 texture = ExtResource("3_cr6a7")
 hframes = 13
+frame = 3
 
 [node name="sheriff_star" type="Sprite2D" parent="jump_animation/rotation_scale_animation/body_scale/body"]
 visible = false
@@ -1972,4 +2138,41 @@ position = Vector2(3.52625, -24.1408)
 volume_db = -2.0
 max_distance = 400.0
 attenuation = 3.0
+bus = &"sound effects"
+
+[node name="hit" type="AudioStreamPlayer2D" parent="."]
+volume_db = 1.0
+max_distance = 400.0
+attenuation = 3.0
+bus = &"sound effects"
+
+[node name="swoosh" type="AudioStreamPlayer2D" parent="."]
+volume_db = -4.0
+max_distance = 400.0
+attenuation = 3.0
+bus = &"sound effects"
+
+[node name="dash" type="AudioStreamPlayer2D" parent="."]
+volume_db = -2.0
+max_distance = 400.0
+attenuation = 3.0
+bus = &"sound effects"
+
+[node name="cink" type="AudioStreamPlayer2D" parent="."]
+volume_db = 2.0
+max_distance = 400.0
+attenuation = 3.0
+bus = &"sound effects"
+
+[node name="bow" type="AudioStreamPlayer2D" parent="."]
+max_distance = 400.0
+attenuation = 3.0
+bus = &"sound effects"
+
+[node name="rope_random" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("17_dqeom")
+volume_db = -2.0
+max_distance = 400.0
+attenuation = 3.0
+max_polyphony = 3
 bus = &"sound effects"

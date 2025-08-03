@@ -1,0 +1,9 @@
+[gd_resource type="AudioStreamRandomizer" load_steps=2 format=3 uid="uid://7htxjwl1jso"]
+
+[ext_resource type="AudioStream" uid="uid://ceoh381tf6l3q" path="res://sounds/bow_shoot.wav" id="1_wb1hf"]
+
+[resource]
+random_pitch = 1.1
+random_volume_offset_db = 0.02
+streams_count = 1
+stream_0/stream = ExtResource("1_wb1hf")

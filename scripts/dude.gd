@@ -50,6 +50,10 @@ signal die_end
 @export var bow_back_slot: Node2D
 @export var bow_front_slot: Node2D
 
+@export_category('Sounds')
+@export var rope_sound_player: AudioStreamPlayer2D
+@export var rope_sound_chance: float = 0.2
+
 func _ready():
   self.randomize()
 
@@ -153,3 +157,7 @@ func set_bow_default():
   for child in bow_front_slot.get_children():
     if child is Bow:
       child.set_default_frame()
+
+func play_rope_sound():
+  if randf() < rope_sound_chance:
+    rope_sound_player.play()
