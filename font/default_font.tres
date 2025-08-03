@@ -1,0 +1,6 @@
+[gd_resource type="FontVariation" load_steps=2 format=3 uid="uid://q6nkrkl8lof"]
+
+[ext_resource type="FontFile" uid="uid://cmgj3n36lc6vh" path="res://font/playpen_sans.ttf" id="1_tuwp3"]
+
+[resource]
+base_font = ExtResource("1_tuwp3")

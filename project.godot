@@ -36,6 +36,11 @@ hook=""
 segment=""
 folk=""
 
+[gui]
+
+common/snap_controls_to_pixels=false
+theme/custom_font="uid://q6nkrkl8lof"
+
 [input]
 
 move_left={
