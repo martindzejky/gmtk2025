@@ -33,6 +33,7 @@ class_name Folk
 @export var speech_timer: Timer
 @export var speech_bubble_root: Node2D
 @export var speech_bubble_text: Label
+@export var speech_sound_player: AudioStreamPlayer
 
 enum State {
   IDLE,
@@ -185,6 +186,7 @@ func _on_enemy_attack_timer_timeout():
 func hit():
   state = State.DYING
   Game.call_deferred('folk_dying')
+  speech_bubble_root.visible = false
 
 func _on_dude_die_end() -> void:
   # TODO: something more grandiose
@@ -214,6 +216,7 @@ func show_speech(text: String):
   speech_bubble_root.visible = true
   speech_bubble_text.text = text
   speech_timer.start(len(text) * 0.15)
+  speech_sound_player.play()
 
   speech_bubble_root.scale = Vector2.ZERO
   var tween := create_tween()

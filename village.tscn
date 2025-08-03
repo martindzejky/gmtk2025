@@ -10,7 +10,7 @@
 
 [sub_resource type="Animation" id="Animation_qyljj"]
 resource_name = "cutscene"
-length = 20.0
+length = 30.0
 tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -18,7 +18,7 @@ tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(17.0667),
+"times": PackedFloat32Array(16.6),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
@@ -32,7 +32,7 @@ tracks/1/path = NodePath("wave_spawner")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(19.9),
+"times": PackedFloat32Array(29.8),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
@@ -46,8 +46,8 @@ tracks/2/path = NodePath("folk")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(2.1, 7.03333, 17.0333),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(2.1, 7.03333, 13.3, 18.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "values": [{
 "args": ["Bandits are coming!"],
 "method": &"show_speech"
@@ -55,7 +55,66 @@ tracks/2/keys = {
 "args": ["You have to protect us, Lasso Sheriff!"],
 "method": &"show_speech"
 }, {
-"args": ["Here they come"],
+"args": ["Here they come..."],
+"method": &"show_speech"
+}, {
+"args": ["Catch them with your lasso!"],
+"method": &"show_speech"
+}]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("folk4")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(9.13333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["Save us!"],
+"method": &"show_speech"
+}]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("folk8")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(10.6333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["YES"],
+"method": &"show_speech"
+}]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("folk10")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(21.0333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["Loop around them to catch them!"],
+"method": &"show_speech"
+}]
+}
+tracks/6/type = "method"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("folk3")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(24.9),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["QUICK"],
 "method": &"show_speech"
 }]
 }

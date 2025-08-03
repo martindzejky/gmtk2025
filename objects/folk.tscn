@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://celdle61b8mey"]
+[gd_scene load_steps=10 format=3 uid="uid://celdle61b8mey"]
 
 [ext_resource type="Script" uid="uid://cbeifktwaksov" path="res://scripts/folk.gd" id="1_6qcaw"]
 [ext_resource type="PackedScene" uid="uid://dur5dy1hc4dca" path="res://objects/dude.tscn" id="2_6qcaw"]
 [ext_resource type="PackedScene" uid="uid://dq0vrkcd8rcbx" path="res://objects/grave.tscn" id="2_va2jn"]
+[ext_resource type="AudioStream" uid="uid://uovu8qmwbeie" path="res://sounds/pop.wav" id="4_jaddk"]
 
 [sub_resource type="Gradient" id="Gradient_6qcaw"]
 colors = PackedColorArray(0.71094, 0.675425, 0.555555, 1, 0.887922, 0.827973, 0.746662, 1)
@@ -31,7 +32,7 @@ line_spacing = 0.0
 font_size = 10
 font_color = Color(0, 0, 0, 1)
 
-[node name="folk" type="CharacterBody2D" node_paths=PackedStringArray("dude", "nearby_area", "idle_timer", "running_away_from_enemies_timer", "enemy_attack_timer", "speech_timer", "speech_bubble_root", "speech_bubble_text") groups=["folk"]]
+[node name="folk" type="CharacterBody2D" node_paths=PackedStringArray("dude", "nearby_area", "idle_timer", "running_away_from_enemies_timer", "enemy_attack_timer", "speech_timer", "speech_bubble_root", "speech_bubble_text", "speech_sound_player") groups=["folk"]]
 collision_layer = 32
 collision_mask = 63
 motion_mode = 1
@@ -48,6 +49,7 @@ grave_scene = ExtResource("2_va2jn")
 speech_timer = NodePath("speech_bubble_root/speech_timer")
 speech_bubble_root = NodePath("speech_bubble_root")
 speech_bubble_text = NodePath("speech_bubble_root/speech_bubble/text")
+speech_sound_player = NodePath("speech_bubble_root/pop_sound")
 
 [node name="dude" parent="." instance=ExtResource("2_6qcaw")]
 body_color_gradient = SubResource("Gradient_6qcaw")
@@ -78,6 +80,11 @@ position = Vector2(0, -60)
 
 [node name="speech_timer" type="Timer" parent="speech_bubble_root"]
 one_shot = true
+
+[node name="pop_sound" type="AudioStreamPlayer" parent="speech_bubble_root"]
+stream = ExtResource("4_jaddk")
+volume_db = -8.0
+bus = &"sound effects"
 
 [node name="speech_bubble" type="PanelContainer" parent="speech_bubble_root"]
 anchors_preset = 7
