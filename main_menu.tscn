@@ -1,0 +1,43 @@
+[gd_scene load_steps=3 format=3 uid="uid://bqwj8b5x4g7c2"]
+
+[ext_resource type="Script" uid="uid://case8pfh1qfpo" path="res://scripts/main_menu.gd" id="1_main_menu"]
+[ext_resource type="PackedScene" uid="uid://doppk32uafy8x" path="res://village.tscn" id="2_7vrkn"]
+
+[node name="main_menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_main_menu")
+village_scene = ExtResource("2_7vrkn")
+
+[node name="margin_container" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="center_container" type="CenterContainer" parent="margin_container"]
+layout_mode = 2
+
+[node name="vbox_container" type="VBoxContainer" parent="margin_container/center_container"]
+layout_mode = 2
+
+[node name="play_button" type="Button" parent="margin_container/center_container/vbox_container"]
+layout_mode = 2
+text = "Play"
+
+[node name="settings_button" type="Button" parent="margin_container/center_container/vbox_container"]
+layout_mode = 2
+text = "Settings"
+
+[node name="exit_button" type="Button" parent="margin_container/center_container/vbox_container"]
+layout_mode = 2
+text = "Exit"
+
+[connection signal="pressed" from="margin_container/center_container/vbox_container/play_button" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="margin_container/center_container/vbox_container/exit_button" to="." method="_on_exit_button_pressed"]
