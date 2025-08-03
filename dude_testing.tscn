@@ -25,7 +25,7 @@ texture = ExtResource("2_vorsc")
 [node name="ui" type="CanvasLayer" parent="."]
 layer = 10
 
-[node name="ui_root" type="Control" parent="ui"]
+[node name="root" type="Control" parent="ui"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -33,7 +33,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="margin" type="MarginContainer" parent="ui/ui_root"]
+[node name="margin" type="MarginContainer" parent="ui/root"]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -42,48 +42,43 @@ anchor_bottom = 1.0
 offset_top = -40.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
 
-[node name="container" type="HBoxContainer" parent="ui/ui_root/margin"]
+[node name="container" type="HBoxContainer" parent="ui/root/margin"]
 layout_mode = 2
-theme_override_constants/separation = 20
 alignment = 1
 
-[node name="idle" type="Button" parent="ui/ui_root/margin/container"]
+[node name="idle" type="Button" parent="ui/root/margin/container"]
 layout_mode = 2
 text = "idle"
 
-[node name="running" type="Button" parent="ui/ui_root/margin/container"]
+[node name="running" type="Button" parent="ui/root/margin/container"]
 layout_mode = 2
 text = "running"
 
-[node name="dash" type="Button" parent="ui/ui_root/margin/container"]
+[node name="dash" type="Button" parent="ui/root/margin/container"]
 layout_mode = 2
 text = "dash"
 
-[node name="captured" type="Button" parent="ui/ui_root/margin/container"]
+[node name="captured" type="Button" parent="ui/root/margin/container"]
 layout_mode = 2
 text = "captured"
 
-[node name="melee" type="Button" parent="ui/ui_root/margin/container"]
+[node name="melee" type="Button" parent="ui/root/margin/container"]
 layout_mode = 2
 text = "melee"
 
-[node name="shoot" type="Button" parent="ui/ui_root/margin/container"]
+[node name="shoot" type="Button" parent="ui/root/margin/container"]
 layout_mode = 2
 text = "shoot"
 
-[node name="randomize" type="Button" parent="ui/ui_root/margin/container"]
+[node name="randomize" type="Button" parent="ui/root/margin/container"]
 layout_mode = 2
 text = "randomize"
 
-[connection signal="pressed" from="ui/ui_root/margin/container/idle" to="." method="_on_idle_pressed"]
-[connection signal="pressed" from="ui/ui_root/margin/container/running" to="." method="_on_running_pressed"]
-[connection signal="pressed" from="ui/ui_root/margin/container/dash" to="." method="_on_dash_pressed"]
-[connection signal="pressed" from="ui/ui_root/margin/container/captured" to="." method="_on_captured_pressed"]
-[connection signal="pressed" from="ui/ui_root/margin/container/melee" to="." method="_on_melee_pressed"]
-[connection signal="pressed" from="ui/ui_root/margin/container/shoot" to="." method="_on_shoot_pressed"]
-[connection signal="pressed" from="ui/ui_root/margin/container/randomize" to="." method="_on_randomize_pressed"]
+[connection signal="pressed" from="ui/root/margin/container/idle" to="." method="_on_idle_pressed"]
+[connection signal="pressed" from="ui/root/margin/container/running" to="." method="_on_running_pressed"]
+[connection signal="pressed" from="ui/root/margin/container/dash" to="." method="_on_dash_pressed"]
+[connection signal="pressed" from="ui/root/margin/container/captured" to="." method="_on_captured_pressed"]
+[connection signal="pressed" from="ui/root/margin/container/melee" to="." method="_on_melee_pressed"]
+[connection signal="pressed" from="ui/root/margin/container/shoot" to="." method="_on_shoot_pressed"]
+[connection signal="pressed" from="ui/root/margin/container/randomize" to="." method="_on_randomize_pressed"]

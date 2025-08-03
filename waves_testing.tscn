@@ -1,25 +1,19 @@
-[gd_scene load_steps=9 format=3 uid="uid://bifqkl6lsp6wc"]
+[gd_scene load_steps=5 format=3 uid="uid://bifqkl6lsp6wc"]
 
 [ext_resource type="PackedScene" uid="uid://qwj8b5x4g7c1" path="res://objects/player.tscn" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://dxnx8k27jooot" path="res://waves/wave_spawner.tscn" id="2_eklt2"]
-[ext_resource type="Script" uid="uid://bfjsrwamxppb5" path="res://scripts/folks_counter.gd" id="5_igiv0"]
-[ext_resource type="Script" uid="uid://b35why1f3p57s" path="res://scripts/enemies_counter.gd" id="6_ufbaf"]
+[ext_resource type="PackedScene" uid="uid://b0kknoieqv00y" path="res://objects/game_ui.tscn" id="4_eklt2"]
 [ext_resource type="PackedScene" uid="uid://celdle61b8mey" path="res://objects/folk.tscn" id="8_5vw27"]
-[ext_resource type="PackedScene" uid="uid://dur5dy1hc4dca" path="res://objects/dude.tscn" id="9_iikrv"]
-
-[sub_resource type="Gradient" id="Gradient_iikrv"]
-colors = PackedColorArray(0.71094, 0.675425, 0.555555, 1, 0.887922, 0.827973, 0.746662, 1)
-
-[sub_resource type="Gradient" id="Gradient_fekgo"]
-colors = PackedColorArray(0.856869, 0.279472, 0.265211, 1, 0.701292, 0.259397, 0.058602, 1)
 
 [node name="main" type="Node2D"]
 y_sort_enabled = true
 
-[node name="player" parent="." instance=ExtResource("1_0xm2m")]
+[node name="ui" parent="." instance=ExtResource("4_eklt2")]
 
 [node name="wave_spawner" parent="." instance=ExtResource("2_eklt2")]
 spawning = true
+
+[node name="player" parent="." instance=ExtResource("1_0xm2m")]
 
 [node name="folk" parent="." instance=ExtResource("8_5vw27")]
 position = Vector2(178, 135)
@@ -32,60 +26,3 @@ position = Vector2(-189, -113)
 
 [node name="folk4" parent="." instance=ExtResource("8_5vw27")]
 position = Vector2(-161, -184)
-
-[node name="ui" type="CanvasLayer" parent="."]
-layer = 10
-
-[node name="root" type="Control" parent="ui"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="margin" type="MarginContainer" parent="ui/root"]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-grow_horizontal = 2
-
-[node name="container" type="HBoxContainer" parent="ui/root/margin"]
-layout_mode = 2
-
-[node name="folks" type="Control" parent="ui/root/margin/container"]
-clip_contents = true
-custom_minimum_size = Vector2(80, 80)
-layout_mode = 2
-
-[node name="folk_dude" parent="ui/root/margin/container/folks" instance=ExtResource("9_iikrv")]
-position = Vector2(42.9, 121.08)
-scale = Vector2(2.53992, 2.53992)
-body_color_gradient = SubResource("Gradient_iikrv")
-bandana_chance = 0.0
-frozen = true
-
-[node name="folks_counter" type="Label" parent="ui/root/margin/container"]
-layout_mode = 2
-script = ExtResource("5_igiv0")
-
-[node name="spacer" type="Control" parent="ui/root/margin/container"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="enemies_counter" type="Label" parent="ui/root/margin/container"]
-layout_mode = 2
-script = ExtResource("6_ufbaf")
-
-[node name="enemies" type="Control" parent="ui/root/margin/container"]
-clip_contents = true
-custom_minimum_size = Vector2(80, 80)
-layout_mode = 2
-
-[node name="enemy_dude" parent="ui/root/margin/container/enemies" instance=ExtResource("9_iikrv")]
-position = Vector2(42.9, 121.08)
-scale = Vector2(-2.54, 2.54)
-body_color_gradient = SubResource("Gradient_fekgo")
-hat_chance = 0.0
-bandana_chance = 1.0
-frozen = true
