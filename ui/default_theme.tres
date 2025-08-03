@@ -1,6 +1,19 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://cd6h55fs5yde4"]
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://cd6h55fs5yde4"]
 
 [ext_resource type="FontVariation" uid="uid://q6nkrkl8lof" path="res://font/default_font.tres" id="1_vos2p"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vos2p"]
+bg_color = Color(0.886262, 0.886261, 0.886262, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+expand_margin_left = 30.0
+expand_margin_top = 20.0
+expand_margin_right = 30.0
+expand_margin_bottom = 20.0
+shadow_color = Color(0, 0, 0, 0.0392157)
+shadow_size = 5
 
 [resource]
 default_font = ExtResource("1_vos2p")
@@ -14,3 +27,4 @@ MarginContainer/constants/margin_bottom = 10
 MarginContainer/constants/margin_left = 10
 MarginContainer/constants/margin_right = 10
 MarginContainer/constants/margin_top = 10
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_vos2p")
