@@ -1,9 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://bqwj8b5x4g7c2"]
+[gd_scene load_steps=9 format=3 uid="uid://bqwj8b5x4g7c2"]
 
 [ext_resource type="Script" uid="uid://case8pfh1qfpo" path="res://scripts/main_menu.gd" id="1_main_menu"]
 [ext_resource type="Texture2D" uid="uid://dhdbfe078odwe" path="res://sprites/icon.png" id="2_7vrkn"]
+[ext_resource type="PackedScene" uid="uid://br0r8y3hx422t" path="res://objects/prop_spawner.tscn" id="3_fu7sn"]
+[ext_resource type="PackedScene" uid="uid://celdle61b8mey" path="res://objects/folk.tscn" id="5_glbon"]
+[ext_resource type="PackedScene" uid="uid://6x8fg57qy4w7" path="res://objects/melee_enemy.tscn" id="6_nlkkf"]
+[ext_resource type="PackedScene" uid="uid://c8fg07divs5ef" path="res://objects/throwing_knife_enemy.tscn" id="7_qe12f"]
+[ext_resource type="PackedScene" uid="uid://br2pnnu3i2hvh" path="res://objects/ranged_enemy.tscn" id="8_8qtwp"]
+[ext_resource type="PackedScene" uid="uid://qwj8b5x4g7c1" path="res://objects/player.tscn" id="9_dy7ct"]
 
-[node name="main_menu" type="Control"]
+[node name="main_menu" type="Node2D"]
+y_sort_enabled = true
+
+[node name="ui" type="CanvasLayer" parent="."]
+
+[node name="main_menu" type="Control" parent="ui"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -12,7 +23,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_main_menu")
 
-[node name="margin_container" type="MarginContainer" parent="."]
+[node name="margin_container" type="MarginContainer" parent="ui/main_menu"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -20,28 +31,95 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="center_container" type="CenterContainer" parent="margin_container"]
+[node name="center_container" type="CenterContainer" parent="ui/main_menu/margin_container"]
 layout_mode = 2
 
-[node name="vbox_container" type="VBoxContainer" parent="margin_container/center_container"]
+[node name="vbox_container" type="VBoxContainer" parent="ui/main_menu/margin_container/center_container"]
 layout_mode = 2
 
-[node name="logo" type="TextureRect" parent="margin_container/center_container/vbox_container"]
+[node name="logo" type="TextureRect" parent="ui/main_menu/margin_container/center_container/vbox_container"]
 layout_mode = 2
 texture = ExtResource("2_7vrkn")
 expand_mode = 4
 
-[node name="play_button" type="Button" parent="margin_container/center_container/vbox_container"]
+[node name="play_button" type="Button" parent="ui/main_menu/margin_container/center_container/vbox_container"]
 layout_mode = 2
 text = "Play"
 
-[node name="settings_button" type="Button" parent="margin_container/center_container/vbox_container"]
+[node name="settings_button" type="Button" parent="ui/main_menu/margin_container/center_container/vbox_container"]
 layout_mode = 2
 text = "Settings"
 
-[node name="exit_button" type="Button" parent="margin_container/center_container/vbox_container"]
+[node name="exit_button" type="Button" parent="ui/main_menu/margin_container/center_container/vbox_container"]
 layout_mode = 2
 text = "Exit"
 
-[connection signal="pressed" from="margin_container/center_container/vbox_container/play_button" to="." method="_on_play_button_pressed"]
-[connection signal="pressed" from="margin_container/center_container/vbox_container/exit_button" to="." method="_on_exit_button_pressed"]
+[node name="prop_spawner" parent="." instance=ExtResource("3_fu7sn")]
+
+[node name="player" parent="." instance=ExtResource("9_dy7ct")]
+visible = false
+cutscene = true
+main_menu = true
+
+[node name="folk" parent="." instance=ExtResource("5_glbon")]
+position = Vector2(-146.882, 58.2269)
+
+[node name="folk2" parent="." instance=ExtResource("5_glbon")]
+position = Vector2(-145.379, -100.301)
+
+[node name="folk3" parent="." instance=ExtResource("5_glbon")]
+position = Vector2(136.364, -106.687)
+
+[node name="folk4" parent="." instance=ExtResource("5_glbon")]
+position = Vector2(132.983, 54.4704)
+
+[node name="folk5" parent="." instance=ExtResource("5_glbon")]
+position = Vector2(109.692, 106.687)
+
+[node name="folk6" parent="." instance=ExtResource("5_glbon")]
+position = Vector2(-204.733, -84.1472)
+
+[node name="folk7" parent="." instance=ExtResource("5_glbon")]
+position = Vector2(-184.823, -151.766)
+
+[node name="melee_enemy" parent="." instance=ExtResource("6_nlkkf")]
+position = Vector2(267.531, -588.302)
+
+[node name="melee_enemy2" parent="." instance=ExtResource("6_nlkkf")]
+position = Vector2(332.757, -620.512)
+
+[node name="melee_enemy3" parent="." instance=ExtResource("6_nlkkf")]
+position = Vector2(312.625, -571.392)
+
+[node name="melee_enemy4" parent="." instance=ExtResource("6_nlkkf")]
+position = Vector2(-965.315, 239.5)
+
+[node name="melee_enemy5" parent="." instance=ExtResource("6_nlkkf")]
+position = Vector2(-1001.55, 302.31)
+
+[node name="throwing_knife_enemy" parent="." instance=ExtResource("7_qe12f")]
+position = Vector2(374.869, 547.435)
+
+[node name="throwing_knife_enemy5" parent="." instance=ExtResource("7_qe12f")]
+position = Vector2(457.724, 533.625)
+
+[node name="throwing_knife_enemy2" parent="." instance=ExtResource("7_qe12f")]
+position = Vector2(-846.323, 332.57)
+
+[node name="throwing_knife_enemy3" parent="." instance=ExtResource("7_qe12f")]
+position = Vector2(-876.118, 388.938)
+
+[node name="throwing_knife_enemy4" parent="." instance=ExtResource("7_qe12f")]
+position = Vector2(358.339, -564.484)
+
+[node name="ranged_enemy" parent="." instance=ExtResource("8_8qtwp")]
+position = Vector2(-466.243, -744.056)
+
+[node name="ranged_enemy2" parent="." instance=ExtResource("8_8qtwp")]
+position = Vector2(-520.195, -736.003)
+
+[node name="ranged_enemy3" parent="." instance=ExtResource("8_8qtwp")]
+position = Vector2(-527.442, -695.74)
+
+[connection signal="pressed" from="ui/main_menu/margin_container/center_container/vbox_container/play_button" to="ui/main_menu" method="_on_play_button_pressed"]
+[connection signal="pressed" from="ui/main_menu/margin_container/center_container/vbox_container/exit_button" to="ui/main_menu" method="_on_exit_button_pressed"]

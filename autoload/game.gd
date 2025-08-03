@@ -52,11 +52,15 @@ func emit_wave_ends(number: int):
   wave_ends.emit(number)
 
 func player_dying():
+  if game_is_failed: return
+
   fail_game_camera_target_position = player.global_position
   fail_game_reason = FailGameReason.PLAYER_DIED
   fail_game()
 
 func folk_dying():
+  if game_is_failed: return
+
   var remaining_folks = get_tree().get_nodes_in_group('folk')
   if remaining_folks.size() == 1:
     # this is the last folk about to die
@@ -92,3 +96,6 @@ func fail_game():
 
   var fail_ui = fail_ui_scene.instantiate()
   get_tree().current_scene.add_child(fail_ui)
+
+func force_fail_game():
+  game_is_failed = true

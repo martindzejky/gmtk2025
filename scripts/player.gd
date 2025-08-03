@@ -17,6 +17,7 @@ class_name Player
 
 @export_category('Cutscene')
 @export var cutscene := false
+@export var main_menu := false
 
 @export_category('Grave')
 @export var grave_scene: PackedScene
@@ -27,7 +28,13 @@ var dead := false
 
 func _ready():
   Game.player = self
-  Game.reset_game()
+
+  if main_menu:
+    dying = true
+    dead = true
+    Game.force_fail_game()
+  else:
+    Game.reset_game()
 
 func _physics_process(_delta):
   if dead: return
@@ -82,6 +89,7 @@ func end_cutscene():
   cutscene = false
 
 func hit():
+  if cutscene: return
   dying = true
   Game.call_deferred('player_dying')
 
