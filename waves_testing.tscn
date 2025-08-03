@@ -67,6 +67,7 @@ position = Vector2(42.9, 121.08)
 scale = Vector2(2.53992, 2.53992)
 body_color_gradient = SubResource("Gradient_iikrv")
 bandana_chance = 0.0
+frozen = true
 
 [node name="spacer" type="Control" parent="ui/root/margin/container"]
 layout_mode = 2
@@ -83,3 +84,4 @@ scale = Vector2(-2.54, 2.54)
 body_color_gradient = SubResource("Gradient_fekgo")
 hat_chance = 0.0
 bandana_chance = 1.0
+frozen = true

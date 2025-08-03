@@ -39,6 +39,7 @@ signal die_end
 @export var bandana_chance: float = 0.4
 @export var has_sheriff_star := false
 @export var force_first_hat := false
+@export var frozen := false
 
 @export_category('Sprites')
 @export var hat_sprites: Array[Texture2D]
@@ -52,11 +53,17 @@ signal die_end
 func _ready():
   self.randomize()
 
+  if frozen:
+    animation_player.speed_scale = 0.0
+    animation_player.play('RESET')
+
 func play_animation(animation_name: String):
   var current_animation := animation_player.current_animation
   var current_position := animation_player.current_animation_position
 
   match animation_name:
+    _ when frozen:
+      animation_player.speed_scale = 0.0
     'running', 'running_lasso':
       animation_player.speed_scale = running_animation_scale
     'melee':

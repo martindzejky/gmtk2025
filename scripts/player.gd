@@ -15,13 +15,18 @@ class_name Player
 @export_category('Lasso')
 @export var lasso: Lasso
 
+@export_category('Cutscene')
+@export var cutscene := false
+
 func _ready():
   Game.player = self
 
 func _physics_process(_delta):
-  var input_vector = Input.get_vector('move_left', 'move_right', 'move_up', 'move_down')
+  var input_vector := Vector2.ZERO
+  if not cutscene:
+    input_vector = Input.get_vector('move_left', 'move_right', 'move_up', 'move_down')
 
-  if dash_cooldown_timer.time_left <= 0 and Input.is_action_just_pressed('dash'):
+  if dash_cooldown_timer.time_left <= 0 and Input.is_action_just_pressed('dash') and not cutscene:
     dash_progress_timer.start()
     dash_cooldown_timer.start()
 
@@ -57,5 +62,5 @@ func _physics_process(_delta):
   if abs(velocity.x) > 0:
     dude.scale.x = sign(velocity.x)
 
-func get_melee_slot():
-  return dude.melee_slot
+func end_cutscene():
+  cutscene = false

@@ -119,7 +119,7 @@ func _draw():
   if state == State.HOOKED:
     line_start = Vector2(0, -20)
 
-  var line_end = player.get_melee_slot().global_position - global_position
+  var line_end = player.dude.melee_slot.global_position - global_position
 
   if segments.size() > 0:
     line_end = segments[0].global_position - global_position

@@ -286,7 +286,7 @@ func capture():
   # so just shift the layer bit by 1
   collision_layer = collision_layer << 1
 
-  Game.enemies_updated.emit()
+  Game.emit_enemies_updated()
 
 func free_from_capture():
   if state != State.CAPTURED: return
@@ -296,7 +296,7 @@ func free_from_capture():
   # again the hack mentioned above
   collision_layer = collision_layer >> 1
 
-  Game.enemies_updated.emit()
+  Game.emit_enemies_updated()
 
 func collect_captured():
   # TODO: animation and add some points or something

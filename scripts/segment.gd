@@ -16,7 +16,7 @@ func _process(_delta):
 
 func _draw():
   var line_start := Vector2(0, -20)
-  var line_end = hook.player.get_melee_slot().global_position - global_position
+  var line_end = hook.player.dude.melee_slot.global_position - global_position
 
   if not is_last_segment():
     line_end = get_next_segment().global_position - global_position

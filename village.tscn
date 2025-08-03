@@ -1,0 +1,82 @@
+[gd_scene load_steps=7 format=3 uid="uid://doppk32uafy8x"]
+
+[ext_resource type="Script" uid="uid://cf6547v4lhn7r" path="res://scripts/village.gd" id="1_jak2h"]
+[ext_resource type="PackedScene" uid="uid://qwj8b5x4g7c1" path="res://objects/player.tscn" id="1_q5e70"]
+[ext_resource type="PackedScene" uid="uid://celdle61b8mey" path="res://objects/folk.tscn" id="2_pxdql"]
+[ext_resource type="PackedScene" uid="uid://t478gv53rdvw" path="res://folk_turned_left.tscn" id="3_qyljj"]
+
+[sub_resource type="Animation" id="Animation_qyljj"]
+resource_name = "cutscene"
+length = 3.0
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"end_cutscene_for_folks_and_player"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jak2h"]
+_data = {
+&"cutscene": SubResource("Animation_qyljj")
+}
+
+[node name="village" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_jak2h")
+
+[node name="cutscene" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_jak2h")
+}
+autoplay = "cutscene"
+
+[node name="player" parent="." instance=ExtResource("1_q5e70")]
+cutscene = true
+
+[node name="folk" parent="." instance=ExtResource("3_qyljj")]
+position = Vector2(50, 0)
+cutscene = true
+
+[node name="folk2" parent="." instance=ExtResource("2_pxdql")]
+position = Vector2(-67.2237, -54.1382)
+cutscene = true
+
+[node name="folk3" parent="." instance=ExtResource("2_pxdql")]
+position = Vector2(-91.3421, -26.1711)
+cutscene = true
+
+[node name="folk4" parent="." instance=ExtResource("2_pxdql")]
+position = Vector2(-95.9605, 20.2697)
+cutscene = true
+
+[node name="folk5" parent="." instance=ExtResource("2_pxdql")]
+position = Vector2(-83.6447, 53.8816)
+cutscene = true
+
+[node name="folk6" parent="." instance=ExtResource("2_pxdql")]
+position = Vector2(-50.546, 80.0526)
+cutscene = true
+
+[node name="folk7" parent="." instance=ExtResource("3_qyljj")]
+position = Vector2(104.472, -60.6809)
+cutscene = true
+
+[node name="folk8" parent="." instance=ExtResource("3_qyljj")]
+position = Vector2(128.18, -22.0145)
+cutscene = true
+
+[node name="folk9" parent="." instance=ExtResource("3_qyljj")]
+position = Vector2(137.211, 29.9171)
+cutscene = true
+
+[node name="folk10" parent="." instance=ExtResource("3_qyljj")]
+position = Vector2(125.639, 75.075)
+cutscene = true

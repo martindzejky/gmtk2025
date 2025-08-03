@@ -6,14 +6,14 @@ class_name Lasso
 
 
 func _draw():
-  if has_hook():
+  if has_hook() and not player.cutscene:
     var mouse_pos = get_global_mouse_position()
     draw_line(Vector2.ZERO, to_local(mouse_pos), Color.DARK_GRAY, 2.0)
 
 func _process(_delta):
   queue_redraw()
 
-  if Input.is_action_just_pressed('shoot'):
+  if Input.is_action_just_pressed('shoot') and not player.cutscene:
     if has_hook():
       hook.shoot_in_direction(global_position.direction_to(get_global_mouse_position()))
     elif hook_is_hooked():

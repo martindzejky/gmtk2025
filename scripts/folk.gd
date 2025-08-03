@@ -23,6 +23,9 @@ class_name Folk
 @export var running_away_from_enemies_timer: Timer
 @export var enemy_attack_timer: Timer
 
+@export_category('Cutscene')
+@export var cutscene := false
+
 enum State {
   IDLE,
   WANDERING,
@@ -43,7 +46,7 @@ func _ready():
 func _physics_process(_delta):
   velocity = Vector2.ZERO
 
-  if state != State.DYING:
+  if state != State.DYING and not cutscene:
     if enemy_attack_timer.time_left > 0:
       pass
     elif are_enemies_nearby() or running_away_from_enemies_timer.time_left > 0:
@@ -139,6 +142,8 @@ func are_enemies_nearby():
 func go_to_idle_from_random_duration():
   state = State.IDLE
 
+  if cutscene: return
+
   var random_duration := randf_range(idle_min_time, idle_max_time)
   idle_timer.start(random_duration)
   await idle_timer.timeout
@@ -146,6 +151,9 @@ func go_to_idle_from_random_duration():
   # if chased by enemies in the meantime
   if state != State.IDLE: return
 
+  start_wandering()
+
+func start_wandering():
   state = State.WANDERING
   global_wandering_position = global_home_position + Vector2.UP.rotated(randf_range(0, 2 * PI)) * randf_range(wandering_min_distance, wandering_max_distance)
 
@@ -172,3 +180,11 @@ func hit_by_enemy():
 func _on_dude_die_end() -> void:
   # TODO: something more grandiose
   queue_free()
+
+func end_cutscene():
+  cutscene = false
+
+  if randf() < 0.5:
+    start_wandering()
+  else:
+    go_to_idle_from_random_duration()

@@ -53,6 +53,7 @@ shape = SubResource("CircleShape2D_882u1")
 collision_mask = 8
 
 [node name="shape" type="CollisionShape2D" parent="nearby_area"]
+visible = false
 shape = SubResource("CircleShape2D_3hb37")
 
 [node name="ai_decision_timer" type="Timer" parent="."]

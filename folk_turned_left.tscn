@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://t478gv53rdvw"]
+
+[ext_resource type="PackedScene" uid="uid://celdle61b8mey" path="res://objects/folk.tscn" id="1_wg46e"]
+
+[node name="folk" instance=ExtResource("1_wg46e")]
+
+[node name="dude" parent="." index="0"]
+scale = Vector2(-1, 1)

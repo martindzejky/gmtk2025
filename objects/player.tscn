@@ -47,6 +47,9 @@ shape = SubResource("CircleShape2D_player")
 
 [node name="camera" parent="." instance=ExtResource("6_3rfka")]
 
+[node name="listener" type="AudioListener2D" parent="."]
+current = true
+
 [node name="lasso" type="Node2D" parent="." node_paths=PackedStringArray("player", "hook")]
 script = ExtResource("3_uxov2")
 player = NodePath("..")
