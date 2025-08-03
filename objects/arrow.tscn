@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dr57aya15ff0d"]
+[gd_scene load_steps=8 format=3 uid="uid://dr57aya15ff0d"]
 
 [ext_resource type="Script" uid="uid://bb8jo10py3qxv" path="res://scripts/projectile.gd" id="1_ledw7"]
 [ext_resource type="Texture2D" uid="uid://cutyewlewbcyg" path="res://sprites/arrow.png" id="2_3at4w"]
@@ -53,6 +53,8 @@ _data = {
 &"flying": SubResource("Animation_3at4w")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_3at4w"]
+
 [node name="arrow" type="Node2D" node_paths=PackedStringArray("set_target_rotation_to")]
 script = ExtResource("1_ledw7")
 set_target_rotation_to = NodePath("rotation")
@@ -72,3 +74,11 @@ libraries = {
 &"": SubResource("AnimationLibrary_vitwq")
 }
 autoplay = "flying"
+
+[node name="hitbox" type="Area2D" parent="."]
+collision_mask = 50
+
+[node name="shape" type="CollisionShape2D" parent="hitbox"]
+shape = SubResource("CircleShape2D_3at4w")
+
+[connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]

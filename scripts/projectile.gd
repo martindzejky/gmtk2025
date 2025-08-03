@@ -10,3 +10,9 @@ func _process(delta):
 
   if set_target_rotation_to:
     set_target_rotation_to.rotation = target_rotation
+
+func _on_hitbox_body_entered(body: Node2D):
+  # duck typing to the fullest!
+  if body.has_method('hit'):
+    body.hit()
+    queue_free()

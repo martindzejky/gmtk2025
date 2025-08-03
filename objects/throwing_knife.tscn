@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cfm04ntunurdu"]
+[gd_scene load_steps=8 format=3 uid="uid://cfm04ntunurdu"]
 
 [ext_resource type="Script" uid="uid://bb8jo10py3qxv" path="res://scripts/projectile.gd" id="1_dgol7"]
 [ext_resource type="Texture2D" uid="uid://w42mx33bn3l6" path="res://sprites/knife.png" id="2_dgol7"]
@@ -88,6 +88,8 @@ _data = {
 &"rotating": SubResource("Animation_dgol7")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_3f73b"]
+
 [node name="arrow" type="Node2D"]
 script = ExtResource("1_dgol7")
 
@@ -107,3 +109,11 @@ libraries = {
 &"": SubResource("AnimationLibrary_3f73b")
 }
 autoplay = "rotating"
+
+[node name="hitbox" type="Area2D" parent="."]
+collision_mask = 50
+
+[node name="shape" type="CollisionShape2D" parent="hitbox"]
+shape = SubResource("CircleShape2D_3f73b")
+
+[connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]
