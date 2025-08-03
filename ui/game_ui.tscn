@@ -1,10 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://b0kknoieqv00y"]
+[gd_scene load_steps=9 format=3 uid="uid://b0kknoieqv00y"]
 
 [ext_resource type="PackedScene" uid="uid://dur5dy1hc4dca" path="res://objects/dude.tscn" id="1_ikrwb"]
 [ext_resource type="Script" uid="uid://bfjsrwamxppb5" path="res://scripts/folks_counter.gd" id="2_bdxks"]
 [ext_resource type="Script" uid="uid://b35why1f3p57s" path="res://scripts/enemies_counter.gd" id="3_n5pun"]
-[ext_resource type="Script" uid="uid://cx4cd4ol2av6" path="res://scripts/wave_starts_ui.gd" id="4_rwahy"]
-[ext_resource type="Script" uid="uid://krgk8v3b2d3l" path="res://scripts/wave_ends.gd" id="5_gnu5t"]
+[ext_resource type="PackedScene" uid="uid://vhclt4iutlt4" path="res://ui/wave_starts.tscn" id="4_3vkek"]
+[ext_resource type="PackedScene" uid="uid://bgi84q7l4o2lp" path="res://ui/wave_ends.tscn" id="5_xh48a"]
 
 [sub_resource type="Gradient" id="Gradient_iikrv"]
 colors = PackedColorArray(0.71094, 0.675425, 0.555555, 1, 0.887922, 0.827973, 0.746662, 1)
@@ -15,14 +15,6 @@ font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="Gradient" id="Gradient_fekgo"]
 colors = PackedColorArray(0.856869, 0.279472, 0.265211, 1, 0.701292, 0.259397, 0.058602, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_wueab"]
-font_size = 56
-font_color = Color(0, 0, 0, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_a884e"]
-font_size = 32
-font_color = Color(0, 0, 0, 1)
 
 [node name="ui" type="CanvasLayer"]
 layer = 10
@@ -88,100 +80,10 @@ hat_chance = 0.0
 bandana_chance = 1.0
 frozen = true
 
-[node name="wave_starts" type="CenterContainer" parent="root" node_paths=PackedStringArray("display_timer", "text")]
+[node name="wave_starts" parent="root" instance=ExtResource("4_3vkek")]
 visible = false
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("4_rwahy")
-display_timer = NodePath("display_timer")
-text = NodePath("panel/center/text")
 
-[node name="display_timer" type="Timer" parent="root/wave_starts"]
-wait_time = 2.0
-one_shot = true
-
-[node name="panel" type="Panel" parent="root/wave_starts"]
-layout_mode = 2
-
-[node name="center" type="CenterContainer" parent="root/wave_starts/panel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="text" type="Label" parent="root/wave_starts/panel/center"]
-layout_mode = 2
-text = "Wave 1 starts!"
-label_settings = SubResource("LabelSettings_wueab")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="wave_ends" type="CenterContainer" parent="root" node_paths=PackedStringArray("text")]
-process_mode = 3
+[node name="wave_ends" parent="root" instance=ExtResource("5_xh48a")]
 visible = false
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("5_gnu5t")
-text = NodePath("panel/center/container/title")
-
-[node name="panel" type="Panel" parent="root/wave_ends"]
-layout_mode = 2
-
-[node name="center" type="CenterContainer" parent="root/wave_ends/panel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="container" type="VBoxContainer" parent="root/wave_ends/panel/center"]
-layout_mode = 2
-
-[node name="title" type="Label" parent="root/wave_ends/panel/center/container"]
-layout_mode = 2
-text = "Wave 1 complete!"
-label_settings = SubResource("LabelSettings_wueab")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="subtitle" type="Label" parent="root/wave_ends/panel/center/container"]
-layout_mode = 2
-text = "Choose an upgrade"
-label_settings = SubResource("LabelSettings_a884e")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="upgrades" type="HBoxContainer" parent="root/wave_ends/panel/center/container"]
-layout_mode = 2
-alignment = 1
-
-[node name="upgrade_0" type="Button" parent="root/wave_ends/panel/center/container/upgrades"]
-layout_mode = 2
-
-[node name="upgrade_1" type="Button" parent="root/wave_ends/panel/center/container/upgrades"]
-layout_mode = 2
-
-[node name="upgrade_2" type="Button" parent="root/wave_ends/panel/center/container/upgrades"]
-layout_mode = 2
-
-[node name="spacing" type="Control" parent="root/wave_ends/panel/center/container"]
-custom_minimum_size = Vector2(0, 40)
-layout_mode = 2
-
-[node name="continue" type="Button" parent="root/wave_ends/panel/center/container"]
-layout_mode = 2
-text = "Continue"
-
-[connection signal="timeout" from="root/wave_starts/display_timer" to="root/wave_starts" method="_on_display_timer_timeout"]
-[connection signal="pressed" from="root/wave_ends/panel/center/container/continue" to="root/wave_ends" method="_on_continue_pressed"]

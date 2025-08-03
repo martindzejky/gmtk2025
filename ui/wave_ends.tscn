@@ -1,0 +1,70 @@
+[gd_scene load_steps=4 format=3 uid="uid://bgi84q7l4o2lp"]
+
+[ext_resource type="Script" uid="uid://krgk8v3b2d3l" path="res://scripts/wave_ends.gd" id="1_bqo52"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_wueab"]
+font_size = 56
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_a884e"]
+font_size = 32
+font_color = Color(0, 0, 0, 1)
+
+[node name="wave_ends" type="CenterContainer" node_paths=PackedStringArray("text")]
+process_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bqo52")
+text = NodePath("panel/center/container/title")
+
+[node name="panel" type="PanelContainer" parent="."]
+layout_mode = 2
+
+[node name="center" type="CenterContainer" parent="panel"]
+layout_mode = 2
+
+[node name="container" type="VBoxContainer" parent="panel/center"]
+layout_mode = 2
+
+[node name="title" type="Label" parent="panel/center/container"]
+layout_mode = 2
+text = "Wave 1 complete!"
+label_settings = SubResource("LabelSettings_wueab")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="subtitle" type="Label" parent="panel/center/container"]
+layout_mode = 2
+text = "Choose an upgrade"
+label_settings = SubResource("LabelSettings_a884e")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="upgrades" type="HBoxContainer" parent="panel/center/container"]
+layout_mode = 2
+alignment = 1
+
+[node name="upgrade_0" type="Button" parent="panel/center/container/upgrades"]
+layout_mode = 2
+text = "1"
+
+[node name="upgrade_1" type="Button" parent="panel/center/container/upgrades"]
+layout_mode = 2
+text = "2"
+
+[node name="upgrade_2" type="Button" parent="panel/center/container/upgrades"]
+layout_mode = 2
+text = "3"
+
+[node name="spacing" type="Control" parent="panel/center/container"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="continue" type="Button" parent="panel/center/container"]
+layout_mode = 2
+text = "Continue"
+
+[connection signal="pressed" from="panel/center/container/continue" to="." method="_on_continue_pressed"]

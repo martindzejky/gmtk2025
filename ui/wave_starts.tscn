@@ -1,0 +1,36 @@
+[gd_scene load_steps=3 format=3 uid="uid://vhclt4iutlt4"]
+
+[ext_resource type="Script" uid="uid://cx4cd4ol2av6" path="res://scripts/wave_starts_ui.gd" id="1_7to7k"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_wueab"]
+font_size = 56
+font_color = Color(0, 0, 0, 1)
+
+[node name="wave_starts" type="CenterContainer" node_paths=PackedStringArray("display_timer", "text")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7to7k")
+display_timer = NodePath("display_timer")
+text = NodePath("panel/center/text")
+
+[node name="display_timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="panel" type="PanelContainer" parent="."]
+layout_mode = 2
+
+[node name="center" type="CenterContainer" parent="panel"]
+layout_mode = 2
+
+[node name="text" type="Label" parent="panel/center"]
+layout_mode = 2
+text = "Wave 1 starts!"
+label_settings = SubResource("LabelSettings_wueab")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="timeout" from="display_timer" to="." method="_on_display_timer_timeout"]

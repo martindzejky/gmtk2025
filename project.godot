@@ -16,6 +16,10 @@ run/main_scene="uid://bqwj8b5x4g7c2"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="uid://dpnid40fk8abh"
 
+[audio]
+
+buses/default_bus_layout="res://sounds/default_bus_layout.tres"
+
 [autoload]
 
 Game="*res://autoload/game.gd"
@@ -39,6 +43,7 @@ folk=""
 [gui]
 
 common/snap_controls_to_pixels=false
+theme/custom="uid://cd6h55fs5yde4"
 theme/custom_font="uid://q6nkrkl8lof"
 
 [input]

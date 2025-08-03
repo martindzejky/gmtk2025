@@ -1,0 +1,16 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://cd6h55fs5yde4"]
+
+[ext_resource type="FontVariation" uid="uid://q6nkrkl8lof" path="res://font/default_font.tres" id="1_vos2p"]
+
+[resource]
+default_font = ExtResource("1_vos2p")
+default_font_size = 24
+BoxContainer/constants/separation = 30
+FlowContainer/constants/h_separation = 30
+FlowContainer/constants/v_separation = 30
+GridContainer/constants/h_separation = 30
+GridContainer/constants/v_separation = 30
+MarginContainer/constants/margin_bottom = 15
+MarginContainer/constants/margin_left = 15
+MarginContainer/constants/margin_right = 15
+MarginContainer/constants/margin_top = 15
