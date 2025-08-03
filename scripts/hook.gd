@@ -12,6 +12,12 @@ class_name Hook
 @export var line_start_marker: Marker2D
 @export var shadow_node: Node2D
 
+@export_category('Sounds')
+@export var rope_sound_player: AudioStreamPlayer
+@export var rope_tied_sound_player: AudioStreamPlayer
+@export var swoosh_sound_player: AudioStreamPlayer
+@export var rope_sound_chance: float = 0.2
+
 enum State {
   WITH_PLAYER,
   FLYING,
@@ -36,6 +42,8 @@ func shoot_in_direction(new_target_direction: Vector2):
   reparent(player.get_parent())
   target_direction = new_target_direction
   state = State.FLYING
+  swoosh_sound_player.play()
+  rope_sound_player.play()
 
   print('Shooting in direction: ', target_direction)
 
@@ -52,6 +60,7 @@ func hook_to_enemy(enemy: Enemy):
   total_angle_change = 0.0
   last_angle = global_position.angle_to_point(player.global_position)
   update_raycast_exceptions()
+  rope_tied_sound_player.play()
 
 func catch_all_enemies():
   if state != State.HOOKED:
@@ -63,6 +72,7 @@ func catch_all_enemies():
   for segment in segments:
     catch_enemy(segment.get_parent())
 
+  rope_tied_sound_player.play()
 
 func catch_enemy(enemy: Enemy):
   enemy.capture()
@@ -77,6 +87,9 @@ func unhook():
 
   state = State.RETURNING
   reparent(player.get_parent())
+
+  swoosh_sound_player.play()
+  rope_sound_player.play()
 
 func _process(delta):
   queue_redraw()
@@ -111,6 +124,9 @@ func _process(delta):
         raycast.target_position = segments[0].global_position - global_position
       else:
         raycast.target_position = player.global_position - global_position
+
+      if randf() < rope_sound_chance:
+        rope_sound_player.play()
 
 func _draw():
   if state == State.WITH_PLAYER: return
@@ -206,3 +222,5 @@ func add_segment_to_enemy(enemy: Enemy, _point_of_collision: Vector2, insert_seg
   segments.insert(insert_segment_at_index, new_segment)
   update_segment_indices()
   update_raycast_exceptions()
+
+  rope_tied_sound_player.play()

@@ -1,0 +1,7 @@
+[gd_resource type="AudioStreamRandomizer" load_steps=2 format=3 uid="uid://crhooecxecedl"]
+
+[ext_resource type="AudioStream" uid="uid://deiu0l3g8nadv" path="res://sounds/rope_tied.wav" id="1_qp66j"]
+
+[resource]
+streams_count = 1
+stream_0/stream = ExtResource("1_qp66j")
