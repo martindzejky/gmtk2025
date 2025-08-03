@@ -47,6 +47,11 @@ func _physics_process(_delta):
     dash_progress_timer.start()
     dash_cooldown_timer.start()
 
+    # this is a quick hack to save time:
+    # I want to change the collision layer from 'player' to 'player_dash' which is the next layer
+    # so just shift the layer bit by 1
+    collision_layer = collision_layer << 1
+
   if dash_progress_timer.time_left > 0:
     velocity = input_vector * dash_speed * dash_curve.sample(1 - dash_progress_timer.time_left / dash_progress_timer.wait_time)
   else:
@@ -103,3 +108,7 @@ func _on_dude_die_end() -> void:
 
   dude.queue_free()
   Game.call_deferred('emit_player_died')
+
+func _on_dash_progress_timeout() -> void:
+  # again the hack mentioned above
+  collision_layer = collision_layer >> 1

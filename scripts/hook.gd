@@ -219,6 +219,9 @@ func add_segment_to_enemy(enemy: Enemy, _point_of_collision: Vector2, insert_seg
     total_angle_change = 0.0
     last_angle = global_position.angle_to_point(player.global_position)
 
+    # also play the rope tied sound only once per enemy
+    rope_tied_sound_player.play()
+
   var new_segment := segment_object.instantiate()
 
   enemy.add_child(new_segment)
@@ -228,5 +231,3 @@ func add_segment_to_enemy(enemy: Enemy, _point_of_collision: Vector2, insert_seg
   segments.insert(insert_segment_at_index, new_segment)
   update_segment_indices()
   update_raycast_exceptions()
-
-  rope_tied_sound_player.play()
