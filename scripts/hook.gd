@@ -205,8 +205,12 @@ func _physics_process(_delta):
   match state:
     State.HOOKED:
       if raycast.is_colliding():
-        print('New enemy hit by hook raycast, adding a segment at index 0')
-        add_segment_to_enemy(raycast.get_collider(), raycast.get_collision_point(), 0)
+        if raycast.get_collider() is Enemy:
+          print('New enemy hit by hook raycast, adding a segment at index 0')
+          add_segment_to_enemy(raycast.get_collider(), raycast.get_collision_point(), 0)
+        else:
+          print('Cutting rope')
+          unhook()
 
 func add_segment_to_enemy(enemy: Enemy, _point_of_collision: Vector2, insert_segment_at_index: int):
   # test: recalculate the starting angle but only if this is a newly hooked enemy

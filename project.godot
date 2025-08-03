@@ -98,6 +98,7 @@ dash={
 2d_physics/layer_4="enemy"
 2d_physics/layer_5="captured_enemy"
 2d_physics/layer_6="folk"
+2d_physics/layer_7="cut_rope"
 
 [rendering]
 

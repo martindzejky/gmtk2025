@@ -1,0 +1,34 @@
+[gd_scene load_steps=8 format=3 uid="uid://bab3h54c3ftkn"]
+
+[ext_resource type="PackedScene" uid="uid://b3eomk5mxspe6" path="res://objects/obstacle.tscn" id="1_vvshh"]
+[ext_resource type="Texture2D" uid="uid://br77vdton2a8s" path="res://sprites/pole_1.png" id="2_vvshh"]
+[ext_resource type="Script" uid="uid://x8um1nksuk8c" path="res://scripts/random_color.gd" id="3_3e2jp"]
+[ext_resource type="Script" uid="uid://cp587rdrca1sw" path="res://scripts/random_sprite.gd" id="4_qm5ri"]
+[ext_resource type="Texture2D" uid="uid://be3pkrmcmmjrj" path="res://sprites/pole_0.png" id="5_3e2jp"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3e2jp"]
+radius = 2.68579
+
+[sub_resource type="Gradient" id="Gradient_o6hn1"]
+colors = PackedColorArray(0.368256, 0.210069, 0.0690861, 1, 0.759975, 0.488564, 0.226191, 1)
+
+[node name="pole" instance=ExtResource("1_vvshh")]
+
+[node name="shadow" parent="." index="0"]
+scale = Vector2(0.0083711, 0.00509739)
+
+[node name="shape" parent="." index="1"]
+shape = SubResource("CircleShape2D_3e2jp")
+
+[node name="sprite" parent="." index="2" node_paths=PackedStringArray("target")]
+position = Vector2(-0.434471, -7.1169)
+scale = Vector2(0.056, 0.056)
+texture = ExtResource("2_vvshh")
+script = ExtResource("3_3e2jp")
+gradient_color = SubResource("Gradient_o6hn1")
+target = NodePath(".")
+
+[node name="random_sprite" type="Node" parent="." index="3" node_paths=PackedStringArray("target")]
+script = ExtResource("4_qm5ri")
+sprites = Array[Texture2D]([ExtResource("5_3e2jp"), ExtResource("2_vvshh")])
+target = NodePath("../sprite")

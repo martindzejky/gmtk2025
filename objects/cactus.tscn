@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=3 uid="uid://cfajtv05rc8o3"]
+
+[ext_resource type="PackedScene" uid="uid://b3eomk5mxspe6" path="res://objects/obstacle.tscn" id="1_tr8vr"]
+[ext_resource type="Texture2D" uid="uid://cc5ihaemx6kod" path="res://sprites/cactus.png" id="2_inseh"]
+[ext_resource type="Script" uid="uid://x8um1nksuk8c" path="res://scripts/random_color.gd" id="3_o6hn1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_o6hn1"]
+radius = 6.56961
+
+[sub_resource type="Gradient" id="Gradient_o6hn1"]
+colors = PackedColorArray(0.350466, 0.391666, 0.161485, 1, 0.479938, 0.652221, 0.37893, 1)
+
+[node name="cactus" instance=ExtResource("1_tr8vr")]
+collision_layer = 65
+
+[node name="shape" parent="." index="1"]
+shape = SubResource("CircleShape2D_o6hn1")
+
+[node name="sprite" parent="." index="2" node_paths=PackedStringArray("target")]
+position = Vector2(0, -15.3152)
+scale = Vector2(0.056, 0.056)
+texture = ExtResource("2_inseh")
+script = ExtResource("3_o6hn1")
+gradient_color = SubResource("Gradient_o6hn1")
+target = NodePath(".")

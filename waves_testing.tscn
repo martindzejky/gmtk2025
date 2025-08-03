@@ -1,8 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://bifqkl6lsp6wc"]
+[gd_scene load_steps=8 format=3 uid="uid://bifqkl6lsp6wc"]
 
 [ext_resource type="PackedScene" uid="uid://qwj8b5x4g7c1" path="res://objects/player.tscn" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://dxnx8k27jooot" path="res://waves/wave_spawner.tscn" id="2_eklt2"]
 [ext_resource type="PackedScene" uid="uid://b0kknoieqv00y" path="res://ui/game_ui.tscn" id="4_eklt2"]
+[ext_resource type="PackedScene" uid="uid://cfajtv05rc8o3" path="res://objects/cactus.tscn" id="5_igiv0"]
+[ext_resource type="PackedScene" uid="uid://bab3h54c3ftkn" path="res://objects/pole.tscn" id="6_ufbaf"]
+[ext_resource type="PackedScene" uid="uid://dfcygyt6d0b5s" path="res://objects/grass.tscn" id="7_wueab"]
 [ext_resource type="PackedScene" uid="uid://celdle61b8mey" path="res://objects/folk.tscn" id="8_5vw27"]
 
 [node name="main" type="Node2D"]
@@ -35,3 +38,57 @@ position = Vector2(44.115, -218.579)
 
 [node name="folk7" parent="." instance=ExtResource("8_5vw27")]
 position = Vector2(194.615, -110.079)
+
+[node name="cactus" parent="." instance=ExtResource("5_igiv0")]
+position = Vector2(59, -21)
+
+[node name="cactus2" parent="." instance=ExtResource("5_igiv0")]
+position = Vector2(-111, -17.5)
+
+[node name="cactus3" parent="." instance=ExtResource("5_igiv0")]
+position = Vector2(-81.5, -114.5)
+
+[node name="pole" parent="." instance=ExtResource("6_ufbaf")]
+position = Vector2(-23.2845, -104.625)
+
+[node name="pole2" parent="." instance=ExtResource("6_ufbaf")]
+position = Vector2(171.374, -54.3306)
+
+[node name="pole3" parent="." instance=ExtResource("6_ufbaf")]
+position = Vector2(170.443, 36.9448)
+
+[node name="pole4" parent="." instance=ExtResource("6_ufbaf")]
+position = Vector2(70.785, 154.609)
+
+[node name="grass" parent="." instance=ExtResource("7_wueab")]
+position = Vector2(-86.2085, 168.936)
+
+[node name="grass2" parent="." instance=ExtResource("7_wueab")]
+position = Vector2(-1.76321, 149.998)
+
+[node name="grass3" parent="." instance=ExtResource("7_wueab")]
+position = Vector2(-133.088, 109.949)
+
+[node name="grass4" parent="." instance=ExtResource("7_wueab")]
+position = Vector2(-208.53, 18.9836)
+
+[node name="grass5" parent="." instance=ExtResource("7_wueab")]
+position = Vector2(-122.532, -67.014)
+
+[node name="grass6" parent="." instance=ExtResource("7_wueab")]
+position = Vector2(-27.5314, -143.077)
+
+[node name="grass7" parent="." instance=ExtResource("7_wueab")]
+position = Vector2(94.7901, -94.9555)
+
+[node name="grass8" parent="." instance=ExtResource("7_wueab")]
+position = Vector2(231.082, -174.433)
+
+[node name="grass9" parent="." instance=ExtResource("7_wueab")]
+position = Vector2(149.431, -201.754)
+
+[node name="grass10" parent="." instance=ExtResource("7_wueab")]
+position = Vector2(-156.062, -189.646)
+
+[node name="grass11" parent="." instance=ExtResource("7_wueab")]
+position = Vector2(-205.736, -163.878)

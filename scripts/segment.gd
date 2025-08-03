@@ -44,5 +44,9 @@ func update_raycast_exceptions():
 
 func _physics_process(_delta):
   if raycast.is_colliding():
-    print('New enemy hit by segment raycast, adding a segment at index ', index + 1)
-    hook.add_segment_to_enemy(raycast.get_collider(), raycast.get_collision_point(), index + 1)
+    if raycast.get_collider() is Enemy:
+      print('New enemy hit by segment raycast, adding a segment at index ', index + 1)
+      hook.add_segment_to_enemy(raycast.get_collider(), raycast.get_collision_point(), index + 1)
+    else:
+      print('Cutting rope')
+      hook.unhook()
