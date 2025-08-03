@@ -6,10 +6,12 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iumy6"]
 size = Vector2(12, 30)
 
-[node name="melee_strike" type="Node2D" node_paths=PackedStringArray("sprite_rotation_node", "collider_rotation_node")]
+[node name="melee_strike" type="Node2D" node_paths=PackedStringArray("sprite_rotation_node", "collider_rotation_node", "sprite", "hitbox_shape")]
 script = ExtResource("1_iumy6")
 sprite_rotation_node = NodePath("sprite_rotation")
 collider_rotation_node = NodePath("collider_rotation")
+sprite = NodePath("sprite_rotation/sprite")
+hitbox_shape = NodePath("collider_rotation/hitbox/shape")
 
 [node name="delete_timer" type="Timer" parent="."]
 wait_time = 0.1
@@ -20,6 +22,7 @@ autostart = true
 position = Vector2(0, -20)
 
 [node name="sprite" type="Sprite2D" parent="sprite_rotation"]
+visible = false
 z_index = 1
 position = Vector2(27, 0)
 scale = Vector2(0.056, 0.056)
@@ -33,6 +36,7 @@ collision_mask = 50
 
 [node name="shape" type="CollisionShape2D" parent="collider_rotation/hitbox"]
 shape = SubResource("RectangleShape2D_iumy6")
+disabled = true
 
 [connection signal="timeout" from="delete_timer" to="." method="queue_free"]
 [connection signal="body_entered" from="collider_rotation/hitbox" to="." method="_on_hitbox_body_entered"]

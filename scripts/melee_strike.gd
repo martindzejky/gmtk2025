@@ -4,11 +4,17 @@ class_name MeleeStrike
 @export var target_rotation := 0.0
 @export var sprite_rotation_node: Node2D
 @export var collider_rotation_node: Node2D
+@export var sprite: Sprite2D
+@export var hitbox_shape: CollisionShape2D
 
 func _process(_delta):
   if not is_instance_valid(sprite_rotation_node) or not is_instance_valid(collider_rotation_node): return
+
   sprite_rotation_node.rotation = target_rotation
   collider_rotation_node.rotation = target_rotation
+
+  sprite.visible = true
+  hitbox_shape.disabled = false
 
 func _on_hitbox_body_entered(body: Node2D):
   # duck typing to the fullest!

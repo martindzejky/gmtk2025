@@ -18,15 +18,21 @@ class_name Player
 @export_category('Cutscene')
 @export var cutscene := false
 
+# super duper state for the player...
+var dying := false
+var dead := false
+
 func _ready():
   Game.player = self
 
 func _physics_process(_delta):
+  if dead: return
+
   var input_vector := Vector2.ZERO
-  if not cutscene:
+  if not cutscene and not dying:
     input_vector = Input.get_vector('move_left', 'move_right', 'move_up', 'move_down')
 
-  if dash_cooldown_timer.time_left <= 0 and Input.is_action_just_pressed('dash') and not cutscene:
+  if dash_cooldown_timer.time_left <= 0 and Input.is_action_just_pressed('dash') and not cutscene and not dying:
     dash_progress_timer.start()
     dash_cooldown_timer.start()
 
@@ -34,6 +40,10 @@ func _physics_process(_delta):
     velocity = input_vector * dash_speed * dash_curve.sample(1 - dash_progress_timer.time_left / dash_progress_timer.wait_time)
   else:
     velocity = input_vector * move_speed
+
+  # just in case
+  if cutscene or dying:
+    velocity = Vector2.ZERO
 
   move_and_slide()
 
@@ -44,7 +54,9 @@ func _physics_process(_delta):
   else:
     dash_cooldown_progress.visible = false
 
-  if lasso.has_hook():
+  if dying:
+    dude.play_animation('die')
+  elif lasso.has_hook():
     if dash_progress_timer.time_left > 0:
       dude.play_animation('dash_lasso')
     elif velocity.length() > 0:
@@ -64,3 +76,10 @@ func _physics_process(_delta):
 
 func end_cutscene():
   cutscene = false
+
+func hit():
+  dying = true
+
+func _on_dude_die_end() -> void:
+  dead = true
+  dude.queue_free()

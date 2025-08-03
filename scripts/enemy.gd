@@ -56,6 +56,7 @@ var release_captured_target: Enemy
 var attack_folks_target: Folk
 var attack_target: Node2D
 var performing_attack: String
+var melee_attack_direction: Vector2
 
 func _ready():
   if can_attack_melee and melee_weapons.size() > 0:
@@ -94,6 +95,10 @@ func _physics_process(_delta):
     move_and_slide()
 
 func go_attack_player():
+  if Game.player.dying or Game.player.dead:
+    # TODO: maybe switch to attacking folks? or maybe not necessary
+    return
+
   var distance_to_player := global_position.distance_to(Game.player.global_position)
 
   if melee_cooldown_timer.time_left <= 0 and shoot_cooldown_timer.time_left <= 0:
@@ -259,6 +264,7 @@ func get_movement_speed():
 
 func attack_melee(target):
   attack_target = target
+  melee_attack_direction = global_position.direction_to(target.global_position) # need to lock this at the time the melee attack is initiated
   performing_attack = 'melee'
   melee_cooldown_timer.start()
   dude_melee_animation(target)
@@ -402,7 +408,7 @@ func perform_melee_attack():
 
   var melee_strike = melee_strike_object.instantiate()
   melee_strike.global_position = global_position
-  melee_strike.target_rotation = global_position.angle_to_point(attack_target.global_position)
+  melee_strike.target_rotation = melee_attack_direction.angle()
   get_parent().add_child(melee_strike)
 
 func perform_ranged_attack():

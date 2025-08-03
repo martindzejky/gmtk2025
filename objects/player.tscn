@@ -81,3 +81,5 @@ grow_horizontal = 2
 grow_vertical = 0
 max_value = 1.0
 show_percentage = false
+
+[connection signal="die_end" from="dude" to="." method="_on_dude_die_end"]
