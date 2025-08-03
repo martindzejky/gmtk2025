@@ -24,6 +24,7 @@ buses/default_bus_layout="res://sounds/default_bus_layout.tres"
 [autoload]
 
 Game="*res://autoload/game.tscn"
+Effects="*res://autoload/effects.tscn"
 
 [display]
 

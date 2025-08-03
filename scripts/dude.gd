@@ -161,3 +161,15 @@ func set_bow_default():
 func play_rope_sound():
   if randf() < rope_sound_chance:
     rope_sound_player.play()
+
+func emit_cloud_step_particles():
+  Effects.create_cloud_effect(global_position, 0, 1)
+
+func emit_cloud_dash_particles():
+  Effects.create_cloud_effect(global_position, 0, 3)
+
+func emit_smoke_particles():
+  Effects.create_smoke_effect(global_position + Vector2(20, 0) * sign(scale.x), 2, 10)
+
+func emit_death_smoke_particles():
+  Effects.create_smoke_effect(global_position + Vector2(20, 0) * sign(scale.x), 2, 20)

@@ -372,7 +372,7 @@ tracks/26/keys = {
 
 [sub_resource type="Animation" id="Animation_6i87g"]
 resource_name = "attacked"
-length = 0.001
+length = 0.1
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -469,6 +469,18 @@ tracks/7/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [0.0]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("jump_animation/rotation_scale_animation:rotation")
+tracks/8/interp = 4
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 0.02, 0.0401074, 0.0601074, 0.0802989, 0.100299),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0872665, -0.0872665, 0.0872665, -0.0872665, 0.0872665, -0.0872665]
 }
 
 [sub_resource type="Animation" id="Animation_720c1"]
@@ -687,6 +699,29 @@ tracks/7/keys = {
 "times": PackedFloat32Array(0)
 }
 tracks/7/use_blend = true
+tracks/8/type = "method"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath(".")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"values": [{
+"args": [],
+"method": &"emit_cloud_dash_particles"
+}, {
+"args": [],
+"method": &"emit_cloud_dash_particles"
+}, {
+"args": [],
+"method": &"emit_cloud_dash_particles"
+}, {
+"args": [],
+"method": &"emit_cloud_dash_particles"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_kj05k"]
 resource_name = "dash_lasso"
@@ -832,6 +867,29 @@ tracks/10/keys = {
 "times": PackedFloat32Array(0)
 }
 tracks/10/use_blend = true
+tracks/11/type = "method"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath(".")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"values": [{
+"args": [],
+"method": &"emit_cloud_dash_particles"
+}, {
+"args": [],
+"method": &"emit_cloud_dash_particles"
+}, {
+"args": [],
+"method": &"emit_cloud_dash_particles"
+}, {
+"args": [],
+"method": &"emit_cloud_dash_particles"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_nb8wc"]
 resource_name = "die"
@@ -937,6 +995,23 @@ tracks/7/keys = {
 "times": PackedFloat32Array(0, 0.6)
 }
 tracks/7/use_blend = true
+tracks/8/type = "method"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath(".")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0.6, 1.2),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"emit_smoke_particles"
+}, {
+"args": [],
+"method": &"emit_death_smoke_particles"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_t4klp"]
 resource_name = "fleeing"
@@ -1054,6 +1129,23 @@ tracks/8/keys = {
 "times": PackedFloat32Array(0, 0.4)
 }
 tracks/8/use_blend = true
+tracks/9/type = "method"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath(".")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"emit_cloud_step_particles"
+}, {
+"args": [],
+"method": &"emit_cloud_step_particles"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_tkn7g"]
 resource_name = "idle"
@@ -1561,6 +1653,23 @@ tracks/9/keys = {
 "times": PackedFloat32Array(0, 0.4)
 }
 tracks/9/use_blend = true
+tracks/10/type = "method"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath(".")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"emit_cloud_step_particles"
+}, {
+"args": [],
+"method": &"emit_cloud_step_particles"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_dkird"]
 resource_name = "running_hooked"
@@ -1714,6 +1823,23 @@ tracks/11/keys = {
 "values": [{
 "args": [],
 "method": &"play_rope_sound"
+}]
+}
+tracks/12/type = "method"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath(".")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"emit_cloud_step_particles"
+}, {
+"args": [],
+"method": &"emit_cloud_step_particles"
 }]
 }
 
@@ -1888,6 +2014,23 @@ tracks/12/keys = {
 "times": PackedFloat32Array(0, 0.4)
 }
 tracks/12/use_blend = true
+tracks/13/type = "method"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath(".")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"emit_cloud_step_particles"
+}, {
+"args": [],
+"method": &"emit_cloud_step_particles"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_3mih0"]
 resource_name = "shoot"
@@ -2125,6 +2268,7 @@ position = Vector2(2.57377, -18.7603)
 scale = Vector2(0.0561217, 0.0561217)
 texture = ExtResource("3_cr6a7")
 hframes = 13
+frame = 11
 
 [node name="sheriff_star" type="Sprite2D" parent="jump_animation/rotation_scale_animation/body_scale/body"]
 visible = false

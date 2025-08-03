@@ -1,0 +1,42 @@
+[gd_scene load_steps=4 format=3 uid="uid://cvh3nwxesi1lo"]
+
+[ext_resource type="Script" uid="uid://bsqgg3qpcyk6d" path="res://scripts/effect.gd" id="1_x5q7g"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_tp27c"]
+load_path = "res://.godot/imported/cloud_0.png-7aa0e6c3049a0bb06b888f0e84c9782b.ctex"
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1sbe4"]
+resource_local_to_scene = true
+lifetime_randomness = 0.4
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 4.0
+angle_min = 1.07288e-05
+angle_max = 360.0
+direction = Vector3(0, -1, 0)
+spread = 40.0
+initial_velocity_min = 1.0
+initial_velocity_max = 2.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.03
+scale_max = 0.04
+color = Color(0.94, 0.912427, 0.8648, 0.65098)
+
+[node name="cloud_particles" type="Node2D" node_paths=PackedStringArray("particles", "height_node")]
+script = ExtResource("1_x5q7g")
+particles = NodePath("height/particles")
+height_node = NodePath("height")
+
+[node name="height" type="Node2D" parent="."]
+
+[node name="particles" type="GPUParticles2D" parent="height"]
+emitting = false
+amount = 1
+texture = SubResource("CompressedTexture2D_tp27c")
+lifetime = 0.4
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_1sbe4")
+
+[connection signal="finished" from="height/particles" to="." method="_on_particles_finished"]

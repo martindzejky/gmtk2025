@@ -293,6 +293,7 @@ func capture():
   collision_layer = collision_layer << 1
 
   Game.emit_enemies_updated()
+  Effects.create_smoke_effect(global_position + Vector2(0, 0.1), 20, 10)
 
 func free_from_capture():
   if state != State.CAPTURED: return
@@ -303,6 +304,7 @@ func free_from_capture():
   collision_layer = collision_layer >> 1
 
   Game.emit_enemies_updated()
+  Effects.create_smoke_effect(global_position + Vector2(0, 0.1), 20, 10)
 
 func collect_captured():
   # TODO: animation and add some points or something

@@ -186,7 +186,7 @@ func _on_dude_die_end() -> void:
 
   var grave = grave_scene.instantiate()
   get_parent().add_child(grave)
-  grave.global_position = global_position
+  grave.global_position = global_position + Vector2(20, 0) * sign(dude.scale.x)
 
   queue_free()
   await tree_exited
