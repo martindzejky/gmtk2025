@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://qwj8b5x4g7c1" path="res://objects/player.tscn" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://dxnx8k27jooot" path="res://waves/wave_spawner.tscn" id="2_eklt2"]
-[ext_resource type="PackedScene" uid="uid://b0kknoieqv00y" path="res://objects/game_ui.tscn" id="4_eklt2"]
+[ext_resource type="PackedScene" uid="uid://b0kknoieqv00y" path="res://ui/game_ui.tscn" id="4_eklt2"]
 [ext_resource type="PackedScene" uid="uid://celdle61b8mey" path="res://objects/folk.tscn" id="8_5vw27"]
 
 [node name="main" type="Node2D"]

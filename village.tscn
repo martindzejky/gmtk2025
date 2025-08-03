@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cf6547v4lhn7r" path="res://scripts/village.gd" id="1_jak2h"]
 [ext_resource type="PackedScene" uid="uid://qwj8b5x4g7c1" path="res://objects/player.tscn" id="1_q5e70"]
-[ext_resource type="PackedScene" uid="uid://b0kknoieqv00y" path="res://objects/game_ui.tscn" id="2_6t5gs"]
+[ext_resource type="PackedScene" uid="uid://b0kknoieqv00y" path="res://ui/game_ui.tscn" id="2_6t5gs"]
 [ext_resource type="PackedScene" uid="uid://celdle61b8mey" path="res://objects/folk.tscn" id="2_pxdql"]
 [ext_resource type="PackedScene" uid="uid://dxnx8k27jooot" path="res://waves/wave_spawner.tscn" id="2_wybox"]
 [ext_resource type="PackedScene" uid="uid://t478gv53rdvw" path="res://objects/folk_turned_left.tscn" id="3_qyljj"]
