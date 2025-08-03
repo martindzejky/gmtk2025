@@ -90,8 +90,9 @@ _data = {
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3f73b"]
 
-[node name="arrow" type="Node2D"]
+[node name="throwing_knife" type="Node2D"]
 script = ExtResource("1_dgol7")
+move_speed = 180.0
 
 [node name="shadow" parent="." instance=ExtResource("3_3f73b")]
 scale = Vector2(0.00671918, 0.00409149)

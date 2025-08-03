@@ -57,6 +57,7 @@ _data = {
 
 [node name="arrow" type="Node2D" node_paths=PackedStringArray("set_target_rotation_to")]
 script = ExtResource("1_ledw7")
+move_speed = 200.0
 set_target_rotation_to = NodePath("rotation")
 
 [node name="shadow" parent="." instance=ExtResource("2_vitwq")]
