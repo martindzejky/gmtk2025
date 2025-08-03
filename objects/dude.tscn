@@ -2334,43 +2334,43 @@ position = Vector2(3.52625, -24.1408)
 
 [node name="steps" type="AudioStreamPlayer2D" parent="."]
 volume_db = -10.0
-max_distance = 400.0
+max_distance = 800.0
 attenuation = 3.0
 bus = &"sound effects"
 
 [node name="hit" type="AudioStreamPlayer2D" parent="."]
 volume_db = 1.0
-max_distance = 400.0
+max_distance = 800.0
 attenuation = 3.0
 bus = &"sound effects"
 
 [node name="swoosh" type="AudioStreamPlayer2D" parent="."]
 volume_db = -4.0
-max_distance = 400.0
+max_distance = 800.0
 attenuation = 3.0
 bus = &"sound effects"
 
 [node name="dash" type="AudioStreamPlayer2D" parent="."]
 volume_db = -2.0
-max_distance = 400.0
+max_distance = 800.0
 attenuation = 3.0
 bus = &"sound effects"
 
 [node name="cink" type="AudioStreamPlayer2D" parent="."]
 volume_db = 2.0
-max_distance = 400.0
+max_distance = 800.0
 attenuation = 3.0
 bus = &"sound effects"
 
 [node name="bow" type="AudioStreamPlayer2D" parent="."]
-max_distance = 400.0
+max_distance = 800.0
 attenuation = 3.0
 bus = &"sound effects"
 
 [node name="rope_random" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("17_dqeom")
 volume_db = -2.0
-max_distance = 400.0
+max_distance = 800.0
 attenuation = 3.0
 max_polyphony = 3
 bus = &"sound effects"

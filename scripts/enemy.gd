@@ -69,6 +69,8 @@ func _ready():
     var ranged_weapon_instance = ranged_weapon.instantiate()
     dude.equip_bow_weapon(ranged_weapon_instance)
 
+  Effects.call_deferred('create_smoke_effect', global_position + Vector2(0, 0.1), 20, 10)
+
 func _process(_delta):
   update_dude_animation()
 
