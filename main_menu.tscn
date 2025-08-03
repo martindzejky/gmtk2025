@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bqwj8b5x4g7c2"]
+[gd_scene load_steps=3 format=3 uid="uid://bqwj8b5x4g7c2"]
 
 [ext_resource type="Script" uid="uid://case8pfh1qfpo" path="res://scripts/main_menu.gd" id="1_main_menu"]
+[ext_resource type="Texture2D" uid="uid://dhdbfe078odwe" path="res://sprites/icon.png" id="2_7vrkn"]
 
 [node name="main_menu" type="Control"]
 layout_mode = 3
@@ -24,6 +25,11 @@ layout_mode = 2
 
 [node name="vbox_container" type="VBoxContainer" parent="margin_container/center_container"]
 layout_mode = 2
+
+[node name="logo" type="TextureRect" parent="margin_container/center_container/vbox_container"]
+layout_mode = 2
+texture = ExtResource("2_7vrkn")
+expand_mode = 4
 
 [node name="play_button" type="Button" parent="margin_container/center_container/vbox_container"]
 layout_mode = 2
