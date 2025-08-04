@@ -21,3 +21,16 @@ Since I did not have enough time to make a proper in-game tutorial, here is a sh
 ![screenshot 3](./screenshots/screenshot3.png)
 ![screenshot 4](./screenshots/screenshot4.png)
 ![screenshot 5](./screenshots/screenshot5.png)
+
+## Resources
+
+All code was written by me during the game jam, all art for the game was also done by me during the game jam. Sound effects are from [Freesound.org](https://freesound.org/) and some are further edited by me.
+
+## Tools used
+
+- [Godot game engine](https://godotengine.org/)
+- [Cursor editor](https://www.cursor.com/)
+- [Procreate](https://procreate.com/) for drawing the art
+- [Aseprite](https://www.aseprite.org/)
+- [Affinity Photo 2](https://affinity.serif.com/en-us/photo/)
+- [Ableton](https://www.ableton.com/) for tweaking the sounds
