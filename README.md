@@ -42,3 +42,7 @@ All code was written by me during the game jam, all art for the game was also do
 - The "Wave starts" title is in the way and blocks your view while the enemies are already spawned. Oops...
 - Props and enemies block walking, so when you've advanced in the game a bit and there are a lot of tied bandits around, it becomes very hard to move.
 - There is no minimap so you have no way of knowing where the bandits and the folks are.
+
+## Possible game idea for the future
+
+As the legendary Lasso Sheriff, you enter a new territory of the country. This is an "open world" – could be a simple minimap where you click to navigate to a village. There are places, bandit camps, and villages. These villages are captured by bandits and your goal is to free all villages in the game. You start with a basic short lasso and slowly gain upgrades (longer lasso, better boots for speed, nicer shirt for more lives, etc.) to progress in the game and tackle larger villages with more difficult enemies.
