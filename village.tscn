@@ -11,6 +11,11 @@
 [sub_resource type="Animation" id="Animation_qyljj"]
 resource_name = "cutscene"
 length = 30.0
+markers = [{
+"color": Color(1, 1, 1, 1),
+"name": &"skip",
+"time": 29.1542
+}]
 tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -124,9 +129,10 @@ _data = {
 &"cutscene": SubResource("Animation_qyljj")
 }
 
-[node name="village" type="Node2D"]
+[node name="village" type="Node2D" node_paths=PackedStringArray("cutscene_animation")]
 y_sort_enabled = true
 script = ExtResource("1_jak2h")
+cutscene_animation = NodePath("cutscene")
 
 [node name="ui" parent="." instance=ExtResource("2_6t5gs")]
 

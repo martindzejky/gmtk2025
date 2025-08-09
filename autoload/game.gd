@@ -34,7 +34,8 @@ func _process(_delta):
       get_tree().paused = !get_tree().paused
 
     if Input.is_action_just_pressed('exit'):
-      get_tree().quit()
+      # get_tree().quit()
+      pass
 
 func reset_game():
   game_is_failed = false
