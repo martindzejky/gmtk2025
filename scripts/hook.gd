@@ -76,7 +76,10 @@ func catch_all_enemies():
     captured_group_point += enemy.global_position
   captured_group_point /= enemies_to_catch.size()
 
+  var apply_captured_group_pull := enemies_to_catch.size() > 1
+
   for enemy in enemies_to_catch:
+    enemy.apply_captured_group_pull = apply_captured_group_pull
     enemy.captured_group_point = captured_group_point
     enemy.capture()
 

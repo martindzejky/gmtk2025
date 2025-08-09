@@ -52,15 +52,19 @@ enum State {
 }
 
 var state := State.ATTACKING_PLAYER
+var previous_position: Vector2
 var release_captured_target: Enemy
 var attack_folks_target: Folk
 var attack_target: Node2D
 var performing_attack: String
 var melee_attack_direction: Vector2
 var ranged_attack_direction: Vector2
-var captured_group_point: Vector2
+var captured_group_point := Vector2.ZERO
+var apply_captured_group_pull := false
 
 func _ready():
+  previous_position = global_position
+
   if can_attack_melee and melee_weapons.size() > 0:
     var melee_weapon = melee_weapons.pick_random()
     var melee_weapon_instance = melee_weapon.instantiate()
@@ -76,7 +80,7 @@ func _ready():
 func _process(_delta):
   update_dude_animation()
 
-func _physics_process(_delta):
+func _physics_process(delta):
   velocity = Vector2.ZERO
 
   match state:
@@ -93,12 +97,13 @@ func _physics_process(_delta):
       apply_flocking()
 
     State.CAPTURED:
-      group_captured_pull()
+      group_captured_pull(delta)
 
   if is_hooked_by_segment():
     lasso_pull()
 
   if can_move:
+    previous_position = global_position
     move_and_slide()
 
 func go_attack_player():
@@ -242,13 +247,19 @@ func lasso_pull():
   velocity += direction_to_hook * hook_force
   velocity += direction_to_player * player_force
 
-func group_captured_pull():
+func group_captured_pull(delta: float):
+  if not apply_captured_group_pull: return
+
   var direction_to_group_point := global_position.direction_to(captured_group_point)
   var distance_to_group_point := global_position.distance_to(captured_group_point)
 
   var group_pull_force := lerpf(hook_pull_speed/2, hook_pull_speed, clampf(distance_to_group_point / 100, 0, 1))
 
   velocity += direction_to_group_point * group_pull_force
+
+  var moved_speed := global_position.distance_to(previous_position) / delta
+  if moved_speed < 8:
+    apply_captured_group_pull = false
 
 func is_hooked():
   var groups := ['hook', 'segment']
