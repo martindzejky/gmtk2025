@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://x8um1nksuk8c" path="res://scripts/random_color.gd" id="3_o6hn1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_o6hn1"]
-radius = 6.56961
+radius = 4.42135
 
 [sub_resource type="Gradient" id="Gradient_o6hn1"]
 colors = PackedColorArray(0.350466, 0.391666, 0.161485, 1, 0.479938, 0.652221, 0.37893, 1)

@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://be3pkrmcmmjrj" path="res://sprites/pole_0.png" id="5_3e2jp"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3e2jp"]
-radius = 2.68579
+radius = 1.00666
 
 [sub_resource type="Gradient" id="Gradient_o6hn1"]
 colors = PackedColorArray(0.368256, 0.210069, 0.0690861, 1, 0.759975, 0.488564, 0.226191, 1)

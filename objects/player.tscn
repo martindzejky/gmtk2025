@@ -19,7 +19,7 @@ colors = PackedColorArray(0.24343, 0.154164, 0.109248, 1, 0.353278, 0.184261, 0.
 colors = PackedColorArray(0.283345, 0.5721, 0.707218, 1, 0.335716, 0.312536, 0.731633, 1)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_player"]
-radius = 12.0
+radius = 4.0
 
 [node name="player" type="CharacterBody2D" node_paths=PackedStringArray("dude", "dash_progress_timer", "dash_cooldown_timer", "dash_cooldown_progress", "lasso") groups=["player"]]
 collision_layer = 2

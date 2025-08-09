@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://d2jswiwlf5a4n" path="res://sprites/sheriff_star.png" id="4_vrmtf"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qywvv"]
-radius = 12.0
+radius = 5.04769
 
 [sub_resource type="Gradient" id="Gradient_gupqt"]
 colors = PackedColorArray(0.453073, 0.507602, 0.498564, 1, 0.592317, 0.67773, 0.747926, 1)
@@ -62,8 +62,8 @@ shape = SubResource("CircleShape2D_qywvv")
 [node name="scale" type="Node2D" parent="."]
 
 [node name="sprite" type="Sprite2D" parent="scale" node_paths=PackedStringArray("target")]
-position = Vector2(2, -20)
-scale = Vector2(0.056, 0.056)
+position = Vector2(1.2616, -12.8211)
+scale = Vector2(0.0361116, 0.0361116)
 texture = ExtResource("2_qywvv")
 script = ExtResource("3_gupqt")
 gradient_color = SubResource("Gradient_gupqt")
@@ -72,7 +72,7 @@ target = NodePath(".")
 [node name="sheriff_star" type="Sprite2D" parent="scale"]
 visible = false
 self_modulate = Color(0.988235, 0.772549, 0.27451, 1)
-position = Vector2(2.8645, -28.3903)
+position = Vector2(1.87997, -18.2988)
 rotation = 0.127414
 scale = Vector2(0.0129704, 0.0128122)
 texture = ExtResource("4_vrmtf")

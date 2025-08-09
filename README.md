@@ -40,7 +40,7 @@ All code was written by me during the game jam, all art for the game was also do
 - [ ] There's no way to pause the game once you are playing. The only way to exit is to kill the app or close your web browser tab.
 - [ ] Cacti in the game are supposed to break your lasso but sometimes they break the whole game!
 - [ ] The "Wave starts" title is in the way and blocks your view while the enemies are already spawned. Oops...
-- [ ] Props and enemies block walking, so when you've advanced in the game a bit and there are a lot of tied bandits around, it becomes very hard to move.
+- [x] Props and enemies block walking, so when you've advanced in the game a bit and there are a lot of tied bandits around, it becomes very hard to move.
 - [ ] There is no minimap so you have no way of knowing where the bandits and the folks are.
 - [x] The initial cutscene cannot be skipped.
 

@@ -14,7 +14,7 @@
 colors = PackedColorArray(0.856869, 0.279472, 0.265211, 1, 0.701292, 0.259397, 0.058602, 1)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_882u1"]
-radius = 12.0
+radius = 3.82683
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3hb37"]
 radius = 107.005

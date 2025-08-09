@@ -3,15 +3,15 @@
 [ext_resource type="PackedScene" uid="uid://b3xcbsdspbjfw" path="res://objects/shadow.tscn" id="1_7421i"]
 [ext_resource type="Texture2D" uid="uid://cpho4osokhhyf" path="res://sprites/pillar.png" id="1_g5jnw"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_42rad"]
-radius = 8.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_7421i"]
+radius = 6.0
 
 [node name="pillar" type="StaticBody2D"]
 
 [node name="shadow" parent="." instance=ExtResource("1_7421i")]
 
 [node name="shape" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_42rad")
+shape = SubResource("CircleShape2D_7421i")
 
 [node name="sprite" type="Sprite2D" parent="."]
 position = Vector2(0, -32)
