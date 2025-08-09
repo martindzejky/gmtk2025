@@ -10,13 +10,14 @@ font_color = Color(0, 0, 0, 1)
 font_size = 32
 font_color = Color(0, 0, 0, 1)
 
-[node name="wave_ends" type="CenterContainer" node_paths=PackedStringArray("display_timer", "text")]
+[node name="wave_ends" type="MarginContainer" node_paths=PackedStringArray("display_timer", "text")]
 process_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_bottom = 40
 script = ExtResource("1_bqo52")
 display_timer = NodePath("display_timer")
 text = NodePath("panel/center/container/title")
@@ -27,6 +28,8 @@ one_shot = true
 
 [node name="panel" type="PanelContainer" parent="."]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
 
 [node name="center" type="CenterContainer" parent="panel"]
 layout_mode = 2
