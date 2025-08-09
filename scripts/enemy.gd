@@ -57,6 +57,7 @@ var attack_folks_target: Folk
 var attack_target: Node2D
 var performing_attack: String
 var melee_attack_direction: Vector2
+var ranged_attack_direction: Vector2
 
 func _ready():
   if can_attack_melee and melee_weapons.size() > 0:
@@ -277,6 +278,7 @@ func attack_melee(target):
 
 func shoot_ranged(target):
   attack_target = target
+  ranged_attack_direction = global_position.direction_to(target.global_position) # need to lock this at the time the ranged attack is initiated
   performing_attack = 'ranged'
   shoot_cooldown_timer.start()
   dude_shoot_animation(target)
@@ -422,5 +424,5 @@ func perform_ranged_attack():
 
   var projectile = projectile_object.instantiate()
   projectile.global_position = global_position
-  projectile.target_rotation = global_position.angle_to_point(attack_target.global_position)
+  projectile.target_rotation = ranged_attack_direction.angle()
   get_parent().add_child(projectile)
