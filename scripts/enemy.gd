@@ -232,8 +232,8 @@ func lasso_pull():
   var direction_to_player := global_position.direction_to(Game.player.global_position)
   var distance_to_player := global_position.distance_to(Game.player.global_position)
 
-  var hook_force := lerpf(0, hook_pull_speed, clampf(distance_to_hook / 100, 0, 1))
-  var player_force := lerpf(0, hook_pull_speed, clampf(distance_to_player / 100, 0, 1))
+  var hook_force := lerpf(hook_pull_speed/2, hook_pull_speed, clampf(distance_to_hook / 100, 0, 1) * Game.hook.get_catch_percentage() * 3)
+  var player_force := lerpf(hook_pull_speed/2, hook_pull_speed, clampf(distance_to_player / 100, 0, 1))
 
   velocity += direction_to_hook * hook_force
   velocity += direction_to_player * player_force
