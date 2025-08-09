@@ -5,9 +5,11 @@ extends Node
 # TODO: tutorial scene
 @export var village_scene: PackedScene
 @export var fail_ui_scene: PackedScene
+@export var pause_ui_scene: PackedScene
 
 var player: Player
 var hook: Hook
+var pause_ui: CanvasLayer
 
 signal player_died
 signal folks_updated
@@ -33,9 +35,9 @@ func _process(_delta):
     if Input.is_action_just_pressed('freeze'):
       get_tree().paused = !get_tree().paused
 
-    if Input.is_action_just_pressed('exit'):
-      # get_tree().quit()
-      pass
+  # pause menu toggle
+  if Input.is_action_just_pressed('exit'):
+    handle_pause_toggle()
 
 func reset_game():
   game_is_failed = false
@@ -103,3 +105,26 @@ func fail_game():
 
 func force_fail_game():
   game_is_failed = true
+
+func handle_pause_toggle():
+  if game_is_failed: return
+  if get_tree().current_scene.name != 'village': return
+  if player != null and player.cutscene: return
+
+  if pause_ui != null:
+    hide_pause_menu()
+  else:
+    show_pause_menu()
+
+func show_pause_menu():
+  if pause_ui != null: return
+
+  pause_ui = pause_ui_scene.instantiate()
+  get_tree().current_scene.add_child(pause_ui)
+  get_tree().paused = true
+
+func hide_pause_menu():
+  if pause_ui == null: return
+
+  pause_ui.queue_free()
+  get_tree().paused = false

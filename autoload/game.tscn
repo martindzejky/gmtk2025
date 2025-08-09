@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://bod6dutvn55lb"]
+[gd_scene load_steps=6 format=3 uid="uid://bod6dutvn55lb"]
 
 [ext_resource type="Script" uid="uid://dps18n6io5gl6" path="res://autoload/game.gd" id="1_1w5w3"]
 [ext_resource type="PackedScene" uid="uid://bqwj8b5x4g7c2" path="res://main_menu.tscn" id="2_pjkha"]
 [ext_resource type="PackedScene" uid="uid://doppk32uafy8x" path="res://village.tscn" id="3_kujy2"]
 [ext_resource type="PackedScene" uid="uid://bahnhyo8eqbet" path="res://ui/failed_ui.tscn" id="4_kujy2"]
+[ext_resource type="PackedScene" uid="uid://c7phnrmhkcgcu" path="res://ui/pause_ui.tscn" id="5_g10wv"]
 
 [node name="game" type="Node"]
 process_mode = 3
@@ -11,3 +12,4 @@ script = ExtResource("1_1w5w3")
 main_menu_scene = ExtResource("2_pjkha")
 village_scene = ExtResource("3_kujy2")
 fail_ui_scene = ExtResource("4_kujy2")
+pause_ui_scene = ExtResource("5_g10wv")

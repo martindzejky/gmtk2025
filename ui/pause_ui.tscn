@@ -1,0 +1,64 @@
+[gd_scene load_steps=3 format=3 uid="uid://c7phnrmhkcgcu"]
+
+[ext_resource type="Script" uid="uid://msd4mqdsf1wt" path="res://scripts/pause_ui.gd" id="1_6ng6o"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_i2b8f"]
+font_size = 56
+font_color = Color(0, 0, 0, 1)
+
+[node name="pause_ui" type="CanvasLayer"]
+process_mode = 3
+layer = 12
+script = ExtResource("1_6ng6o")
+
+[node name="root" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="margin" type="MarginContainer" parent="root"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="center" type="CenterContainer" parent="root/margin"]
+layout_mode = 2
+
+[node name="panel" type="PanelContainer" parent="root/margin/center"]
+layout_mode = 2
+
+[node name="container" type="VBoxContainer" parent="root/margin/center/panel"]
+layout_mode = 2
+
+[node name="text" type="Label" parent="root/margin/center/panel/container"]
+layout_mode = 2
+text = "Paused"
+label_settings = SubResource("LabelSettings_i2b8f")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="buttons" type="HBoxContainer" parent="root/margin/center/panel/container"]
+layout_mode = 2
+alignment = 1
+
+[node name="resume" type="Button" parent="root/margin/center/panel/container/buttons"]
+layout_mode = 2
+text = "Resume"
+
+[node name="restart" type="Button" parent="root/margin/center/panel/container/buttons"]
+layout_mode = 2
+text = "Restart"
+
+[node name="exit" type="Button" parent="root/margin/center/panel/container/buttons"]
+layout_mode = 2
+text = "Exit"
+
+[connection signal="pressed" from="root/margin/center/panel/container/buttons/resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="root/margin/center/panel/container/buttons/restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="root/margin/center/panel/container/buttons/exit" to="." method="_on_exit_pressed"]

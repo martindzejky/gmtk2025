@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://b0kknoieqv00y" path="res://ui/game_ui.tscn" id="4_eklt2"]
 [ext_resource type="PackedScene" uid="uid://celdle61b8mey" path="res://objects/folk.tscn" id="8_5vw27"]
 
-[node name="main" type="Node2D"]
+[node name="waves_testing" type="Node2D"]
 y_sort_enabled = true
 
 [node name="ui" parent="." instance=ExtResource("4_eklt2")]
