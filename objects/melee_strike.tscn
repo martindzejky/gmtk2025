@@ -22,7 +22,6 @@ autostart = true
 position = Vector2(0, -20)
 
 [node name="sprite" type="Sprite2D" parent="sprite_rotation"]
-visible = false
 z_index = 1
 position = Vector2(27, 0)
 scale = Vector2(0.056, 0.056)
@@ -31,7 +30,7 @@ texture = ExtResource("1_1x5pd")
 [node name="collider_rotation" type="Node2D" parent="."]
 
 [node name="hitbox" type="Area2D" parent="collider_rotation"]
-position = Vector2(25, 0)
+position = Vector2(30, 0)
 collision_mask = 50
 
 [node name="shape" type="CollisionShape2D" parent="collider_rotation/hitbox"]
