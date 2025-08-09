@@ -58,6 +58,7 @@ var attack_target: Node2D
 var performing_attack: String
 var melee_attack_direction: Vector2
 var ranged_attack_direction: Vector2
+var captured_group_point: Vector2
 
 func _ready():
   if can_attack_melee and melee_weapons.size() > 0:
@@ -91,10 +92,13 @@ func _physics_process(_delta):
       go_release_captured()
       apply_flocking()
 
+    State.CAPTURED:
+      group_captured_pull()
+
   if is_hooked_by_segment():
     lasso_pull()
 
-  if can_move and state != State.CAPTURED:
+  if can_move:
     move_and_slide()
 
 func go_attack_player():
@@ -237,6 +241,14 @@ func lasso_pull():
 
   velocity += direction_to_hook * hook_force
   velocity += direction_to_player * player_force
+
+func group_captured_pull():
+  var direction_to_group_point := global_position.direction_to(captured_group_point)
+  var distance_to_group_point := global_position.distance_to(captured_group_point)
+
+  var group_pull_force := lerpf(hook_pull_speed/2, hook_pull_speed, clampf(distance_to_group_point / 100, 0, 1))
+
+  velocity += direction_to_group_point * group_pull_force
 
 func is_hooked():
   var groups := ['hook', 'segment']

@@ -67,15 +67,20 @@ func catch_all_enemies():
     print('Hook is not hooked so it cannot catch all enemies')
     return
 
-  catch_enemy(get_parent())
-
+  var enemies_to_catch := [get_parent()]
   for segment in segments:
-    catch_enemy(segment.get_parent())
+    enemies_to_catch.append(segment.get_parent())
+
+  var captured_group_point := Vector2.ZERO
+  for enemy in enemies_to_catch:
+    captured_group_point += enemy.global_position
+  captured_group_point /= enemies_to_catch.size()
+
+  for enemy in enemies_to_catch:
+    enemy.captured_group_point = captured_group_point
+    enemy.capture()
 
   rope_tied_sound_player.play()
-
-func catch_enemy(enemy: Enemy):
-  enemy.capture()
 
 func unhook():
   if state != State.HOOKED:
